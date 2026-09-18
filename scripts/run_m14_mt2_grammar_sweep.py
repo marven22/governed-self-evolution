@@ -18,6 +18,7 @@ from common.buffer import Buffer
 from envs import make_env
 from tdmpc2 import TDMPC2
 from m14_update_grammar import UpdateSpec
+from m14_update_sampling import sample_task_balanced_ids
 from run_m14_mt2_behavior_cloning import TASKS, cfg_for, evaluate
 from run_m14_mt2_warmstart import collect
 
@@ -35,17 +36,6 @@ def load_candidates(path: Path) -> list[dict]:
     return result
 
 
-def _sample_ids(tasks: torch.Tensor, reach_fraction: float, batch_size: int = 128) -> torch.Tensor:
-    groups = [torch.where(tasks == task_idx)[0] for task_idx in range(2)]
-    if not all(len(group) for group in groups):
-        raise ValueError("both tasks need at least one demonstration transition")
-    reach_count = max(1, min(batch_size - 1, int(round(batch_size * reach_fraction))))
-    return torch.cat([
-        group[torch.randint(len(group), (count,), device="cuda")]
-        for group, count in zip(groups, (reach_count, batch_size - reach_count))
-    ])
-
-
 def policy_update(agent: TDMPC2, obs: torch.Tensor, actions: torch.Tensor, tasks: torch.Tensor, spec: UpdateSpec) -> None:
     """Behavioral update with explicit replay mixture and parameter-drift retention."""
     encoder_params = list(agent.model._encoder.parameters())
@@ -60,7 +50,7 @@ def policy_update(agent: TDMPC2, obs: torch.Tensor, actions: torch.Tensor, tasks
     agent.model.train()
     try:
         for _ in range(spec.gradient_steps):
-            ids = _sample_ids(tasks, spec.reach_fraction)
+            ids = sample_task_balanced_ids(tasks, spec.reach_fraction)
             z = agent.model.encode(obs[ids], tasks[ids])
             _, info = agent.model.pi(z, tasks[ids])
             loss = torch.nn.functional.mse_loss(info["mean"], actions[ids])
