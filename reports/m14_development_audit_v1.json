@@ -1,0 +1,77 @@
+{
+  "audit_version": "m14-development-audit-v1",
+  "grain": "one exact pre/post capability transition for one base controller, one canonical update action, one execution seed, and one fixed demand vector",
+  "development_controllers_expected": [
+    "seed101",
+    "seed102",
+    "seed103",
+    "seed105",
+    "seed106",
+    "seed112"
+  ],
+  "held_out_controllers_expected": [
+    "seed111",
+    "seed114"
+  ],
+  "expected_candidates_per_controller": 16,
+  "rows": 96,
+  "exact_pre_rows": 96,
+  "controller_pre_capabilities": {
+    "seed101": {
+      "mw-reach": 1.0,
+      "mw-pick-place": 0.85
+    },
+    "seed102": {
+      "mw-reach": 0.65,
+      "mw-pick-place": 1.0
+    },
+    "seed103": {
+      "mw-reach": 1.0,
+      "mw-pick-place": 0.65
+    },
+    "seed105": {
+      "mw-reach": 0.75,
+      "mw-pick-place": 0.95
+    },
+    "seed106": {
+      "mw-reach": 0.85,
+      "mw-pick-place": 0.95
+    },
+    "seed112": {
+      "mw-reach": 0.75,
+      "mw-pick-place": 1.0
+    }
+  },
+  "target_family_counts": {
+    "hold": 6,
+    "policy": 48,
+    "policy_and_world_model": 24,
+    "world_model": 18
+  },
+  "reach_fraction_counts": {
+    "0.0": 6,
+    "0.25": 24,
+    "0.5": 42,
+    "0.75": 24
+  },
+  "candidate_replication_counts": {
+    "u-0884a911fd88": 6,
+    "u-2541629cb906": 6,
+    "u-27fa5da25dae": 6,
+    "u-2ba69d801a67": 6,
+    "u-351f1daec1c9": 6,
+    "u-396aad2568d0": 6,
+    "u-468e82a23c95": 6,
+    "u-5861f130ec1b": 6,
+    "u-6e261c26382c": 6,
+    "u-87277c667bb1": 6,
+    "u-94492477460f": 6,
+    "u-9c50bcd535cf": 6,
+    "u-acd4b6c3f0bc": 6,
+    "u-c397158fc8a7": 6,
+    "u-cc742ee09a80": 6,
+    "u-e201bbbaf0d3": 6
+  },
+  "errors": [],
+  "passed": true
+}

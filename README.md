@@ -46,6 +46,11 @@ two independent controller checkpoints. Its bounded result record is
 `docs/M14_GRAMMAR_COVERAGE_PILOT_RESULTS_V1.md`; it establishes a useful update
 space with both feasible and catastrophic regions, not a validated governor.
 
+The subsequent six-controller development collection has passed its structural
+data audit; see `docs/M14_DEVELOPMENT_DATA_AUDIT_V1.md`. It is approved only
+for development-side modeling and leaves two controllers untouched for a blind
+decision evaluation.
+
 ## Reproducing the current data pipeline
 
 The scripts run against the official TD-MPC2 source tree plus a compatible
