@@ -1,0 +1,370 @@
+[
+  {
+    "domain": "metaworld-mt2",
+    "pre_capability": {
+      "mw-reach": 0.65,
+      "mw-pick-place": 1.0
+    },
+    "pre_capability_is_exact": true,
+    "update": {
+      "grammar_version": "m14-update-grammar-v1",
+      "target": "hold",
+      "task_data": {
+        "reach_fraction": 0.5,
+        "pick_place_fraction": 0.5
+      },
+      "optimization": {
+        "gradient_steps": 0,
+        "learning_rate": 0.0003
+      },
+      "retention": {
+        "freeze_encoder": true,
+        "prior_policy_l2": 0.0,
+        "protect_policy_during_model_update": true
+      }
+    },
+    "context": {
+      "seed": 102,
+      "checkpoint": "/home/vmargapu/experiments/m14_mt2_dagger_v2/policy_dagger.pt",
+      "demo_episodes_per_task": 50,
+      "eval_episodes": 20,
+      "candidate_id": "u-351f1daec1c9",
+      "candidate_label": "HOLD"
+    },
+    "demand": {
+      "mw-reach": 0.3,
+      "mw-pick-place": 0.7
+    },
+    "post_capability": {
+      "mw-reach": 0.65,
+      "mw-pick-place": 0.95
+    },
+    "utility": 0.8599999999999999,
+    "feasible": true,
+    "constraints": {
+      "min_reach_retention": 0.15
+    }
+  },
+  {
+    "domain": "metaworld-mt2",
+    "pre_capability": {
+      "mw-reach": 0.65,
+      "mw-pick-place": 1.0
+    },
+    "pre_capability_is_exact": true,
+    "update": {
+      "grammar_version": "m14-update-grammar-v1",
+      "target": "policy",
+      "task_data": {
+        "reach_fraction": 0.0,
+        "pick_place_fraction": 1.0
+      },
+      "optimization": {
+        "gradient_steps": 1000,
+        "learning_rate": 0.0003
+      },
+      "retention": {
+        "freeze_encoder": false,
+        "prior_policy_l2": 0.0,
+        "protect_policy_during_model_update": false
+      }
+    },
+    "context": {
+      "seed": 102,
+      "checkpoint": "/home/vmargapu/experiments/m14_mt2_dagger_v2/policy_dagger.pt",
+      "demo_episodes_per_task": 50,
+      "eval_episodes": 20,
+      "candidate_id": "u-0884a911fd88",
+      "candidate_label": "POLICY_PICK"
+    },
+    "demand": {
+      "mw-reach": 0.3,
+      "mw-pick-place": 0.7
+    },
+    "post_capability": {
+      "mw-reach": 0.0,
+      "mw-pick-place": 0.95
+    },
+    "utility": 0.6649999999999999,
+    "feasible": false,
+    "constraints": {
+      "min_reach_retention": 0.15
+    }
+  },
+  {
+    "domain": "metaworld-mt2",
+    "pre_capability": {
+      "mw-reach": 0.65,
+      "mw-pick-place": 1.0
+    },
+    "pre_capability_is_exact": true,
+    "update": {
+      "grammar_version": "m14-update-grammar-v1",
+      "target": "policy",
+      "task_data": {
+        "reach_fraction": 0.5,
+        "pick_place_fraction": 0.5
+      },
+      "optimization": {
+        "gradient_steps": 1000,
+        "learning_rate": 0.0003
+      },
+      "retention": {
+        "freeze_encoder": true,
+        "prior_policy_l2": 0.0,
+        "protect_policy_during_model_update": false
+      }
+    },
+    "context": {
+      "seed": 102,
+      "checkpoint": "/home/vmargapu/experiments/m14_mt2_dagger_v2/policy_dagger.pt",
+      "demo_episodes_per_task": 50,
+      "eval_episodes": 20,
+      "candidate_id": "u-e201bbbaf0d3",
+      "candidate_label": "POLICY_PROTECTED"
+    },
+    "demand": {
+      "mw-reach": 0.3,
+      "mw-pick-place": 0.7
+    },
+    "post_capability": {
+      "mw-reach": 1.0,
+      "mw-pick-place": 0.95
+    },
+    "utility": 0.9649999999999999,
+    "feasible": true,
+    "constraints": {
+      "min_reach_retention": 0.15
+    }
+  },
+  {
+    "domain": "metaworld-mt2",
+    "pre_capability": {
+      "mw-reach": 0.65,
+      "mw-pick-place": 1.0
+    },
+    "pre_capability_is_exact": true,
+    "update": {
+      "grammar_version": "m14-update-grammar-v1",
+      "target": "world_model",
+      "task_data": {
+        "reach_fraction": 0.5,
+        "pick_place_fraction": 0.5
+      },
+      "optimization": {
+        "gradient_steps": 1000,
+        "learning_rate": 0.0003
+      },
+      "retention": {
+        "freeze_encoder": true,
+        "prior_policy_l2": 0.0,
+        "protect_policy_during_model_update": true
+      }
+    },
+    "context": {
+      "seed": 102,
+      "checkpoint": "/home/vmargapu/experiments/m14_mt2_dagger_v2/policy_dagger.pt",
+      "demo_episodes_per_task": 50,
+      "eval_episodes": 20,
+      "candidate_id": "u-6e261c26382c",
+      "candidate_label": "MODEL_PROTECTED"
+    },
+    "demand": {
+      "mw-reach": 0.3,
+      "mw-pick-place": 0.7
+    },
+    "post_capability": {
+      "mw-reach": 0.8,
+      "mw-pick-place": 1.0
+    },
+    "utility": 0.94,
+    "feasible": true,
+    "constraints": {
+      "min_reach_retention": 0.15
+    }
+  },
+  {
+    "domain": "metaworld-mt2",
+    "pre_capability": {
+      "mw-reach": 0.65,
+      "mw-pick-place": 1.0
+    },
+    "pre_capability_is_exact": true,
+    "update": {
+      "grammar_version": "m14-update-grammar-v1",
+      "target": "policy",
+      "task_data": {
+        "reach_fraction": 0.75,
+        "pick_place_fraction": 0.25
+      },
+      "optimization": {
+        "gradient_steps": 1000,
+        "learning_rate": 0.0003
+      },
+      "retention": {
+        "freeze_encoder": false,
+        "prior_policy_l2": 0.1,
+        "protect_policy_during_model_update": true
+      }
+    },
+    "context": {
+      "seed": 102,
+      "checkpoint": "/home/vmargapu/experiments/m14_mt2_dagger_v2/policy_dagger.pt",
+      "demo_episodes_per_task": 50,
+      "eval_episodes": 20,
+      "candidate_id": "u-87277c667bb1",
+      "candidate_label": null
+    },
+    "demand": {
+      "mw-reach": 0.3,
+      "mw-pick-place": 0.7
+    },
+    "post_capability": {
+      "mw-reach": 0.8,
+      "mw-pick-place": 0.8
+    },
+    "utility": 0.7999999999999999,
+    "feasible": true,
+    "constraints": {
+      "min_reach_retention": 0.15
+    }
+  },
+  {
+    "domain": "metaworld-mt2",
+    "pre_capability": {
+      "mw-reach": 0.65,
+      "mw-pick-place": 1.0
+    },
+    "pre_capability_is_exact": true,
+    "update": {
+      "grammar_version": "m14-update-grammar-v1",
+      "target": "policy_and_world_model",
+      "task_data": {
+        "reach_fraction": 0.75,
+        "pick_place_fraction": 0.25
+      },
+      "optimization": {
+        "gradient_steps": 1500,
+        "learning_rate": 0.001
+      },
+      "retention": {
+        "freeze_encoder": true,
+        "prior_policy_l2": 1.0,
+        "protect_policy_during_model_update": true
+      }
+    },
+    "context": {
+      "seed": 102,
+      "checkpoint": "/home/vmargapu/experiments/m14_mt2_dagger_v2/policy_dagger.pt",
+      "demo_episodes_per_task": 50,
+      "eval_episodes": 20,
+      "candidate_id": "u-e6f5ebe209bb",
+      "candidate_label": null
+    },
+    "demand": {
+      "mw-reach": 0.3,
+      "mw-pick-place": 0.7
+    },
+    "post_capability": {
+      "mw-reach": 1.0,
+      "mw-pick-place": 0.75
+    },
+    "utility": 0.825,
+    "feasible": true,
+    "constraints": {
+      "min_reach_retention": 0.15
+    }
+  },
+  {
+    "domain": "metaworld-mt2",
+    "pre_capability": {
+      "mw-reach": 0.65,
+      "mw-pick-place": 1.0
+    },
+    "pre_capability_is_exact": true,
+    "update": {
+      "grammar_version": "m14-update-grammar-v1",
+      "target": "policy_and_world_model",
+      "task_data": {
+        "reach_fraction": 0.6,
+        "pick_place_fraction": 0.4
+      },
+      "optimization": {
+        "gradient_steps": 1500,
+        "learning_rate": 0.0001
+      },
+      "retention": {
+        "freeze_encoder": true,
+        "prior_policy_l2": 0.0,
+        "protect_policy_during_model_update": false
+      }
+    },
+    "context": {
+      "seed": 102,
+      "checkpoint": "/home/vmargapu/experiments/m14_mt2_dagger_v2/policy_dagger.pt",
+      "demo_episodes_per_task": 50,
+      "eval_episodes": 20,
+      "candidate_id": "u-91b34f3ef929",
+      "candidate_label": null
+    },
+    "demand": {
+      "mw-reach": 0.3,
+      "mw-pick-place": 0.7
+    },
+    "post_capability": {
+      "mw-reach": 0.0,
+      "mw-pick-place": 0.0
+    },
+    "utility": 0.0,
+    "feasible": false,
+    "constraints": {
+      "min_reach_retention": 0.15
+    }
+  },
+  {
+    "domain": "metaworld-mt2",
+    "pre_capability": {
+      "mw-reach": 0.65,
+      "mw-pick-place": 1.0
+    },
+    "pre_capability_is_exact": true,
+    "update": {
+      "grammar_version": "m14-update-grammar-v1",
+      "target": "policy",
+      "task_data": {
+        "reach_fraction": 0.75,
+        "pick_place_fraction": 0.25
+      },
+      "optimization": {
+        "gradient_steps": 500,
+        "learning_rate": 0.0001
+      },
+      "retention": {
+        "freeze_encoder": true,
+        "prior_policy_l2": 0.0,
+        "protect_policy_during_model_update": false
+      }
+    },
+    "context": {
+      "seed": 102,
+      "checkpoint": "/home/vmargapu/experiments/m14_mt2_dagger_v2/policy_dagger.pt",
+      "demo_episodes_per_task": 50,
+      "eval_episodes": 20,
+      "candidate_id": "u-f90bbdd39145",
+      "candidate_label": null
+    },
+    "demand": {
+      "mw-reach": 0.3,
+      "mw-pick-place": 0.7
+    },
+    "post_capability": {
+      "mw-reach": 1.0,
+      "mw-pick-place": 0.75
+    },
+    "utility": 0.825,
+    "feasible": true,
+    "constraints": {
+      "min_reach_retention": 0.15
+    }
+  }
+]

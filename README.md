@@ -33,10 +33,16 @@ auditable transition dataset and trained a minimal action-conditioned ridge
 predictor as a pipeline check.
 
 This is not yet evidence that the learned predictor generalizes or selects the
-best update reliably. The exact dataset currently has 16 transition rows from
-two seeds and two update budgets. The next MetaWorld stage must diversify
-starting checkpoints, update parameters, demands, and evaluation seeds before
-we evaluate transition prediction and decision regret on held-out transitions.
+best update reliably. The initial predictor dataset has 16 exact transition
+rows from two seeds and two update budgets. The grammar pilot adds a separate
+16-row exact collection. The next MetaWorld stage must diversify starting
+checkpoints, update parameters, demands, and evaluation seeds before we
+evaluate transition prediction and decision regret on held-out transitions.
+
+The first parameterized-grammar coverage pilot adds 16 further exact rows from
+two independent controller checkpoints. Its bounded result record is
+`docs/M14_GRAMMAR_COVERAGE_PILOT_RESULTS_V1.md`; it establishes a useful update
+space with both feasible and catastrophic regions, not a validated governor.
 
 ## Reproducing the current data pipeline
 
