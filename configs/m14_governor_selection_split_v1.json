@@ -1,0 +1,7 @@
+{
+  "train_controllers": ["seed101", "seed102", "seed103", "seed105"],
+  "validation_controllers": ["seed106", "seed112"],
+  "final_fit_controllers": ["seed101", "seed102", "seed103", "seed105", "seed106", "seed112"],
+  "held_out_controllers": ["seed111", "seed114"],
+  "selection_metric": "minimize validation safety violations, then mean candidate-set regret, then capability MSE"
+}

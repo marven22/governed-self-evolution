@@ -1,0 +1,504 @@
+{
+  "model_type": "RBF kernel ridge transition predictor",
+  "training_rows_for_selection": 64,
+  "validation_rows": 32,
+  "selected": {
+    "gamma": 0.03,
+    "ridge": 0.1,
+    "mse": 0.034014268793369225,
+    "per_controller": [
+      {
+        "controller": "seed106",
+        "chosen_candidate_id": "u-396aad2568d0",
+        "chosen_label": null,
+        "chosen_actual_utility": 0.9849999999999999,
+        "chosen_actual_feasible": true,
+        "oracle_utility": 1.0,
+        "regret": 0.015000000000000124,
+        "hold_utility": 0.845
+      },
+      {
+        "controller": "seed112",
+        "chosen_candidate_id": "u-396aad2568d0",
+        "chosen_label": null,
+        "chosen_actual_utility": 1.0,
+        "chosen_actual_feasible": true,
+        "oracle_utility": 1.0,
+        "regret": 0.0,
+        "hold_utility": 0.9849999999999999
+      }
+    ],
+    "mean_regret": 0.007500000000000062,
+    "safety_violations": 0,
+    "mean_chosen_utility": 0.9924999999999999,
+    "mean_hold_utility": 0.9149999999999999
+  },
+  "trials": [
+    {
+      "gamma": 0.03,
+      "ridge": 0.1,
+      "mse": 0.034014268793369225,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "hold_utility": 0.845
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 1.0,
+          "chosen_actual_feasible": true,
+          "oracle_utility": 1.0,
+          "regret": 0.0,
+          "hold_utility": 0.9849999999999999
+        }
+      ],
+      "mean_regret": 0.007500000000000062,
+      "safety_violations": 0,
+      "mean_chosen_utility": 0.9924999999999999,
+      "mean_hold_utility": 0.9149999999999999
+    },
+    {
+      "gamma": 0.1,
+      "ridge": 0.1,
+      "mse": 0.043866045203932086,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "hold_utility": 0.845
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 1.0,
+          "chosen_actual_feasible": true,
+          "oracle_utility": 1.0,
+          "regret": 0.0,
+          "hold_utility": 0.9849999999999999
+        }
+      ],
+      "mean_regret": 0.007500000000000062,
+      "safety_violations": 0,
+      "mean_chosen_utility": 0.9924999999999999,
+      "mean_hold_utility": 0.9149999999999999
+    },
+    {
+      "gamma": 0.03,
+      "ridge": 0.01,
+      "mse": 0.04425905145393381,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "hold_utility": 0.845
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 1.0,
+          "chosen_actual_feasible": true,
+          "oracle_utility": 1.0,
+          "regret": 0.0,
+          "hold_utility": 0.9849999999999999
+        }
+      ],
+      "mean_regret": 0.007500000000000062,
+      "safety_violations": 0,
+      "mean_chosen_utility": 0.9924999999999999,
+      "mean_hold_utility": 0.9149999999999999
+    },
+    {
+      "gamma": 0.03,
+      "ridge": 0.001,
+      "mse": 0.05237115540996322,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "hold_utility": 0.845
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 1.0,
+          "chosen_actual_feasible": true,
+          "oracle_utility": 1.0,
+          "regret": 0.0,
+          "hold_utility": 0.9849999999999999
+        }
+      ],
+      "mean_regret": 0.007500000000000062,
+      "safety_violations": 0,
+      "mean_chosen_utility": 0.9924999999999999,
+      "mean_hold_utility": 0.9149999999999999
+    },
+    {
+      "gamma": 0.1,
+      "ridge": 0.01,
+      "mse": 0.05886569135045157,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "hold_utility": 0.845
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 1.0,
+          "chosen_actual_feasible": true,
+          "oracle_utility": 1.0,
+          "regret": 0.0,
+          "hold_utility": 0.9849999999999999
+        }
+      ],
+      "mean_regret": 0.007500000000000062,
+      "safety_violations": 0,
+      "mean_chosen_utility": 0.9924999999999999,
+      "mean_hold_utility": 0.9149999999999999
+    },
+    {
+      "gamma": 0.1,
+      "ridge": 0.001,
+      "mse": 0.06938834443115754,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "hold_utility": 0.845
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 1.0,
+          "chosen_actual_feasible": true,
+          "oracle_utility": 1.0,
+          "regret": 0.0,
+          "hold_utility": 0.9849999999999999
+        }
+      ],
+      "mean_regret": 0.007500000000000062,
+      "safety_violations": 0,
+      "mean_chosen_utility": 0.9924999999999999,
+      "mean_hold_utility": 0.9149999999999999
+    },
+    {
+      "gamma": 0.3,
+      "ridge": 0.01,
+      "mse": 0.07812577282419697,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "hold_utility": 0.845
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 1.0,
+          "chosen_actual_feasible": true,
+          "oracle_utility": 1.0,
+          "regret": 0.0,
+          "hold_utility": 0.9849999999999999
+        }
+      ],
+      "mean_regret": 0.007500000000000062,
+      "safety_violations": 0,
+      "mean_chosen_utility": 0.9924999999999999,
+      "mean_hold_utility": 0.9149999999999999
+    },
+    {
+      "gamma": 0.3,
+      "ridge": 0.001,
+      "mse": 0.0811951650738891,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "hold_utility": 0.845
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 1.0,
+          "chosen_actual_feasible": true,
+          "oracle_utility": 1.0,
+          "regret": 0.0,
+          "hold_utility": 0.9849999999999999
+        }
+      ],
+      "mean_regret": 0.007500000000000062,
+      "safety_violations": 0,
+      "mean_chosen_utility": 0.9924999999999999,
+      "mean_hold_utility": 0.9149999999999999
+    },
+    {
+      "gamma": 1.0,
+      "ridge": 0.001,
+      "mse": 0.10738534050382685,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "hold_utility": 0.845
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 1.0,
+          "chosen_actual_feasible": true,
+          "oracle_utility": 1.0,
+          "regret": 0.0,
+          "hold_utility": 0.9849999999999999
+        }
+      ],
+      "mean_regret": 0.007500000000000062,
+      "safety_violations": 0,
+      "mean_chosen_utility": 0.9924999999999999,
+      "mean_hold_utility": 0.9149999999999999
+    },
+    {
+      "gamma": 1.0,
+      "ridge": 0.01,
+      "mse": 0.10760774009091675,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "hold_utility": 0.845
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 1.0,
+          "chosen_actual_feasible": true,
+          "oracle_utility": 1.0,
+          "regret": 0.0,
+          "hold_utility": 0.9849999999999999
+        }
+      ],
+      "mean_regret": 0.007500000000000062,
+      "safety_violations": 0,
+      "mean_chosen_utility": 0.9924999999999999,
+      "mean_hold_utility": 0.9149999999999999
+    },
+    {
+      "gamma": 3.0,
+      "ridge": 0.001,
+      "mse": 0.2433667217861437,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "hold_utility": 0.845
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 1.0,
+          "chosen_actual_feasible": true,
+          "oracle_utility": 1.0,
+          "regret": 0.0,
+          "hold_utility": 0.9849999999999999
+        }
+      ],
+      "mean_regret": 0.007500000000000062,
+      "safety_violations": 0,
+      "mean_chosen_utility": 0.9924999999999999,
+      "mean_hold_utility": 0.9149999999999999
+    },
+    {
+      "gamma": 3.0,
+      "ridge": 0.01,
+      "mse": 0.24481875851433998,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "hold_utility": 0.845
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 1.0,
+          "chosen_actual_feasible": true,
+          "oracle_utility": 1.0,
+          "regret": 0.0,
+          "hold_utility": 0.9849999999999999
+        }
+      ],
+      "mean_regret": 0.007500000000000062,
+      "safety_violations": 0,
+      "mean_chosen_utility": 0.9924999999999999,
+      "mean_hold_utility": 0.9149999999999999
+    },
+    {
+      "gamma": 3.0,
+      "ridge": 0.1,
+      "mse": 0.25921650650278505,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "hold_utility": 0.845
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 1.0,
+          "chosen_actual_feasible": true,
+          "oracle_utility": 1.0,
+          "regret": 0.0,
+          "hold_utility": 0.9849999999999999
+        }
+      ],
+      "mean_regret": 0.007500000000000062,
+      "safety_violations": 0,
+      "mean_chosen_utility": 0.9924999999999999,
+      "mean_hold_utility": 0.9149999999999999
+    },
+    {
+      "gamma": 0.3,
+      "ridge": 0.1,
+      "mse": 0.061035502762516194,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "hold_utility": 0.845
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-6e261c26382c",
+          "chosen_label": "MODEL_PROTECTED",
+          "chosen_actual_utility": 0.9349999999999999,
+          "chosen_actual_feasible": true,
+          "oracle_utility": 1.0,
+          "regret": 0.06500000000000006,
+          "hold_utility": 0.9849999999999999
+        }
+      ],
+      "mean_regret": 0.04000000000000009,
+      "safety_violations": 0,
+      "mean_chosen_utility": 0.96,
+      "mean_hold_utility": 0.9149999999999999
+    },
+    {
+      "gamma": 1.0,
+      "ridge": 0.1,
+      "mse": 0.11177019812342628,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "hold_utility": 0.845
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-6e261c26382c",
+          "chosen_label": "MODEL_PROTECTED",
+          "chosen_actual_utility": 0.9349999999999999,
+          "chosen_actual_feasible": true,
+          "oracle_utility": 1.0,
+          "regret": 0.06500000000000006,
+          "hold_utility": 0.9849999999999999
+        }
+      ],
+      "mean_regret": 0.04000000000000009,
+      "safety_violations": 0,
+      "mean_chosen_utility": 0.96,
+      "mean_hold_utility": 0.9149999999999999
+    }
+  ],
+  "note": "The final serialized model refits the selected hyperparameters on all development controllers. Held-out controllers were not accessed."
+}
