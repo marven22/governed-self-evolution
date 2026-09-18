@@ -5,9 +5,20 @@ set -euo pipefail
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 RUN_ROOT="/home/vmargapu/experiments/m14_grammar_heldout_v1"
 PYTHON="/home/vmargapu/tdmpc2-metaworld-official/bin/python"
+RUNTIME_MODEL="/home/vmargapu/experiments/m14_grammar_heldout_v1/m14_grammar_governor_runtime_v1.pkl"
+RUNTIME_REPORT="/home/vmargapu/experiments/m14_grammar_heldout_v1/m14_grammar_governor_runtime_v1.json"
 export LD_LIBRARY_PATH="/home/vmargapu/.local/tdmpc2-legacy-mesa/rootfs/usr/lib/x86_64-linux-gnu:/home/vmargapu/.mujoco/mujoco210/bin${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
 export PYTHONPATH="${REPO_ROOT}/scripts:/home/vmargapu/src/tdmpc2/tdmpc2${PYTHONPATH:+:$PYTHONPATH}"
 cd /home/vmargapu/src/tdmpc2/tdmpc2
+
+# Pickle is NumPy-build-specific. Refit the already selected architecture and
+# hyperparameter protocol from committed development data in this runtime.
+if [ ! -f "${RUNTIME_MODEL}" ]; then
+  "${PYTHON}" "${REPO_ROOT}/scripts/train_m14_grammar_governor.py" \
+    --data-glob "${REPO_ROOT}/data/m14_development_*_v1.json" \
+    --split "${REPO_ROOT}/configs/m14_governor_selection_split_v1.json" \
+    --report "${RUNTIME_REPORT}" --model "${RUNTIME_MODEL}"
+fi
 
 CONTROLLERS=(
   "seed111|111|/home/vmargapu/experiments/m14_controller_bank_v1/seed111/dagger/policy_dagger.pt"
@@ -24,7 +35,7 @@ for RECORD in "${CONTROLLERS[@]}"; do
   fi
   if [ ! -f "${ROOT}/plan.json" ]; then
     "${PYTHON}" "${REPO_ROOT}/scripts/plan_m14_grammar_governor.py" \
-      --model "${REPO_ROOT}/models/m14_grammar_governor_v1.pkl" \
+      --model "${RUNTIME_MODEL}" \
       --candidates "${REPO_ROOT}/configs/m14_development_candidates_v1.json" \
       --pre-transition "${ROOT}/pre/transitions.json" --output "${ROOT}/plan.json"
   fi
