@@ -18,6 +18,8 @@ prompt injection or violating tool-use policy.
   pre-update capability measurements.
 - `models/` — the initial small ridge predictor built from the exact dataset.
 - `docs/METHODOLOGY.md` — research question, formalization, evidence, and plan.
+- `docs/M14_UPDATE_GRAMMAR_PROTOCOL_V1.md` — parameterized update language and
+  the exact-transition collection protocol.
 - `docs/STUDENT_AGENTDOJO_WORK_PACKAGE.md` — parallel work package for the
   AgentDojo extension.
 - `docs/M14_*.md` — original MetaWorld protocols and pilot records.
