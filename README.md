@@ -20,6 +20,8 @@ prompt injection or violating tool-use policy.
 - `docs/METHODOLOGY.md` — research question, formalization, evidence, and plan.
 - `docs/M14_UPDATE_GRAMMAR_PROTOCOL_V1.md` — parameterized update language and
   the exact-transition collection protocol.
+- `docs/M14_CONTROLLER_BANK_PROTOCOL_V1.md` — reproducible construction and
+  qualification of independent starting controllers.
 - `docs/STUDENT_AGENTDOJO_WORK_PACKAGE.md` — parallel work package for the
   AgentDojo extension.
 - `docs/M14_*.md` — original MetaWorld protocols and pilot records.

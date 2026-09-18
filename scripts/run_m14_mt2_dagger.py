@@ -1,8 +1,9 @@
 """Task-balanced DAgger correction for the two-capability M14 policy gate."""
 from __future__ import annotations
 
-import argparse, json
+import argparse, json, random
 from pathlib import Path
+import numpy as np
 import torch
 
 from envs import make_env
@@ -40,7 +41,7 @@ def aggregate_policy_states(agent, env, episodes):
 
 def main():
     p = argparse.ArgumentParser(); p.add_argument("--run-dir", type=Path, required=True); p.add_argument("--checkpoint", type=Path, required=True); p.add_argument("--expert-data", type=Path, required=True); p.add_argument("--rounds", type=int, default=3); p.add_argument("--rollout-episodes", type=int, default=10); p.add_argument("--updates-per-round", type=int, default=2000); p.add_argument("--eval-episodes", type=int, default=50); p.add_argument("--seed", type=int, default=101)
-    a = p.parse_args(); a.run_dir.mkdir(parents=True, exist_ok=True); cfg = cfg_for(a.seed); env = make_env(cfg); agent = TDMPC2(cfg); agent.load(a.checkpoint)
+    a = p.parse_args(); a.run_dir.mkdir(parents=True, exist_ok=True); random.seed(a.seed); np.random.seed(a.seed); torch.manual_seed(a.seed); cfg = cfg_for(a.seed); env = make_env(cfg); agent = TDMPC2(cfg); agent.load(a.checkpoint)
     data = torch.load(a.expert_data, weights_only=False); obs, actions, tasks = data["obs"], data["action"], data["task"]
     history = [{"round": 0, "dataset_steps": int(len(obs)), "eval": evaluate(agent, env, a.eval_episodes)}]
     for round_idx in range(1, a.rounds + 1):
