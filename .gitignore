@@ -17,6 +17,7 @@ wandb/
 # an artifact store and should be referenced by a manifest.
 models/*.pkl
 !models/m14_evolution_predictor_v1.pkl
+!models/m14_baseline_anchored_governor_v2.pkl
 
 # OS/editor
 .DS_Store

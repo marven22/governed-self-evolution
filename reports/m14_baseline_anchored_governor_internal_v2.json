@@ -1,0 +1,5448 @@
+{
+  "protocol_version": "m14-baseline-anchored-governor-v2",
+  "training_rows_for_selection": 64,
+  "validation_rows": 32,
+  "selected": {
+    "gamma": 0.03,
+    "ridge": 0.1,
+    "lower_z": 0.0,
+    "advantage_margin": 0.0,
+    "delta_mse": 0.04868741530017711,
+    "per_controller": [
+      {
+        "controller": "seed106",
+        "chosen_candidate_id": "u-396aad2568d0",
+        "chosen_label": null,
+        "chosen_actual_utility": 0.9849999999999999,
+        "chosen_actual_feasible": true,
+        "hold_utility": 0.845,
+        "oracle_utility": 1.0,
+        "regret": 0.015000000000000124,
+        "actual_advantage_over_hold": 0.1399999999999999,
+        "chosen_advantage_lcb": 0.036453404391704324
+      },
+      {
+        "controller": "seed112",
+        "chosen_candidate_id": "u-396aad2568d0",
+        "chosen_label": null,
+        "chosen_actual_utility": 1.0,
+        "chosen_actual_feasible": true,
+        "hold_utility": 0.9849999999999999,
+        "oracle_utility": 1.0,
+        "regret": 0.0,
+        "actual_advantage_over_hold": 0.015000000000000124,
+        "chosen_advantage_lcb": 0.016282544816141425
+      }
+    ],
+    "mean_regret": 0.007500000000000062,
+    "mean_chosen_utility": 0.9924999999999999,
+    "mean_hold_utility": 0.9149999999999999,
+    "mean_advantage_over_hold": 0.07750000000000001,
+    "mean_harm_vs_hold": 0.0,
+    "safety_violations": 0,
+    "abstentions": 0
+  },
+  "trials": [
+    {
+      "gamma": 0.03,
+      "ridge": 0.1,
+      "lower_z": 0.0,
+      "advantage_margin": 0.0,
+      "delta_mse": 0.04868741530017711,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.1399999999999999,
+          "chosen_advantage_lcb": 0.036453404391704324
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 1.0,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.0,
+          "actual_advantage_over_hold": 0.015000000000000124,
+          "chosen_advantage_lcb": 0.016282544816141425
+        }
+      ],
+      "mean_regret": 0.007500000000000062,
+      "mean_chosen_utility": 0.9924999999999999,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.07750000000000001,
+      "mean_harm_vs_hold": 0.0,
+      "safety_violations": 0,
+      "abstentions": 0
+    },
+    {
+      "gamma": 0.03,
+      "ridge": 0.01,
+      "lower_z": 0.0,
+      "advantage_margin": 0.0,
+      "delta_mse": 0.05351700675708282,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.1399999999999999,
+          "chosen_advantage_lcb": 0.06207564744611473
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 1.0,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.0,
+          "actual_advantage_over_hold": 0.015000000000000124,
+          "chosen_advantage_lcb": 0.03498069783063218
+        }
+      ],
+      "mean_regret": 0.007500000000000062,
+      "mean_chosen_utility": 0.9924999999999999,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.07750000000000001,
+      "mean_harm_vs_hold": 0.0,
+      "safety_violations": 0,
+      "abstentions": 0
+    },
+    {
+      "gamma": 0.03,
+      "ridge": 0.01,
+      "lower_z": 0.0,
+      "advantage_margin": 0.02,
+      "delta_mse": 0.05351700675708282,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.1399999999999999,
+          "chosen_advantage_lcb": 0.06207564744611473
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 1.0,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.0,
+          "actual_advantage_over_hold": 0.015000000000000124,
+          "chosen_advantage_lcb": 0.03498069783063218
+        }
+      ],
+      "mean_regret": 0.007500000000000062,
+      "mean_chosen_utility": 0.9924999999999999,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.07750000000000001,
+      "mean_harm_vs_hold": 0.0,
+      "safety_violations": 0,
+      "abstentions": 0
+    },
+    {
+      "gamma": 0.03,
+      "ridge": 0.01,
+      "lower_z": 0.5,
+      "advantage_margin": 0.0,
+      "delta_mse": 0.05351700675708282,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.1399999999999999,
+          "chosen_advantage_lcb": 0.03710411480944241
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 1.0,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.0,
+          "actual_advantage_over_hold": 0.015000000000000124,
+          "chosen_advantage_lcb": 0.009267163267558543
+        }
+      ],
+      "mean_regret": 0.007500000000000062,
+      "mean_chosen_utility": 0.9924999999999999,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.07750000000000001,
+      "mean_harm_vs_hold": 0.0,
+      "safety_violations": 0,
+      "abstentions": 0
+    },
+    {
+      "gamma": 0.1,
+      "ridge": 0.1,
+      "lower_z": 0.0,
+      "advantage_margin": 0.0,
+      "delta_mse": 0.05433781460996774,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.1399999999999999,
+          "chosen_advantage_lcb": 0.06301352471548619
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 1.0,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.0,
+          "actual_advantage_over_hold": 0.015000000000000124,
+          "chosen_advantage_lcb": 0.028588288118675177
+        }
+      ],
+      "mean_regret": 0.007500000000000062,
+      "mean_chosen_utility": 0.9924999999999999,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.07750000000000001,
+      "mean_harm_vs_hold": 0.0,
+      "safety_violations": 0,
+      "abstentions": 0
+    },
+    {
+      "gamma": 0.1,
+      "ridge": 0.1,
+      "lower_z": 0.0,
+      "advantage_margin": 0.02,
+      "delta_mse": 0.05433781460996774,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.1399999999999999,
+          "chosen_advantage_lcb": 0.06301352471548619
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 1.0,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.0,
+          "actual_advantage_over_hold": 0.015000000000000124,
+          "chosen_advantage_lcb": 0.028588288118675177
+        }
+      ],
+      "mean_regret": 0.007500000000000062,
+      "mean_chosen_utility": 0.9924999999999999,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.07750000000000001,
+      "mean_harm_vs_hold": 0.0,
+      "safety_violations": 0,
+      "abstentions": 0
+    },
+    {
+      "gamma": 0.1,
+      "ridge": 0.1,
+      "lower_z": 0.5,
+      "advantage_margin": 0.0,
+      "delta_mse": 0.05433781460996774,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.1399999999999999,
+          "chosen_advantage_lcb": 0.04490753206011303
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 1.0,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.0,
+          "actual_advantage_over_hold": 0.015000000000000124,
+          "chosen_advantage_lcb": 0.007707115883205291
+        }
+      ],
+      "mean_regret": 0.007500000000000062,
+      "mean_chosen_utility": 0.9924999999999999,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.07750000000000001,
+      "mean_harm_vs_hold": 0.0,
+      "safety_violations": 0,
+      "abstentions": 0
+    },
+    {
+      "gamma": 0.03,
+      "ridge": 0.001,
+      "lower_z": 0.0,
+      "advantage_margin": 0.0,
+      "delta_mse": 0.05985939522669197,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.1399999999999999,
+          "chosen_advantage_lcb": 0.09866417384155138
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 1.0,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.0,
+          "actual_advantage_over_hold": 0.015000000000000124,
+          "chosen_advantage_lcb": 0.04606558009687935
+        }
+      ],
+      "mean_regret": 0.007500000000000062,
+      "mean_chosen_utility": 0.9924999999999999,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.07750000000000001,
+      "mean_harm_vs_hold": 0.0,
+      "safety_violations": 0,
+      "abstentions": 0
+    },
+    {
+      "gamma": 0.03,
+      "ridge": 0.001,
+      "lower_z": 0.0,
+      "advantage_margin": 0.02,
+      "delta_mse": 0.05985939522669197,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.1399999999999999,
+          "chosen_advantage_lcb": 0.09866417384155138
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 1.0,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.0,
+          "actual_advantage_over_hold": 0.015000000000000124,
+          "chosen_advantage_lcb": 0.04606558009687935
+        }
+      ],
+      "mean_regret": 0.007500000000000062,
+      "mean_chosen_utility": 0.9924999999999999,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.07750000000000001,
+      "mean_harm_vs_hold": 0.0,
+      "safety_violations": 0,
+      "abstentions": 0
+    },
+    {
+      "gamma": 0.03,
+      "ridge": 0.001,
+      "lower_z": 0.5,
+      "advantage_margin": 0.0,
+      "delta_mse": 0.05985939522669197,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.1399999999999999,
+          "chosen_advantage_lcb": 0.07368695906976384
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 1.0,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.0,
+          "actual_advantage_over_hold": 0.015000000000000124,
+          "chosen_advantage_lcb": 0.018773185814070985
+        }
+      ],
+      "mean_regret": 0.007500000000000062,
+      "mean_chosen_utility": 0.9924999999999999,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.07750000000000001,
+      "mean_harm_vs_hold": 0.0,
+      "safety_violations": 0,
+      "abstentions": 0
+    },
+    {
+      "gamma": 0.1,
+      "ridge": 0.01,
+      "lower_z": 0.0,
+      "advantage_margin": 0.0,
+      "delta_mse": 0.060263092441643386,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.1399999999999999,
+          "chosen_advantage_lcb": 0.0940223773085753
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 1.0,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.0,
+          "actual_advantage_over_hold": 0.015000000000000124,
+          "chosen_advantage_lcb": 0.03810172792182304
+        }
+      ],
+      "mean_regret": 0.007500000000000062,
+      "mean_chosen_utility": 0.9924999999999999,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.07750000000000001,
+      "mean_harm_vs_hold": 0.0,
+      "safety_violations": 0,
+      "abstentions": 0
+    },
+    {
+      "gamma": 0.1,
+      "ridge": 0.01,
+      "lower_z": 0.0,
+      "advantage_margin": 0.02,
+      "delta_mse": 0.060263092441643386,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.1399999999999999,
+          "chosen_advantage_lcb": 0.0940223773085753
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 1.0,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.0,
+          "actual_advantage_over_hold": 0.015000000000000124,
+          "chosen_advantage_lcb": 0.03810172792182304
+        }
+      ],
+      "mean_regret": 0.007500000000000062,
+      "mean_chosen_utility": 0.9924999999999999,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.07750000000000001,
+      "mean_harm_vs_hold": 0.0,
+      "safety_violations": 0,
+      "abstentions": 0
+    },
+    {
+      "gamma": 0.1,
+      "ridge": 0.001,
+      "lower_z": 0.0,
+      "advantage_margin": 0.0,
+      "delta_mse": 0.06383775663472928,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.1399999999999999,
+          "chosen_advantage_lcb": 0.10289535461906466
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 1.0,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.0,
+          "actual_advantage_over_hold": 0.015000000000000124,
+          "chosen_advantage_lcb": 0.04064917056363979
+        }
+      ],
+      "mean_regret": 0.007500000000000062,
+      "mean_chosen_utility": 0.9924999999999999,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.07750000000000001,
+      "mean_harm_vs_hold": 0.0,
+      "safety_violations": 0,
+      "abstentions": 0
+    },
+    {
+      "gamma": 0.1,
+      "ridge": 0.001,
+      "lower_z": 0.0,
+      "advantage_margin": 0.02,
+      "delta_mse": 0.06383775663472928,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.1399999999999999,
+          "chosen_advantage_lcb": 0.10289535461906466
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 1.0,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.0,
+          "actual_advantage_over_hold": 0.015000000000000124,
+          "chosen_advantage_lcb": 0.04064917056363979
+        }
+      ],
+      "mean_regret": 0.007500000000000062,
+      "mean_chosen_utility": 0.9924999999999999,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.07750000000000001,
+      "mean_harm_vs_hold": 0.0,
+      "safety_violations": 0,
+      "abstentions": 0
+    },
+    {
+      "gamma": 3.0,
+      "ridge": 0.001,
+      "lower_z": 0.0,
+      "advantage_margin": 0.0,
+      "delta_mse": 0.12558415220783328,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.1399999999999999,
+          "chosen_advantage_lcb": 0.01320064105994732
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 1.0,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.0,
+          "actual_advantage_over_hold": 0.015000000000000124,
+          "chosen_advantage_lcb": 0.019395607829997066
+        }
+      ],
+      "mean_regret": 0.007500000000000062,
+      "mean_chosen_utility": 0.9924999999999999,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.07750000000000001,
+      "mean_harm_vs_hold": 0.0,
+      "safety_violations": 0,
+      "abstentions": 0
+    },
+    {
+      "gamma": 3.0,
+      "ridge": 0.01,
+      "lower_z": 0.0,
+      "advantage_margin": 0.0,
+      "delta_mse": 0.12591183927440674,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.1399999999999999,
+          "chosen_advantage_lcb": 0.013098810584955727
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 1.0,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.0,
+          "actual_advantage_over_hold": 0.015000000000000124,
+          "chosen_advantage_lcb": 0.019244513950832154
+        }
+      ],
+      "mean_regret": 0.007500000000000062,
+      "mean_chosen_utility": 0.9924999999999999,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.07750000000000001,
+      "mean_harm_vs_hold": 0.0,
+      "safety_violations": 0,
+      "abstentions": 0
+    },
+    {
+      "gamma": 3.0,
+      "ridge": 0.1,
+      "lower_z": 0.0,
+      "advantage_margin": 0.0,
+      "delta_mse": 0.1289975320767478,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.1399999999999999,
+          "chosen_advantage_lcb": 0.012171298647946815
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 1.0,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.0,
+          "actual_advantage_over_hold": 0.015000000000000124,
+          "chosen_advantage_lcb": 0.017866786516504436
+        }
+      ],
+      "mean_regret": 0.007500000000000062,
+      "mean_chosen_utility": 0.9924999999999999,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.07750000000000001,
+      "mean_harm_vs_hold": 0.0,
+      "safety_violations": 0,
+      "abstentions": 0
+    },
+    {
+      "gamma": 0.03,
+      "ridge": 0.1,
+      "lower_z": 0.0,
+      "advantage_margin": 0.02,
+      "delta_mse": 0.04868741530017711,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.1399999999999999,
+          "chosen_advantage_lcb": 0.036453404391704324
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        }
+      ],
+      "mean_regret": 0.015000000000000124,
+      "mean_chosen_utility": 0.9849999999999999,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.06999999999999995,
+      "mean_harm_vs_hold": 0.0,
+      "safety_violations": 0,
+      "abstentions": 1
+    },
+    {
+      "gamma": 0.03,
+      "ridge": 0.1,
+      "lower_z": 0.5,
+      "advantage_margin": 0.0,
+      "delta_mse": 0.04868741530017711,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.1399999999999999,
+          "chosen_advantage_lcb": 0.015250527110644663
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        }
+      ],
+      "mean_regret": 0.015000000000000124,
+      "mean_chosen_utility": 0.9849999999999999,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.06999999999999995,
+      "mean_harm_vs_hold": 0.0,
+      "safety_violations": 0,
+      "abstentions": 1
+    },
+    {
+      "gamma": 0.03,
+      "ridge": 0.01,
+      "lower_z": 0.0,
+      "advantage_margin": 0.05,
+      "delta_mse": 0.05351700675708282,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.1399999999999999,
+          "chosen_advantage_lcb": 0.06207564744611473
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        }
+      ],
+      "mean_regret": 0.015000000000000124,
+      "mean_chosen_utility": 0.9849999999999999,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.06999999999999995,
+      "mean_harm_vs_hold": 0.0,
+      "safety_violations": 0,
+      "abstentions": 1
+    },
+    {
+      "gamma": 0.03,
+      "ridge": 0.01,
+      "lower_z": 0.5,
+      "advantage_margin": 0.02,
+      "delta_mse": 0.05351700675708282,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.1399999999999999,
+          "chosen_advantage_lcb": 0.03710411480944241
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        }
+      ],
+      "mean_regret": 0.015000000000000124,
+      "mean_chosen_utility": 0.9849999999999999,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.06999999999999995,
+      "mean_harm_vs_hold": 0.0,
+      "safety_violations": 0,
+      "abstentions": 1
+    },
+    {
+      "gamma": 0.03,
+      "ridge": 0.01,
+      "lower_z": 1.0,
+      "advantage_margin": 0.0,
+      "delta_mse": 0.05351700675708282,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.1399999999999999,
+          "chosen_advantage_lcb": 0.012132582172770086
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        }
+      ],
+      "mean_regret": 0.015000000000000124,
+      "mean_chosen_utility": 0.9849999999999999,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.06999999999999995,
+      "mean_harm_vs_hold": 0.0,
+      "safety_violations": 0,
+      "abstentions": 1
+    },
+    {
+      "gamma": 0.1,
+      "ridge": 0.1,
+      "lower_z": 0.0,
+      "advantage_margin": 0.05,
+      "delta_mse": 0.05433781460996774,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.1399999999999999,
+          "chosen_advantage_lcb": 0.06301352471548619
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        }
+      ],
+      "mean_regret": 0.015000000000000124,
+      "mean_chosen_utility": 0.9849999999999999,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.06999999999999995,
+      "mean_harm_vs_hold": 0.0,
+      "safety_violations": 0,
+      "abstentions": 1
+    },
+    {
+      "gamma": 0.1,
+      "ridge": 0.1,
+      "lower_z": 0.5,
+      "advantage_margin": 0.02,
+      "delta_mse": 0.05433781460996774,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.1399999999999999,
+          "chosen_advantage_lcb": 0.04490753206011303
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        }
+      ],
+      "mean_regret": 0.015000000000000124,
+      "mean_chosen_utility": 0.9849999999999999,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.06999999999999995,
+      "mean_harm_vs_hold": 0.0,
+      "safety_violations": 0,
+      "abstentions": 1
+    },
+    {
+      "gamma": 0.1,
+      "ridge": 0.1,
+      "lower_z": 1.0,
+      "advantage_margin": 0.0,
+      "delta_mse": 0.05433781460996774,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.1399999999999999,
+          "chosen_advantage_lcb": 0.02680153940473988
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        }
+      ],
+      "mean_regret": 0.015000000000000124,
+      "mean_chosen_utility": 0.9849999999999999,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.06999999999999995,
+      "mean_harm_vs_hold": 0.0,
+      "safety_violations": 0,
+      "abstentions": 1
+    },
+    {
+      "gamma": 0.1,
+      "ridge": 0.1,
+      "lower_z": 1.0,
+      "advantage_margin": 0.02,
+      "delta_mse": 0.05433781460996774,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.1399999999999999,
+          "chosen_advantage_lcb": 0.02680153940473988
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        }
+      ],
+      "mean_regret": 0.015000000000000124,
+      "mean_chosen_utility": 0.9849999999999999,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.06999999999999995,
+      "mean_harm_vs_hold": 0.0,
+      "safety_violations": 0,
+      "abstentions": 1
+    },
+    {
+      "gamma": 0.03,
+      "ridge": 0.001,
+      "lower_z": 0.0,
+      "advantage_margin": 0.05,
+      "delta_mse": 0.05985939522669197,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.1399999999999999,
+          "chosen_advantage_lcb": 0.09866417384155138
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        }
+      ],
+      "mean_regret": 0.015000000000000124,
+      "mean_chosen_utility": 0.9849999999999999,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.06999999999999995,
+      "mean_harm_vs_hold": 0.0,
+      "safety_violations": 0,
+      "abstentions": 1
+    },
+    {
+      "gamma": 0.03,
+      "ridge": 0.001,
+      "lower_z": 0.5,
+      "advantage_margin": 0.02,
+      "delta_mse": 0.05985939522669197,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.1399999999999999,
+          "chosen_advantage_lcb": 0.07368695906976384
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        }
+      ],
+      "mean_regret": 0.015000000000000124,
+      "mean_chosen_utility": 0.9849999999999999,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.06999999999999995,
+      "mean_harm_vs_hold": 0.0,
+      "safety_violations": 0,
+      "abstentions": 1
+    },
+    {
+      "gamma": 0.03,
+      "ridge": 0.001,
+      "lower_z": 0.5,
+      "advantage_margin": 0.05,
+      "delta_mse": 0.05985939522669197,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.1399999999999999,
+          "chosen_advantage_lcb": 0.07368695906976384
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        }
+      ],
+      "mean_regret": 0.015000000000000124,
+      "mean_chosen_utility": 0.9849999999999999,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.06999999999999995,
+      "mean_harm_vs_hold": 0.0,
+      "safety_violations": 0,
+      "abstentions": 1
+    },
+    {
+      "gamma": 0.03,
+      "ridge": 0.001,
+      "lower_z": 1.0,
+      "advantage_margin": 0.0,
+      "delta_mse": 0.05985939522669197,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.1399999999999999,
+          "chosen_advantage_lcb": 0.048709744297976316
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        }
+      ],
+      "mean_regret": 0.015000000000000124,
+      "mean_chosen_utility": 0.9849999999999999,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.06999999999999995,
+      "mean_harm_vs_hold": 0.0,
+      "safety_violations": 0,
+      "abstentions": 1
+    },
+    {
+      "gamma": 0.03,
+      "ridge": 0.001,
+      "lower_z": 1.0,
+      "advantage_margin": 0.02,
+      "delta_mse": 0.05985939522669197,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.1399999999999999,
+          "chosen_advantage_lcb": 0.048709744297976316
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        }
+      ],
+      "mean_regret": 0.015000000000000124,
+      "mean_chosen_utility": 0.9849999999999999,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.06999999999999995,
+      "mean_harm_vs_hold": 0.0,
+      "safety_violations": 0,
+      "abstentions": 1
+    },
+    {
+      "gamma": 0.1,
+      "ridge": 0.01,
+      "lower_z": 0.0,
+      "advantage_margin": 0.05,
+      "delta_mse": 0.060263092441643386,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.1399999999999999,
+          "chosen_advantage_lcb": 0.0940223773085753
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        }
+      ],
+      "mean_regret": 0.015000000000000124,
+      "mean_chosen_utility": 0.9849999999999999,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.06999999999999995,
+      "mean_harm_vs_hold": 0.0,
+      "safety_violations": 0,
+      "abstentions": 1
+    },
+    {
+      "gamma": 0.1,
+      "ridge": 0.01,
+      "lower_z": 0.5,
+      "advantage_margin": 0.02,
+      "delta_mse": 0.060263092441643386,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.1399999999999999,
+          "chosen_advantage_lcb": 0.07085011632915336
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        }
+      ],
+      "mean_regret": 0.015000000000000124,
+      "mean_chosen_utility": 0.9849999999999999,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.06999999999999995,
+      "mean_harm_vs_hold": 0.0,
+      "safety_violations": 0,
+      "abstentions": 1
+    },
+    {
+      "gamma": 0.1,
+      "ridge": 0.01,
+      "lower_z": 0.5,
+      "advantage_margin": 0.05,
+      "delta_mse": 0.060263092441643386,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.1399999999999999,
+          "chosen_advantage_lcb": 0.07085011632915336
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        }
+      ],
+      "mean_regret": 0.015000000000000124,
+      "mean_chosen_utility": 0.9849999999999999,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.06999999999999995,
+      "mean_harm_vs_hold": 0.0,
+      "safety_violations": 0,
+      "abstentions": 1
+    },
+    {
+      "gamma": 0.1,
+      "ridge": 0.01,
+      "lower_z": 1.0,
+      "advantage_margin": 0.02,
+      "delta_mse": 0.060263092441643386,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.1399999999999999,
+          "chosen_advantage_lcb": 0.047677855349731416
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        }
+      ],
+      "mean_regret": 0.015000000000000124,
+      "mean_chosen_utility": 0.9849999999999999,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.06999999999999995,
+      "mean_harm_vs_hold": 0.0,
+      "safety_violations": 0,
+      "abstentions": 1
+    },
+    {
+      "gamma": 0.3,
+      "ridge": 0.1,
+      "lower_z": 0.0,
+      "advantage_margin": 0.05,
+      "delta_mse": 0.06307285088209474,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.1399999999999999,
+          "chosen_advantage_lcb": 0.0725223602677936
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        }
+      ],
+      "mean_regret": 0.015000000000000124,
+      "mean_chosen_utility": 0.9849999999999999,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.06999999999999995,
+      "mean_harm_vs_hold": 0.0,
+      "safety_violations": 0,
+      "abstentions": 1
+    },
+    {
+      "gamma": 0.3,
+      "ridge": 0.1,
+      "lower_z": 0.5,
+      "advantage_margin": 0.02,
+      "delta_mse": 0.06307285088209474,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.1399999999999999,
+          "chosen_advantage_lcb": 0.05133867409165212
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        }
+      ],
+      "mean_regret": 0.015000000000000124,
+      "mean_chosen_utility": 0.9849999999999999,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.06999999999999995,
+      "mean_harm_vs_hold": 0.0,
+      "safety_violations": 0,
+      "abstentions": 1
+    },
+    {
+      "gamma": 0.3,
+      "ridge": 0.1,
+      "lower_z": 0.5,
+      "advantage_margin": 0.05,
+      "delta_mse": 0.06307285088209474,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.1399999999999999,
+          "chosen_advantage_lcb": 0.05133867409165212
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        }
+      ],
+      "mean_regret": 0.015000000000000124,
+      "mean_chosen_utility": 0.9849999999999999,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.06999999999999995,
+      "mean_harm_vs_hold": 0.0,
+      "safety_violations": 0,
+      "abstentions": 1
+    },
+    {
+      "gamma": 0.3,
+      "ridge": 0.1,
+      "lower_z": 1.0,
+      "advantage_margin": 0.02,
+      "delta_mse": 0.06307285088209474,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.1399999999999999,
+          "chosen_advantage_lcb": 0.03015498791551064
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        }
+      ],
+      "mean_regret": 0.015000000000000124,
+      "mean_chosen_utility": 0.9849999999999999,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.06999999999999995,
+      "mean_harm_vs_hold": 0.0,
+      "safety_violations": 0,
+      "abstentions": 1
+    },
+    {
+      "gamma": 0.1,
+      "ridge": 0.001,
+      "lower_z": 0.0,
+      "advantage_margin": 0.05,
+      "delta_mse": 0.06383775663472928,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.1399999999999999,
+          "chosen_advantage_lcb": 0.10289535461906466
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        }
+      ],
+      "mean_regret": 0.015000000000000124,
+      "mean_chosen_utility": 0.9849999999999999,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.06999999999999995,
+      "mean_harm_vs_hold": 0.0,
+      "safety_violations": 0,
+      "abstentions": 1
+    },
+    {
+      "gamma": 0.1,
+      "ridge": 0.001,
+      "lower_z": 0.5,
+      "advantage_margin": 0.05,
+      "delta_mse": 0.06383775663472928,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.1399999999999999,
+          "chosen_advantage_lcb": 0.07619377593377376
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        }
+      ],
+      "mean_regret": 0.015000000000000124,
+      "mean_chosen_utility": 0.9849999999999999,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.06999999999999995,
+      "mean_harm_vs_hold": 0.0,
+      "safety_violations": 0,
+      "abstentions": 1
+    },
+    {
+      "gamma": 0.1,
+      "ridge": 0.001,
+      "lower_z": 1.0,
+      "advantage_margin": 0.02,
+      "delta_mse": 0.06383775663472928,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.1399999999999999,
+          "chosen_advantage_lcb": 0.049492197248482854
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        }
+      ],
+      "mean_regret": 0.015000000000000124,
+      "mean_chosen_utility": 0.9849999999999999,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.06999999999999995,
+      "mean_harm_vs_hold": 0.0,
+      "safety_violations": 0,
+      "abstentions": 1
+    },
+    {
+      "gamma": 0.3,
+      "ridge": 0.01,
+      "lower_z": 0.0,
+      "advantage_margin": 0.05,
+      "delta_mse": 0.06464976483952756,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.1399999999999999,
+          "chosen_advantage_lcb": 0.08653611503873776
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        }
+      ],
+      "mean_regret": 0.015000000000000124,
+      "mean_chosen_utility": 0.9849999999999999,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.06999999999999995,
+      "mean_harm_vs_hold": 0.0,
+      "safety_violations": 0,
+      "abstentions": 1
+    },
+    {
+      "gamma": 0.3,
+      "ridge": 0.01,
+      "lower_z": 0.5,
+      "advantage_margin": 0.05,
+      "delta_mse": 0.06464976483952756,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.1399999999999999,
+          "chosen_advantage_lcb": 0.05994407379652421
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        }
+      ],
+      "mean_regret": 0.015000000000000124,
+      "mean_chosen_utility": 0.9849999999999999,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.06999999999999995,
+      "mean_harm_vs_hold": 0.0,
+      "safety_violations": 0,
+      "abstentions": 1
+    },
+    {
+      "gamma": 0.3,
+      "ridge": 0.01,
+      "lower_z": 1.0,
+      "advantage_margin": 0.02,
+      "delta_mse": 0.06464976483952756,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.1399999999999999,
+          "chosen_advantage_lcb": 0.03335203255431065
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        }
+      ],
+      "mean_regret": 0.015000000000000124,
+      "mean_chosen_utility": 0.9849999999999999,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.06999999999999995,
+      "mean_harm_vs_hold": 0.0,
+      "safety_violations": 0,
+      "abstentions": 1
+    },
+    {
+      "gamma": 0.3,
+      "ridge": 0.001,
+      "lower_z": 0.0,
+      "advantage_margin": 0.05,
+      "delta_mse": 0.06523224664091636,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.1399999999999999,
+          "chosen_advantage_lcb": 0.08852456647209578
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        }
+      ],
+      "mean_regret": 0.015000000000000124,
+      "mean_chosen_utility": 0.9849999999999999,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.06999999999999995,
+      "mean_harm_vs_hold": 0.0,
+      "safety_violations": 0,
+      "abstentions": 1
+    },
+    {
+      "gamma": 0.3,
+      "ridge": 0.001,
+      "lower_z": 0.5,
+      "advantage_margin": 0.05,
+      "delta_mse": 0.06523224664091636,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.1399999999999999,
+          "chosen_advantage_lcb": 0.06102835008917086
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        }
+      ],
+      "mean_regret": 0.015000000000000124,
+      "mean_chosen_utility": 0.9849999999999999,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.06999999999999995,
+      "mean_harm_vs_hold": 0.0,
+      "safety_violations": 0,
+      "abstentions": 1
+    },
+    {
+      "gamma": 0.3,
+      "ridge": 0.001,
+      "lower_z": 1.0,
+      "advantage_margin": 0.02,
+      "delta_mse": 0.06523224664091636,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.1399999999999999,
+          "chosen_advantage_lcb": 0.03353213370624595
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        }
+      ],
+      "mean_regret": 0.015000000000000124,
+      "mean_chosen_utility": 0.9849999999999999,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.06999999999999995,
+      "mean_harm_vs_hold": 0.0,
+      "safety_violations": 0,
+      "abstentions": 1
+    },
+    {
+      "gamma": 0.03,
+      "ridge": 0.1,
+      "lower_z": 0.0,
+      "advantage_margin": 0.05,
+      "delta_mse": 0.04868741530017711,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.845,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.15500000000000003,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        }
+      ],
+      "mean_regret": 0.08500000000000008,
+      "mean_chosen_utility": 0.9149999999999999,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.0,
+      "mean_harm_vs_hold": 0.0,
+      "safety_violations": 0,
+      "abstentions": 2
+    },
+    {
+      "gamma": 0.03,
+      "ridge": 0.1,
+      "lower_z": 0.5,
+      "advantage_margin": 0.02,
+      "delta_mse": 0.04868741530017711,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.845,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.15500000000000003,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        }
+      ],
+      "mean_regret": 0.08500000000000008,
+      "mean_chosen_utility": 0.9149999999999999,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.0,
+      "mean_harm_vs_hold": 0.0,
+      "safety_violations": 0,
+      "abstentions": 2
+    },
+    {
+      "gamma": 0.03,
+      "ridge": 0.1,
+      "lower_z": 0.5,
+      "advantage_margin": 0.05,
+      "delta_mse": 0.04868741530017711,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.845,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.15500000000000003,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        }
+      ],
+      "mean_regret": 0.08500000000000008,
+      "mean_chosen_utility": 0.9149999999999999,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.0,
+      "mean_harm_vs_hold": 0.0,
+      "safety_violations": 0,
+      "abstentions": 2
+    },
+    {
+      "gamma": 0.03,
+      "ridge": 0.1,
+      "lower_z": 1.0,
+      "advantage_margin": 0.0,
+      "delta_mse": 0.04868741530017711,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.845,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.15500000000000003,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        }
+      ],
+      "mean_regret": 0.08500000000000008,
+      "mean_chosen_utility": 0.9149999999999999,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.0,
+      "mean_harm_vs_hold": 0.0,
+      "safety_violations": 0,
+      "abstentions": 2
+    },
+    {
+      "gamma": 0.03,
+      "ridge": 0.1,
+      "lower_z": 1.0,
+      "advantage_margin": 0.02,
+      "delta_mse": 0.04868741530017711,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.845,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.15500000000000003,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        }
+      ],
+      "mean_regret": 0.08500000000000008,
+      "mean_chosen_utility": 0.9149999999999999,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.0,
+      "mean_harm_vs_hold": 0.0,
+      "safety_violations": 0,
+      "abstentions": 2
+    },
+    {
+      "gamma": 0.03,
+      "ridge": 0.1,
+      "lower_z": 1.0,
+      "advantage_margin": 0.05,
+      "delta_mse": 0.04868741530017711,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.845,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.15500000000000003,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        }
+      ],
+      "mean_regret": 0.08500000000000008,
+      "mean_chosen_utility": 0.9149999999999999,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.0,
+      "mean_harm_vs_hold": 0.0,
+      "safety_violations": 0,
+      "abstentions": 2
+    },
+    {
+      "gamma": 0.03,
+      "ridge": 0.01,
+      "lower_z": 0.5,
+      "advantage_margin": 0.05,
+      "delta_mse": 0.05351700675708282,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.845,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.15500000000000003,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        }
+      ],
+      "mean_regret": 0.08500000000000008,
+      "mean_chosen_utility": 0.9149999999999999,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.0,
+      "mean_harm_vs_hold": 0.0,
+      "safety_violations": 0,
+      "abstentions": 2
+    },
+    {
+      "gamma": 0.03,
+      "ridge": 0.01,
+      "lower_z": 1.0,
+      "advantage_margin": 0.02,
+      "delta_mse": 0.05351700675708282,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.845,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.15500000000000003,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        }
+      ],
+      "mean_regret": 0.08500000000000008,
+      "mean_chosen_utility": 0.9149999999999999,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.0,
+      "mean_harm_vs_hold": 0.0,
+      "safety_violations": 0,
+      "abstentions": 2
+    },
+    {
+      "gamma": 0.03,
+      "ridge": 0.01,
+      "lower_z": 1.0,
+      "advantage_margin": 0.05,
+      "delta_mse": 0.05351700675708282,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.845,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.15500000000000003,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        }
+      ],
+      "mean_regret": 0.08500000000000008,
+      "mean_chosen_utility": 0.9149999999999999,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.0,
+      "mean_harm_vs_hold": 0.0,
+      "safety_violations": 0,
+      "abstentions": 2
+    },
+    {
+      "gamma": 0.1,
+      "ridge": 0.1,
+      "lower_z": 0.5,
+      "advantage_margin": 0.05,
+      "delta_mse": 0.05433781460996774,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.845,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.15500000000000003,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        }
+      ],
+      "mean_regret": 0.08500000000000008,
+      "mean_chosen_utility": 0.9149999999999999,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.0,
+      "mean_harm_vs_hold": 0.0,
+      "safety_violations": 0,
+      "abstentions": 2
+    },
+    {
+      "gamma": 0.1,
+      "ridge": 0.1,
+      "lower_z": 1.0,
+      "advantage_margin": 0.05,
+      "delta_mse": 0.05433781460996774,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.845,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.15500000000000003,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        }
+      ],
+      "mean_regret": 0.08500000000000008,
+      "mean_chosen_utility": 0.9149999999999999,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.0,
+      "mean_harm_vs_hold": 0.0,
+      "safety_violations": 0,
+      "abstentions": 2
+    },
+    {
+      "gamma": 0.03,
+      "ridge": 0.001,
+      "lower_z": 1.0,
+      "advantage_margin": 0.05,
+      "delta_mse": 0.05985939522669197,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.845,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.15500000000000003,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        }
+      ],
+      "mean_regret": 0.08500000000000008,
+      "mean_chosen_utility": 0.9149999999999999,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.0,
+      "mean_harm_vs_hold": 0.0,
+      "safety_violations": 0,
+      "abstentions": 2
+    },
+    {
+      "gamma": 0.1,
+      "ridge": 0.01,
+      "lower_z": 1.0,
+      "advantage_margin": 0.05,
+      "delta_mse": 0.060263092441643386,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.845,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.15500000000000003,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        }
+      ],
+      "mean_regret": 0.08500000000000008,
+      "mean_chosen_utility": 0.9149999999999999,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.0,
+      "mean_harm_vs_hold": 0.0,
+      "safety_violations": 0,
+      "abstentions": 2
+    },
+    {
+      "gamma": 0.3,
+      "ridge": 0.1,
+      "lower_z": 1.0,
+      "advantage_margin": 0.05,
+      "delta_mse": 0.06307285088209474,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.845,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.15500000000000003,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        }
+      ],
+      "mean_regret": 0.08500000000000008,
+      "mean_chosen_utility": 0.9149999999999999,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.0,
+      "mean_harm_vs_hold": 0.0,
+      "safety_violations": 0,
+      "abstentions": 2
+    },
+    {
+      "gamma": 0.1,
+      "ridge": 0.001,
+      "lower_z": 1.0,
+      "advantage_margin": 0.05,
+      "delta_mse": 0.06383775663472928,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.845,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.15500000000000003,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        }
+      ],
+      "mean_regret": 0.08500000000000008,
+      "mean_chosen_utility": 0.9149999999999999,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.0,
+      "mean_harm_vs_hold": 0.0,
+      "safety_violations": 0,
+      "abstentions": 2
+    },
+    {
+      "gamma": 0.3,
+      "ridge": 0.01,
+      "lower_z": 1.0,
+      "advantage_margin": 0.05,
+      "delta_mse": 0.06464976483952756,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.845,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.15500000000000003,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        }
+      ],
+      "mean_regret": 0.08500000000000008,
+      "mean_chosen_utility": 0.9149999999999999,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.0,
+      "mean_harm_vs_hold": 0.0,
+      "safety_violations": 0,
+      "abstentions": 2
+    },
+    {
+      "gamma": 0.3,
+      "ridge": 0.001,
+      "lower_z": 1.0,
+      "advantage_margin": 0.05,
+      "delta_mse": 0.06523224664091636,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.845,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.15500000000000003,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        }
+      ],
+      "mean_regret": 0.08500000000000008,
+      "mean_chosen_utility": 0.9149999999999999,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.0,
+      "mean_harm_vs_hold": 0.0,
+      "safety_violations": 0,
+      "abstentions": 2
+    },
+    {
+      "gamma": 1.0,
+      "ridge": 0.001,
+      "lower_z": 0.0,
+      "advantage_margin": 0.05,
+      "delta_mse": 0.08502440554992485,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.845,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.15500000000000003,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        }
+      ],
+      "mean_regret": 0.08500000000000008,
+      "mean_chosen_utility": 0.9149999999999999,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.0,
+      "mean_harm_vs_hold": 0.0,
+      "safety_violations": 0,
+      "abstentions": 2
+    },
+    {
+      "gamma": 1.0,
+      "ridge": 0.001,
+      "lower_z": 0.5,
+      "advantage_margin": 0.05,
+      "delta_mse": 0.08502440554992485,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.845,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.15500000000000003,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        }
+      ],
+      "mean_regret": 0.08500000000000008,
+      "mean_chosen_utility": 0.9149999999999999,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.0,
+      "mean_harm_vs_hold": 0.0,
+      "safety_violations": 0,
+      "abstentions": 2
+    },
+    {
+      "gamma": 1.0,
+      "ridge": 0.001,
+      "lower_z": 1.0,
+      "advantage_margin": 0.02,
+      "delta_mse": 0.08502440554992485,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.845,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.15500000000000003,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        }
+      ],
+      "mean_regret": 0.08500000000000008,
+      "mean_chosen_utility": 0.9149999999999999,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.0,
+      "mean_harm_vs_hold": 0.0,
+      "safety_violations": 0,
+      "abstentions": 2
+    },
+    {
+      "gamma": 1.0,
+      "ridge": 0.001,
+      "lower_z": 1.0,
+      "advantage_margin": 0.05,
+      "delta_mse": 0.08502440554992485,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.845,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.15500000000000003,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        }
+      ],
+      "mean_regret": 0.08500000000000008,
+      "mean_chosen_utility": 0.9149999999999999,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.0,
+      "mean_harm_vs_hold": 0.0,
+      "safety_violations": 0,
+      "abstentions": 2
+    },
+    {
+      "gamma": 1.0,
+      "ridge": 0.01,
+      "lower_z": 0.0,
+      "advantage_margin": 0.05,
+      "delta_mse": 0.0853320835016414,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.845,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.15500000000000003,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        }
+      ],
+      "mean_regret": 0.08500000000000008,
+      "mean_chosen_utility": 0.9149999999999999,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.0,
+      "mean_harm_vs_hold": 0.0,
+      "safety_violations": 0,
+      "abstentions": 2
+    },
+    {
+      "gamma": 1.0,
+      "ridge": 0.01,
+      "lower_z": 0.5,
+      "advantage_margin": 0.05,
+      "delta_mse": 0.0853320835016414,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.845,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.15500000000000003,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        }
+      ],
+      "mean_regret": 0.08500000000000008,
+      "mean_chosen_utility": 0.9149999999999999,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.0,
+      "mean_harm_vs_hold": 0.0,
+      "safety_violations": 0,
+      "abstentions": 2
+    },
+    {
+      "gamma": 1.0,
+      "ridge": 0.01,
+      "lower_z": 1.0,
+      "advantage_margin": 0.02,
+      "delta_mse": 0.0853320835016414,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.845,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.15500000000000003,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        }
+      ],
+      "mean_regret": 0.08500000000000008,
+      "mean_chosen_utility": 0.9149999999999999,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.0,
+      "mean_harm_vs_hold": 0.0,
+      "safety_violations": 0,
+      "abstentions": 2
+    },
+    {
+      "gamma": 1.0,
+      "ridge": 0.01,
+      "lower_z": 1.0,
+      "advantage_margin": 0.05,
+      "delta_mse": 0.0853320835016414,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.845,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.15500000000000003,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        }
+      ],
+      "mean_regret": 0.08500000000000008,
+      "mean_chosen_utility": 0.9149999999999999,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.0,
+      "mean_harm_vs_hold": 0.0,
+      "safety_violations": 0,
+      "abstentions": 2
+    },
+    {
+      "gamma": 1.0,
+      "ridge": 0.1,
+      "lower_z": 0.0,
+      "advantage_margin": 0.05,
+      "delta_mse": 0.08844258546018836,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.845,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.15500000000000003,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        }
+      ],
+      "mean_regret": 0.08500000000000008,
+      "mean_chosen_utility": 0.9149999999999999,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.0,
+      "mean_harm_vs_hold": 0.0,
+      "safety_violations": 0,
+      "abstentions": 2
+    },
+    {
+      "gamma": 1.0,
+      "ridge": 0.1,
+      "lower_z": 0.5,
+      "advantage_margin": 0.05,
+      "delta_mse": 0.08844258546018836,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.845,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.15500000000000003,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        }
+      ],
+      "mean_regret": 0.08500000000000008,
+      "mean_chosen_utility": 0.9149999999999999,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.0,
+      "mean_harm_vs_hold": 0.0,
+      "safety_violations": 0,
+      "abstentions": 2
+    },
+    {
+      "gamma": 1.0,
+      "ridge": 0.1,
+      "lower_z": 1.0,
+      "advantage_margin": 0.02,
+      "delta_mse": 0.08844258546018836,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.845,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.15500000000000003,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        }
+      ],
+      "mean_regret": 0.08500000000000008,
+      "mean_chosen_utility": 0.9149999999999999,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.0,
+      "mean_harm_vs_hold": 0.0,
+      "safety_violations": 0,
+      "abstentions": 2
+    },
+    {
+      "gamma": 1.0,
+      "ridge": 0.1,
+      "lower_z": 1.0,
+      "advantage_margin": 0.05,
+      "delta_mse": 0.08844258546018836,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.845,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.15500000000000003,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        }
+      ],
+      "mean_regret": 0.08500000000000008,
+      "mean_chosen_utility": 0.9149999999999999,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.0,
+      "mean_harm_vs_hold": 0.0,
+      "safety_violations": 0,
+      "abstentions": 2
+    },
+    {
+      "gamma": 3.0,
+      "ridge": 0.001,
+      "lower_z": 0.0,
+      "advantage_margin": 0.02,
+      "delta_mse": 0.12558415220783328,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.845,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.15500000000000003,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        }
+      ],
+      "mean_regret": 0.08500000000000008,
+      "mean_chosen_utility": 0.9149999999999999,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.0,
+      "mean_harm_vs_hold": 0.0,
+      "safety_violations": 0,
+      "abstentions": 2
+    },
+    {
+      "gamma": 3.0,
+      "ridge": 0.001,
+      "lower_z": 0.0,
+      "advantage_margin": 0.05,
+      "delta_mse": 0.12558415220783328,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.845,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.15500000000000003,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        }
+      ],
+      "mean_regret": 0.08500000000000008,
+      "mean_chosen_utility": 0.9149999999999999,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.0,
+      "mean_harm_vs_hold": 0.0,
+      "safety_violations": 0,
+      "abstentions": 2
+    },
+    {
+      "gamma": 3.0,
+      "ridge": 0.001,
+      "lower_z": 0.5,
+      "advantage_margin": 0.02,
+      "delta_mse": 0.12558415220783328,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.845,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.15500000000000003,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        }
+      ],
+      "mean_regret": 0.08500000000000008,
+      "mean_chosen_utility": 0.9149999999999999,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.0,
+      "mean_harm_vs_hold": 0.0,
+      "safety_violations": 0,
+      "abstentions": 2
+    },
+    {
+      "gamma": 3.0,
+      "ridge": 0.001,
+      "lower_z": 0.5,
+      "advantage_margin": 0.05,
+      "delta_mse": 0.12558415220783328,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.845,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.15500000000000003,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        }
+      ],
+      "mean_regret": 0.08500000000000008,
+      "mean_chosen_utility": 0.9149999999999999,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.0,
+      "mean_harm_vs_hold": 0.0,
+      "safety_violations": 0,
+      "abstentions": 2
+    },
+    {
+      "gamma": 3.0,
+      "ridge": 0.001,
+      "lower_z": 1.0,
+      "advantage_margin": 0.02,
+      "delta_mse": 0.12558415220783328,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.845,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.15500000000000003,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        }
+      ],
+      "mean_regret": 0.08500000000000008,
+      "mean_chosen_utility": 0.9149999999999999,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.0,
+      "mean_harm_vs_hold": 0.0,
+      "safety_violations": 0,
+      "abstentions": 2
+    },
+    {
+      "gamma": 3.0,
+      "ridge": 0.001,
+      "lower_z": 1.0,
+      "advantage_margin": 0.05,
+      "delta_mse": 0.12558415220783328,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.845,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.15500000000000003,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        }
+      ],
+      "mean_regret": 0.08500000000000008,
+      "mean_chosen_utility": 0.9149999999999999,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.0,
+      "mean_harm_vs_hold": 0.0,
+      "safety_violations": 0,
+      "abstentions": 2
+    },
+    {
+      "gamma": 3.0,
+      "ridge": 0.01,
+      "lower_z": 0.0,
+      "advantage_margin": 0.02,
+      "delta_mse": 0.12591183927440674,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.845,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.15500000000000003,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        }
+      ],
+      "mean_regret": 0.08500000000000008,
+      "mean_chosen_utility": 0.9149999999999999,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.0,
+      "mean_harm_vs_hold": 0.0,
+      "safety_violations": 0,
+      "abstentions": 2
+    },
+    {
+      "gamma": 3.0,
+      "ridge": 0.01,
+      "lower_z": 0.0,
+      "advantage_margin": 0.05,
+      "delta_mse": 0.12591183927440674,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.845,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.15500000000000003,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        }
+      ],
+      "mean_regret": 0.08500000000000008,
+      "mean_chosen_utility": 0.9149999999999999,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.0,
+      "mean_harm_vs_hold": 0.0,
+      "safety_violations": 0,
+      "abstentions": 2
+    },
+    {
+      "gamma": 3.0,
+      "ridge": 0.01,
+      "lower_z": 0.5,
+      "advantage_margin": 0.02,
+      "delta_mse": 0.12591183927440674,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.845,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.15500000000000003,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        }
+      ],
+      "mean_regret": 0.08500000000000008,
+      "mean_chosen_utility": 0.9149999999999999,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.0,
+      "mean_harm_vs_hold": 0.0,
+      "safety_violations": 0,
+      "abstentions": 2
+    },
+    {
+      "gamma": 3.0,
+      "ridge": 0.01,
+      "lower_z": 0.5,
+      "advantage_margin": 0.05,
+      "delta_mse": 0.12591183927440674,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.845,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.15500000000000003,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        }
+      ],
+      "mean_regret": 0.08500000000000008,
+      "mean_chosen_utility": 0.9149999999999999,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.0,
+      "mean_harm_vs_hold": 0.0,
+      "safety_violations": 0,
+      "abstentions": 2
+    },
+    {
+      "gamma": 3.0,
+      "ridge": 0.01,
+      "lower_z": 1.0,
+      "advantage_margin": 0.02,
+      "delta_mse": 0.12591183927440674,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.845,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.15500000000000003,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        }
+      ],
+      "mean_regret": 0.08500000000000008,
+      "mean_chosen_utility": 0.9149999999999999,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.0,
+      "mean_harm_vs_hold": 0.0,
+      "safety_violations": 0,
+      "abstentions": 2
+    },
+    {
+      "gamma": 3.0,
+      "ridge": 0.01,
+      "lower_z": 1.0,
+      "advantage_margin": 0.05,
+      "delta_mse": 0.12591183927440674,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.845,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.15500000000000003,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        }
+      ],
+      "mean_regret": 0.08500000000000008,
+      "mean_chosen_utility": 0.9149999999999999,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.0,
+      "mean_harm_vs_hold": 0.0,
+      "safety_violations": 0,
+      "abstentions": 2
+    },
+    {
+      "gamma": 3.0,
+      "ridge": 0.1,
+      "lower_z": 0.0,
+      "advantage_margin": 0.02,
+      "delta_mse": 0.1289975320767478,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.845,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.15500000000000003,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        }
+      ],
+      "mean_regret": 0.08500000000000008,
+      "mean_chosen_utility": 0.9149999999999999,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.0,
+      "mean_harm_vs_hold": 0.0,
+      "safety_violations": 0,
+      "abstentions": 2
+    },
+    {
+      "gamma": 3.0,
+      "ridge": 0.1,
+      "lower_z": 0.0,
+      "advantage_margin": 0.05,
+      "delta_mse": 0.1289975320767478,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.845,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.15500000000000003,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        }
+      ],
+      "mean_regret": 0.08500000000000008,
+      "mean_chosen_utility": 0.9149999999999999,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.0,
+      "mean_harm_vs_hold": 0.0,
+      "safety_violations": 0,
+      "abstentions": 2
+    },
+    {
+      "gamma": 3.0,
+      "ridge": 0.1,
+      "lower_z": 0.5,
+      "advantage_margin": 0.02,
+      "delta_mse": 0.1289975320767478,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.845,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.15500000000000003,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        }
+      ],
+      "mean_regret": 0.08500000000000008,
+      "mean_chosen_utility": 0.9149999999999999,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.0,
+      "mean_harm_vs_hold": 0.0,
+      "safety_violations": 0,
+      "abstentions": 2
+    },
+    {
+      "gamma": 3.0,
+      "ridge": 0.1,
+      "lower_z": 0.5,
+      "advantage_margin": 0.05,
+      "delta_mse": 0.1289975320767478,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.845,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.15500000000000003,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        }
+      ],
+      "mean_regret": 0.08500000000000008,
+      "mean_chosen_utility": 0.9149999999999999,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.0,
+      "mean_harm_vs_hold": 0.0,
+      "safety_violations": 0,
+      "abstentions": 2
+    },
+    {
+      "gamma": 3.0,
+      "ridge": 0.1,
+      "lower_z": 1.0,
+      "advantage_margin": 0.02,
+      "delta_mse": 0.1289975320767478,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.845,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.15500000000000003,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        }
+      ],
+      "mean_regret": 0.08500000000000008,
+      "mean_chosen_utility": 0.9149999999999999,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.0,
+      "mean_harm_vs_hold": 0.0,
+      "safety_violations": 0,
+      "abstentions": 2
+    },
+    {
+      "gamma": 3.0,
+      "ridge": 0.1,
+      "lower_z": 1.0,
+      "advantage_margin": 0.05,
+      "delta_mse": 0.1289975320767478,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.845,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.15500000000000003,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        }
+      ],
+      "mean_regret": 0.08500000000000008,
+      "mean_chosen_utility": 0.9149999999999999,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.0,
+      "mean_harm_vs_hold": 0.0,
+      "safety_violations": 0,
+      "abstentions": 2
+    },
+    {
+      "gamma": 0.1,
+      "ridge": 0.01,
+      "lower_z": 0.5,
+      "advantage_margin": 0.0,
+      "delta_mse": 0.060263092441643386,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.1399999999999999,
+          "chosen_advantage_lcb": 0.07085011632915336
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-6e261c26382c",
+          "chosen_label": "MODEL_PROTECTED",
+          "chosen_actual_utility": 0.9349999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.06500000000000006,
+          "actual_advantage_over_hold": -0.04999999999999993,
+          "chosen_advantage_lcb": 0.018037385364316316
+        }
+      ],
+      "mean_regret": 0.04000000000000009,
+      "mean_chosen_utility": 0.96,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.044999999999999984,
+      "mean_harm_vs_hold": 0.024999999999999967,
+      "safety_violations": 0,
+      "abstentions": 0
+    },
+    {
+      "gamma": 0.1,
+      "ridge": 0.01,
+      "lower_z": 1.0,
+      "advantage_margin": 0.0,
+      "delta_mse": 0.060263092441643386,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.1399999999999999,
+          "chosen_advantage_lcb": 0.047677855349731416
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-6e261c26382c",
+          "chosen_label": "MODEL_PROTECTED",
+          "chosen_actual_utility": 0.9349999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.06500000000000006,
+          "actual_advantage_over_hold": -0.04999999999999993,
+          "chosen_advantage_lcb": 0.0026114205211089613
+        }
+      ],
+      "mean_regret": 0.04000000000000009,
+      "mean_chosen_utility": 0.96,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.044999999999999984,
+      "mean_harm_vs_hold": 0.024999999999999967,
+      "safety_violations": 0,
+      "abstentions": 0
+    },
+    {
+      "gamma": 0.3,
+      "ridge": 0.1,
+      "lower_z": 0.0,
+      "advantage_margin": 0.0,
+      "delta_mse": 0.06307285088209474,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.1399999999999999,
+          "chosen_advantage_lcb": 0.0725223602677936
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-6e261c26382c",
+          "chosen_label": "MODEL_PROTECTED",
+          "chosen_actual_utility": 0.9349999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.06500000000000006,
+          "actual_advantage_over_hold": -0.04999999999999993,
+          "chosen_advantage_lcb": 0.030560603008271563
+        }
+      ],
+      "mean_regret": 0.04000000000000009,
+      "mean_chosen_utility": 0.96,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.044999999999999984,
+      "mean_harm_vs_hold": 0.024999999999999967,
+      "safety_violations": 0,
+      "abstentions": 0
+    },
+    {
+      "gamma": 0.3,
+      "ridge": 0.1,
+      "lower_z": 0.0,
+      "advantage_margin": 0.02,
+      "delta_mse": 0.06307285088209474,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.1399999999999999,
+          "chosen_advantage_lcb": 0.0725223602677936
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-6e261c26382c",
+          "chosen_label": "MODEL_PROTECTED",
+          "chosen_actual_utility": 0.9349999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.06500000000000006,
+          "actual_advantage_over_hold": -0.04999999999999993,
+          "chosen_advantage_lcb": 0.030560603008271563
+        }
+      ],
+      "mean_regret": 0.04000000000000009,
+      "mean_chosen_utility": 0.96,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.044999999999999984,
+      "mean_harm_vs_hold": 0.024999999999999967,
+      "safety_violations": 0,
+      "abstentions": 0
+    },
+    {
+      "gamma": 0.3,
+      "ridge": 0.1,
+      "lower_z": 0.5,
+      "advantage_margin": 0.0,
+      "delta_mse": 0.06307285088209474,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.1399999999999999,
+          "chosen_advantage_lcb": 0.05133867409165212
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-6e261c26382c",
+          "chosen_label": "MODEL_PROTECTED",
+          "chosen_actual_utility": 0.9349999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.06500000000000006,
+          "actual_advantage_over_hold": -0.04999999999999993,
+          "chosen_advantage_lcb": 0.019460560378309417
+        }
+      ],
+      "mean_regret": 0.04000000000000009,
+      "mean_chosen_utility": 0.96,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.044999999999999984,
+      "mean_harm_vs_hold": 0.024999999999999967,
+      "safety_violations": 0,
+      "abstentions": 0
+    },
+    {
+      "gamma": 0.3,
+      "ridge": 0.1,
+      "lower_z": 1.0,
+      "advantage_margin": 0.0,
+      "delta_mse": 0.06307285088209474,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.1399999999999999,
+          "chosen_advantage_lcb": 0.03015498791551064
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-6e261c26382c",
+          "chosen_label": "MODEL_PROTECTED",
+          "chosen_actual_utility": 0.9349999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.06500000000000006,
+          "actual_advantage_over_hold": -0.04999999999999993,
+          "chosen_advantage_lcb": 0.008360517748347271
+        }
+      ],
+      "mean_regret": 0.04000000000000009,
+      "mean_chosen_utility": 0.96,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.044999999999999984,
+      "mean_harm_vs_hold": 0.024999999999999967,
+      "safety_violations": 0,
+      "abstentions": 0
+    },
+    {
+      "gamma": 0.1,
+      "ridge": 0.001,
+      "lower_z": 0.5,
+      "advantage_margin": 0.0,
+      "delta_mse": 0.06383775663472928,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.1399999999999999,
+          "chosen_advantage_lcb": 0.07619377593377376
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-6e261c26382c",
+          "chosen_label": "MODEL_PROTECTED",
+          "chosen_actual_utility": 0.9349999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.06500000000000006,
+          "actual_advantage_over_hold": -0.04999999999999993,
+          "chosen_advantage_lcb": 0.021043803252215453
+        }
+      ],
+      "mean_regret": 0.04000000000000009,
+      "mean_chosen_utility": 0.96,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.044999999999999984,
+      "mean_harm_vs_hold": 0.024999999999999967,
+      "safety_violations": 0,
+      "abstentions": 0
+    },
+    {
+      "gamma": 0.1,
+      "ridge": 0.001,
+      "lower_z": 0.5,
+      "advantage_margin": 0.02,
+      "delta_mse": 0.06383775663472928,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.1399999999999999,
+          "chosen_advantage_lcb": 0.07619377593377376
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-6e261c26382c",
+          "chosen_label": "MODEL_PROTECTED",
+          "chosen_actual_utility": 0.9349999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.06500000000000006,
+          "actual_advantage_over_hold": -0.04999999999999993,
+          "chosen_advantage_lcb": 0.021043803252215453
+        }
+      ],
+      "mean_regret": 0.04000000000000009,
+      "mean_chosen_utility": 0.96,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.044999999999999984,
+      "mean_harm_vs_hold": 0.024999999999999967,
+      "safety_violations": 0,
+      "abstentions": 0
+    },
+    {
+      "gamma": 0.1,
+      "ridge": 0.001,
+      "lower_z": 1.0,
+      "advantage_margin": 0.0,
+      "delta_mse": 0.06383775663472928,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.1399999999999999,
+          "chosen_advantage_lcb": 0.049492197248482854
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-6e261c26382c",
+          "chosen_label": "MODEL_PROTECTED",
+          "chosen_actual_utility": 0.9349999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.06500000000000006,
+          "actual_advantage_over_hold": -0.04999999999999993,
+          "chosen_advantage_lcb": 0.00503446489513424
+        }
+      ],
+      "mean_regret": 0.04000000000000009,
+      "mean_chosen_utility": 0.96,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.044999999999999984,
+      "mean_harm_vs_hold": 0.024999999999999967,
+      "safety_violations": 0,
+      "abstentions": 0
+    },
+    {
+      "gamma": 0.3,
+      "ridge": 0.01,
+      "lower_z": 0.0,
+      "advantage_margin": 0.0,
+      "delta_mse": 0.06464976483952756,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.1399999999999999,
+          "chosen_advantage_lcb": 0.08653611503873776
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-6e261c26382c",
+          "chosen_label": "MODEL_PROTECTED",
+          "chosen_actual_utility": 0.9349999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.06500000000000006,
+          "actual_advantage_over_hold": -0.04999999999999993,
+          "chosen_advantage_lcb": 0.036851044265039504
+        }
+      ],
+      "mean_regret": 0.04000000000000009,
+      "mean_chosen_utility": 0.96,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.044999999999999984,
+      "mean_harm_vs_hold": 0.024999999999999967,
+      "safety_violations": 0,
+      "abstentions": 0
+    },
+    {
+      "gamma": 0.3,
+      "ridge": 0.01,
+      "lower_z": 0.0,
+      "advantage_margin": 0.02,
+      "delta_mse": 0.06464976483952756,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.1399999999999999,
+          "chosen_advantage_lcb": 0.08653611503873776
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-6e261c26382c",
+          "chosen_label": "MODEL_PROTECTED",
+          "chosen_actual_utility": 0.9349999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.06500000000000006,
+          "actual_advantage_over_hold": -0.04999999999999993,
+          "chosen_advantage_lcb": 0.036851044265039504
+        }
+      ],
+      "mean_regret": 0.04000000000000009,
+      "mean_chosen_utility": 0.96,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.044999999999999984,
+      "mean_harm_vs_hold": 0.024999999999999967,
+      "safety_violations": 0,
+      "abstentions": 0
+    },
+    {
+      "gamma": 0.3,
+      "ridge": 0.01,
+      "lower_z": 0.5,
+      "advantage_margin": 0.0,
+      "delta_mse": 0.06464976483952756,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.1399999999999999,
+          "chosen_advantage_lcb": 0.05994407379652421
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-6e261c26382c",
+          "chosen_label": "MODEL_PROTECTED",
+          "chosen_actual_utility": 0.9349999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.06500000000000006,
+          "actual_advantage_over_hold": -0.04999999999999993,
+          "chosen_advantage_lcb": 0.025152266085761037
+        }
+      ],
+      "mean_regret": 0.04000000000000009,
+      "mean_chosen_utility": 0.96,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.044999999999999984,
+      "mean_harm_vs_hold": 0.024999999999999967,
+      "safety_violations": 0,
+      "abstentions": 0
+    },
+    {
+      "gamma": 0.3,
+      "ridge": 0.01,
+      "lower_z": 0.5,
+      "advantage_margin": 0.02,
+      "delta_mse": 0.06464976483952756,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.1399999999999999,
+          "chosen_advantage_lcb": 0.05994407379652421
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-6e261c26382c",
+          "chosen_label": "MODEL_PROTECTED",
+          "chosen_actual_utility": 0.9349999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.06500000000000006,
+          "actual_advantage_over_hold": -0.04999999999999993,
+          "chosen_advantage_lcb": 0.025152266085761037
+        }
+      ],
+      "mean_regret": 0.04000000000000009,
+      "mean_chosen_utility": 0.96,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.044999999999999984,
+      "mean_harm_vs_hold": 0.024999999999999967,
+      "safety_violations": 0,
+      "abstentions": 0
+    },
+    {
+      "gamma": 0.3,
+      "ridge": 0.01,
+      "lower_z": 1.0,
+      "advantage_margin": 0.0,
+      "delta_mse": 0.06464976483952756,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.1399999999999999,
+          "chosen_advantage_lcb": 0.03335203255431065
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-6e261c26382c",
+          "chosen_label": "MODEL_PROTECTED",
+          "chosen_actual_utility": 0.9349999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.06500000000000006,
+          "actual_advantage_over_hold": -0.04999999999999993,
+          "chosen_advantage_lcb": 0.013453487906482566
+        }
+      ],
+      "mean_regret": 0.04000000000000009,
+      "mean_chosen_utility": 0.96,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.044999999999999984,
+      "mean_harm_vs_hold": 0.024999999999999967,
+      "safety_violations": 0,
+      "abstentions": 0
+    },
+    {
+      "gamma": 0.3,
+      "ridge": 0.001,
+      "lower_z": 0.0,
+      "advantage_margin": 0.0,
+      "delta_mse": 0.06523224664091636,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.1399999999999999,
+          "chosen_advantage_lcb": 0.08852456647209578
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-6e261c26382c",
+          "chosen_label": "MODEL_PROTECTED",
+          "chosen_actual_utility": 0.9349999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.06500000000000006,
+          "actual_advantage_over_hold": -0.04999999999999993,
+          "chosen_advantage_lcb": 0.03778576778857106
+        }
+      ],
+      "mean_regret": 0.04000000000000009,
+      "mean_chosen_utility": 0.96,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.044999999999999984,
+      "mean_harm_vs_hold": 0.024999999999999967,
+      "safety_violations": 0,
+      "abstentions": 0
+    },
+    {
+      "gamma": 0.3,
+      "ridge": 0.001,
+      "lower_z": 0.0,
+      "advantage_margin": 0.02,
+      "delta_mse": 0.06523224664091636,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.1399999999999999,
+          "chosen_advantage_lcb": 0.08852456647209578
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-6e261c26382c",
+          "chosen_label": "MODEL_PROTECTED",
+          "chosen_actual_utility": 0.9349999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.06500000000000006,
+          "actual_advantage_over_hold": -0.04999999999999993,
+          "chosen_advantage_lcb": 0.03778576778857106
+        }
+      ],
+      "mean_regret": 0.04000000000000009,
+      "mean_chosen_utility": 0.96,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.044999999999999984,
+      "mean_harm_vs_hold": 0.024999999999999967,
+      "safety_violations": 0,
+      "abstentions": 0
+    },
+    {
+      "gamma": 0.3,
+      "ridge": 0.001,
+      "lower_z": 0.5,
+      "advantage_margin": 0.0,
+      "delta_mse": 0.06523224664091636,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.1399999999999999,
+          "chosen_advantage_lcb": 0.06102835008917086
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-6e261c26382c",
+          "chosen_label": "MODEL_PROTECTED",
+          "chosen_actual_utility": 0.9349999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.06500000000000006,
+          "actual_advantage_over_hold": -0.04999999999999993,
+          "chosen_advantage_lcb": 0.02599280728477012
+        }
+      ],
+      "mean_regret": 0.04000000000000009,
+      "mean_chosen_utility": 0.96,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.044999999999999984,
+      "mean_harm_vs_hold": 0.024999999999999967,
+      "safety_violations": 0,
+      "abstentions": 0
+    },
+    {
+      "gamma": 0.3,
+      "ridge": 0.001,
+      "lower_z": 0.5,
+      "advantage_margin": 0.02,
+      "delta_mse": 0.06523224664091636,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.1399999999999999,
+          "chosen_advantage_lcb": 0.06102835008917086
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-6e261c26382c",
+          "chosen_label": "MODEL_PROTECTED",
+          "chosen_actual_utility": 0.9349999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.06500000000000006,
+          "actual_advantage_over_hold": -0.04999999999999993,
+          "chosen_advantage_lcb": 0.02599280728477012
+        }
+      ],
+      "mean_regret": 0.04000000000000009,
+      "mean_chosen_utility": 0.96,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.044999999999999984,
+      "mean_harm_vs_hold": 0.024999999999999967,
+      "safety_violations": 0,
+      "abstentions": 0
+    },
+    {
+      "gamma": 0.3,
+      "ridge": 0.001,
+      "lower_z": 1.0,
+      "advantage_margin": 0.0,
+      "delta_mse": 0.06523224664091636,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.1399999999999999,
+          "chosen_advantage_lcb": 0.03353213370624595
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-6e261c26382c",
+          "chosen_label": "MODEL_PROTECTED",
+          "chosen_actual_utility": 0.9349999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.06500000000000006,
+          "actual_advantage_over_hold": -0.04999999999999993,
+          "chosen_advantage_lcb": 0.01419984678096918
+        }
+      ],
+      "mean_regret": 0.04000000000000009,
+      "mean_chosen_utility": 0.96,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.044999999999999984,
+      "mean_harm_vs_hold": 0.024999999999999967,
+      "safety_violations": 0,
+      "abstentions": 0
+    },
+    {
+      "gamma": 1.0,
+      "ridge": 0.001,
+      "lower_z": 0.0,
+      "advantage_margin": 0.0,
+      "delta_mse": 0.08502440554992485,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.1399999999999999,
+          "chosen_advantage_lcb": 0.04799064889742201
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-6e261c26382c",
+          "chosen_label": "MODEL_PROTECTED",
+          "chosen_actual_utility": 0.9349999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.06500000000000006,
+          "actual_advantage_over_hold": -0.04999999999999993,
+          "chosen_advantage_lcb": 0.03172650542149405
+        }
+      ],
+      "mean_regret": 0.04000000000000009,
+      "mean_chosen_utility": 0.96,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.044999999999999984,
+      "mean_harm_vs_hold": 0.024999999999999967,
+      "safety_violations": 0,
+      "abstentions": 0
+    },
+    {
+      "gamma": 1.0,
+      "ridge": 0.001,
+      "lower_z": 0.0,
+      "advantage_margin": 0.02,
+      "delta_mse": 0.08502440554992485,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.1399999999999999,
+          "chosen_advantage_lcb": 0.04799064889742201
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-6e261c26382c",
+          "chosen_label": "MODEL_PROTECTED",
+          "chosen_actual_utility": 0.9349999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.06500000000000006,
+          "actual_advantage_over_hold": -0.04999999999999993,
+          "chosen_advantage_lcb": 0.03172650542149405
+        }
+      ],
+      "mean_regret": 0.04000000000000009,
+      "mean_chosen_utility": 0.96,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.044999999999999984,
+      "mean_harm_vs_hold": 0.024999999999999967,
+      "safety_violations": 0,
+      "abstentions": 0
+    },
+    {
+      "gamma": 1.0,
+      "ridge": 0.001,
+      "lower_z": 0.5,
+      "advantage_margin": 0.0,
+      "delta_mse": 0.08502440554992485,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.1399999999999999,
+          "chosen_advantage_lcb": 0.029988297771971786
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-6e261c26382c",
+          "chosen_label": "MODEL_PROTECTED",
+          "chosen_actual_utility": 0.9349999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.06500000000000006,
+          "actual_advantage_over_hold": -0.04999999999999993,
+          "chosen_advantage_lcb": 0.021836359263276144
+        }
+      ],
+      "mean_regret": 0.04000000000000009,
+      "mean_chosen_utility": 0.96,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.044999999999999984,
+      "mean_harm_vs_hold": 0.024999999999999967,
+      "safety_violations": 0,
+      "abstentions": 0
+    },
+    {
+      "gamma": 1.0,
+      "ridge": 0.001,
+      "lower_z": 0.5,
+      "advantage_margin": 0.02,
+      "delta_mse": 0.08502440554992485,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.1399999999999999,
+          "chosen_advantage_lcb": 0.029988297771971786
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-6e261c26382c",
+          "chosen_label": "MODEL_PROTECTED",
+          "chosen_actual_utility": 0.9349999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.06500000000000006,
+          "actual_advantage_over_hold": -0.04999999999999993,
+          "chosen_advantage_lcb": 0.021836359263276144
+        }
+      ],
+      "mean_regret": 0.04000000000000009,
+      "mean_chosen_utility": 0.96,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.044999999999999984,
+      "mean_harm_vs_hold": 0.024999999999999967,
+      "safety_violations": 0,
+      "abstentions": 0
+    },
+    {
+      "gamma": 1.0,
+      "ridge": 0.001,
+      "lower_z": 1.0,
+      "advantage_margin": 0.0,
+      "delta_mse": 0.08502440554992485,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.1399999999999999,
+          "chosen_advantage_lcb": 0.011985946646521563
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-6e261c26382c",
+          "chosen_label": "MODEL_PROTECTED",
+          "chosen_actual_utility": 0.9349999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.06500000000000006,
+          "actual_advantage_over_hold": -0.04999999999999993,
+          "chosen_advantage_lcb": 0.011946213105058237
+        }
+      ],
+      "mean_regret": 0.04000000000000009,
+      "mean_chosen_utility": 0.96,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.044999999999999984,
+      "mean_harm_vs_hold": 0.024999999999999967,
+      "safety_violations": 0,
+      "abstentions": 0
+    },
+    {
+      "gamma": 1.0,
+      "ridge": 0.01,
+      "lower_z": 0.0,
+      "advantage_margin": 0.0,
+      "delta_mse": 0.0853320835016414,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.1399999999999999,
+          "chosen_advantage_lcb": 0.04744616244731742
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-6e261c26382c",
+          "chosen_label": "MODEL_PROTECTED",
+          "chosen_actual_utility": 0.9349999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.06500000000000006,
+          "actual_advantage_over_hold": -0.04999999999999993,
+          "chosen_advantage_lcb": 0.03148882473060875
+        }
+      ],
+      "mean_regret": 0.04000000000000009,
+      "mean_chosen_utility": 0.96,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.044999999999999984,
+      "mean_harm_vs_hold": 0.024999999999999967,
+      "safety_violations": 0,
+      "abstentions": 0
+    },
+    {
+      "gamma": 1.0,
+      "ridge": 0.01,
+      "lower_z": 0.0,
+      "advantage_margin": 0.02,
+      "delta_mse": 0.0853320835016414,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.1399999999999999,
+          "chosen_advantage_lcb": 0.04744616244731742
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-6e261c26382c",
+          "chosen_label": "MODEL_PROTECTED",
+          "chosen_actual_utility": 0.9349999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.06500000000000006,
+          "actual_advantage_over_hold": -0.04999999999999993,
+          "chosen_advantage_lcb": 0.03148882473060875
+        }
+      ],
+      "mean_regret": 0.04000000000000009,
+      "mean_chosen_utility": 0.96,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.044999999999999984,
+      "mean_harm_vs_hold": 0.024999999999999967,
+      "safety_violations": 0,
+      "abstentions": 0
+    },
+    {
+      "gamma": 1.0,
+      "ridge": 0.01,
+      "lower_z": 0.5,
+      "advantage_margin": 0.0,
+      "delta_mse": 0.0853320835016414,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.1399999999999999,
+          "chosen_advantage_lcb": 0.02971095765628686
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-6e261c26382c",
+          "chosen_label": "MODEL_PROTECTED",
+          "chosen_actual_utility": 0.9349999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.06500000000000006,
+          "actual_advantage_over_hold": -0.04999999999999993,
+          "chosen_advantage_lcb": 0.021654429313954778
+        }
+      ],
+      "mean_regret": 0.04000000000000009,
+      "mean_chosen_utility": 0.96,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.044999999999999984,
+      "mean_harm_vs_hold": 0.024999999999999967,
+      "safety_violations": 0,
+      "abstentions": 0
+    },
+    {
+      "gamma": 1.0,
+      "ridge": 0.01,
+      "lower_z": 0.5,
+      "advantage_margin": 0.02,
+      "delta_mse": 0.0853320835016414,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.1399999999999999,
+          "chosen_advantage_lcb": 0.02971095765628686
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-6e261c26382c",
+          "chosen_label": "MODEL_PROTECTED",
+          "chosen_actual_utility": 0.9349999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.06500000000000006,
+          "actual_advantage_over_hold": -0.04999999999999993,
+          "chosen_advantage_lcb": 0.021654429313954778
+        }
+      ],
+      "mean_regret": 0.04000000000000009,
+      "mean_chosen_utility": 0.96,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.044999999999999984,
+      "mean_harm_vs_hold": 0.024999999999999967,
+      "safety_violations": 0,
+      "abstentions": 0
+    },
+    {
+      "gamma": 1.0,
+      "ridge": 0.01,
+      "lower_z": 1.0,
+      "advantage_margin": 0.0,
+      "delta_mse": 0.0853320835016414,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.1399999999999999,
+          "chosen_advantage_lcb": 0.011975752865256303
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-6e261c26382c",
+          "chosen_label": "MODEL_PROTECTED",
+          "chosen_actual_utility": 0.9349999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.06500000000000006,
+          "actual_advantage_over_hold": -0.04999999999999993,
+          "chosen_advantage_lcb": 0.011820033897300804
+        }
+      ],
+      "mean_regret": 0.04000000000000009,
+      "mean_chosen_utility": 0.96,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.044999999999999984,
+      "mean_harm_vs_hold": 0.024999999999999967,
+      "safety_violations": 0,
+      "abstentions": 0
+    },
+    {
+      "gamma": 1.0,
+      "ridge": 0.1,
+      "lower_z": 0.0,
+      "advantage_margin": 0.0,
+      "delta_mse": 0.08844258546018836,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.1399999999999999,
+          "chosen_advantage_lcb": 0.04274337071769824
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-6e261c26382c",
+          "chosen_label": "MODEL_PROTECTED",
+          "chosen_actual_utility": 0.9349999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.06500000000000006,
+          "actual_advantage_over_hold": -0.04999999999999993,
+          "chosen_advantage_lcb": 0.02934384612785572
+        }
+      ],
+      "mean_regret": 0.04000000000000009,
+      "mean_chosen_utility": 0.96,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.044999999999999984,
+      "mean_harm_vs_hold": 0.024999999999999967,
+      "safety_violations": 0,
+      "abstentions": 0
+    },
+    {
+      "gamma": 1.0,
+      "ridge": 0.1,
+      "lower_z": 0.0,
+      "advantage_margin": 0.02,
+      "delta_mse": 0.08844258546018836,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.1399999999999999,
+          "chosen_advantage_lcb": 0.04274337071769824
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-6e261c26382c",
+          "chosen_label": "MODEL_PROTECTED",
+          "chosen_actual_utility": 0.9349999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.06500000000000006,
+          "actual_advantage_over_hold": -0.04999999999999993,
+          "chosen_advantage_lcb": 0.02934384612785572
+        }
+      ],
+      "mean_regret": 0.04000000000000009,
+      "mean_chosen_utility": 0.96,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.044999999999999984,
+      "mean_harm_vs_hold": 0.024999999999999967,
+      "safety_violations": 0,
+      "abstentions": 0
+    },
+    {
+      "gamma": 1.0,
+      "ridge": 0.1,
+      "lower_z": 0.5,
+      "advantage_margin": 0.0,
+      "delta_mse": 0.08844258546018836,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.1399999999999999,
+          "chosen_advantage_lcb": 0.027205620391174478
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-6e261c26382c",
+          "chosen_label": "MODEL_PROTECTED",
+          "chosen_actual_utility": 0.9349999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.06500000000000006,
+          "actual_advantage_over_hold": -0.04999999999999993,
+          "chosen_advantage_lcb": 0.020013193621576622
+        }
+      ],
+      "mean_regret": 0.04000000000000009,
+      "mean_chosen_utility": 0.96,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.044999999999999984,
+      "mean_harm_vs_hold": 0.024999999999999967,
+      "safety_violations": 0,
+      "abstentions": 0
+    },
+    {
+      "gamma": 1.0,
+      "ridge": 0.1,
+      "lower_z": 0.5,
+      "advantage_margin": 0.02,
+      "delta_mse": 0.08844258546018836,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.1399999999999999,
+          "chosen_advantage_lcb": 0.027205620391174478
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-6e261c26382c",
+          "chosen_label": "MODEL_PROTECTED",
+          "chosen_actual_utility": 0.9349999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.06500000000000006,
+          "actual_advantage_over_hold": -0.04999999999999993,
+          "chosen_advantage_lcb": 0.020013193621576622
+        }
+      ],
+      "mean_regret": 0.04000000000000009,
+      "mean_chosen_utility": 0.96,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.044999999999999984,
+      "mean_harm_vs_hold": 0.024999999999999967,
+      "safety_violations": 0,
+      "abstentions": 0
+    },
+    {
+      "gamma": 1.0,
+      "ridge": 0.1,
+      "lower_z": 1.0,
+      "advantage_margin": 0.0,
+      "delta_mse": 0.08844258546018836,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.1399999999999999,
+          "chosen_advantage_lcb": 0.011667870064650719
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-6e261c26382c",
+          "chosen_label": "MODEL_PROTECTED",
+          "chosen_actual_utility": 0.9349999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.06500000000000006,
+          "actual_advantage_over_hold": -0.04999999999999993,
+          "chosen_advantage_lcb": 0.010682541115297525
+        }
+      ],
+      "mean_regret": 0.04000000000000009,
+      "mean_chosen_utility": 0.96,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.044999999999999984,
+      "mean_harm_vs_hold": 0.024999999999999967,
+      "safety_violations": 0,
+      "abstentions": 0
+    },
+    {
+      "gamma": 3.0,
+      "ridge": 0.001,
+      "lower_z": 0.5,
+      "advantage_margin": 0.0,
+      "delta_mse": 0.12558415220783328,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.1399999999999999,
+          "chosen_advantage_lcb": 0.006122340111352421
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-6e261c26382c",
+          "chosen_label": "MODEL_PROTECTED",
+          "chosen_actual_utility": 0.9349999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.06500000000000006,
+          "actual_advantage_over_hold": -0.04999999999999993,
+          "chosen_advantage_lcb": 0.012711114583651581
+        }
+      ],
+      "mean_regret": 0.04000000000000009,
+      "mean_chosen_utility": 0.96,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.044999999999999984,
+      "mean_harm_vs_hold": 0.024999999999999967,
+      "safety_violations": 0,
+      "abstentions": 0
+    },
+    {
+      "gamma": 3.0,
+      "ridge": 0.01,
+      "lower_z": 0.5,
+      "advantage_margin": 0.0,
+      "delta_mse": 0.12591183927440674,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.1399999999999999,
+          "chosen_advantage_lcb": 0.006063521283312648
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-6e261c26382c",
+          "chosen_label": "MODEL_PROTECTED",
+          "chosen_actual_utility": 0.9349999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.06500000000000006,
+          "actual_advantage_over_hold": -0.04999999999999993,
+          "chosen_advantage_lcb": 0.01262553177737927
+        }
+      ],
+      "mean_regret": 0.04000000000000009,
+      "mean_chosen_utility": 0.96,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.044999999999999984,
+      "mean_harm_vs_hold": 0.024999999999999967,
+      "safety_violations": 0,
+      "abstentions": 0
+    },
+    {
+      "gamma": 3.0,
+      "ridge": 0.1,
+      "lower_z": 0.5,
+      "advantage_margin": 0.0,
+      "delta_mse": 0.1289975320767478,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-396aad2568d0",
+          "chosen_label": null,
+          "chosen_actual_utility": 0.9849999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.015000000000000124,
+          "actual_advantage_over_hold": 0.1399999999999999,
+          "chosen_advantage_lcb": 0.0055217093210162506
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-6e261c26382c",
+          "chosen_label": "MODEL_PROTECTED",
+          "chosen_actual_utility": 0.9349999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.06500000000000006,
+          "actual_advantage_over_hold": -0.04999999999999993,
+          "chosen_advantage_lcb": 0.011830972867767508
+        }
+      ],
+      "mean_regret": 0.04000000000000009,
+      "mean_chosen_utility": 0.96,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": 0.044999999999999984,
+      "mean_harm_vs_hold": 0.024999999999999967,
+      "safety_violations": 0,
+      "abstentions": 0
+    },
+    {
+      "gamma": 3.0,
+      "ridge": 0.001,
+      "lower_z": 1.0,
+      "advantage_margin": 0.0,
+      "delta_mse": 0.12558415220783328,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.845,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.15500000000000003,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-6e261c26382c",
+          "chosen_label": "MODEL_PROTECTED",
+          "chosen_actual_utility": 0.9349999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.06500000000000006,
+          "actual_advantage_over_hold": -0.04999999999999993,
+          "chosen_advantage_lcb": 0.0070026130348714785
+        }
+      ],
+      "mean_regret": 0.11000000000000004,
+      "mean_chosen_utility": 0.8899999999999999,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": -0.024999999999999967,
+      "mean_harm_vs_hold": 0.024999999999999967,
+      "safety_violations": 0,
+      "abstentions": 1
+    },
+    {
+      "gamma": 3.0,
+      "ridge": 0.01,
+      "lower_z": 1.0,
+      "advantage_margin": 0.0,
+      "delta_mse": 0.12591183927440674,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.845,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.15500000000000003,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-6e261c26382c",
+          "chosen_label": "MODEL_PROTECTED",
+          "chosen_actual_utility": 0.9349999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.06500000000000006,
+          "actual_advantage_over_hold": -0.04999999999999993,
+          "chosen_advantage_lcb": 0.006950663067422081
+        }
+      ],
+      "mean_regret": 0.11000000000000004,
+      "mean_chosen_utility": 0.8899999999999999,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": -0.024999999999999967,
+      "mean_harm_vs_hold": 0.024999999999999967,
+      "safety_violations": 0,
+      "abstentions": 1
+    },
+    {
+      "gamma": 3.0,
+      "ridge": 0.1,
+      "lower_z": 1.0,
+      "advantage_margin": 0.0,
+      "delta_mse": 0.1289975320767478,
+      "per_controller": [
+        {
+          "controller": "seed106",
+          "chosen_candidate_id": "u-351f1daec1c9",
+          "chosen_label": "HOLD",
+          "chosen_actual_utility": 0.845,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.845,
+          "oracle_utility": 1.0,
+          "regret": 0.15500000000000003,
+          "actual_advantage_over_hold": 0.0,
+          "chosen_advantage_lcb": 0.0
+        },
+        {
+          "controller": "seed112",
+          "chosen_candidate_id": "u-6e261c26382c",
+          "chosen_label": "MODEL_PROTECTED",
+          "chosen_actual_utility": 0.9349999999999999,
+          "chosen_actual_feasible": true,
+          "hold_utility": 0.9849999999999999,
+          "oracle_utility": 1.0,
+          "regret": 0.06500000000000006,
+          "actual_advantage_over_hold": -0.04999999999999993,
+          "chosen_advantage_lcb": 0.006467745123797584
+        }
+      ],
+      "mean_regret": 0.11000000000000004,
+      "mean_chosen_utility": 0.8899999999999999,
+      "mean_hold_utility": 0.9149999999999999,
+      "mean_advantage_over_hold": -0.024999999999999967,
+      "mean_harm_vs_hold": 0.024999999999999967,
+      "safety_violations": 0,
+      "abstentions": 1
+    }
+  ],
+  "note": "Controller-held-out development selection only; final fit did not access held-out controllers."
+}
