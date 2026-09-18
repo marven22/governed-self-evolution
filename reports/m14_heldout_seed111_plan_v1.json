@@ -1,0 +1,213 @@
+{
+  "plan_version": "m14-governor-heldout-plan-v1",
+  "model_selection": {
+    "gamma": 0.03,
+    "ridge": 0.1,
+    "mse": 0.03401426879336928,
+    "per_controller": [
+      {
+        "controller": "seed106",
+        "chosen_candidate_id": "u-396aad2568d0",
+        "chosen_label": null,
+        "chosen_actual_utility": 0.9849999999999999,
+        "chosen_actual_feasible": true,
+        "oracle_utility": 1.0,
+        "regret": 0.015000000000000124,
+        "hold_utility": 0.845
+      },
+      {
+        "controller": "seed112",
+        "chosen_candidate_id": "u-396aad2568d0",
+        "chosen_label": null,
+        "chosen_actual_utility": 1.0,
+        "chosen_actual_feasible": true,
+        "oracle_utility": 1.0,
+        "regret": 0.0,
+        "hold_utility": 0.9849999999999999
+      }
+    ],
+    "mean_regret": 0.007500000000000062,
+    "safety_violations": 0,
+    "mean_chosen_utility": 0.9924999999999999,
+    "mean_hold_utility": 0.9149999999999999
+  },
+  "pre_capability": {
+    "mw-reach": 0.8,
+    "mw-pick-place": 0.9
+  },
+  "demand": {
+    "mw-reach": 0.3,
+    "mw-pick-place": 0.7
+  },
+  "min_reach_retention": 0.15,
+  "chosen_candidate_id": "u-396aad2568d0",
+  "chosen_label": null,
+  "chosen_predicted_capability": {
+    "mw-reach": 0.9118264588009418,
+    "mw-pick-place": 0.9577623049462878
+  },
+  "chosen_predicted_utility": 0.9439815511026839,
+  "chosen_predicted_feasible": true,
+  "candidate_predictions": [
+    {
+      "id": "u-351f1daec1c9",
+      "label": "HOLD",
+      "capability": {
+        "mw-reach": 0.8392844836288564,
+        "mw-pick-place": 0.9273686520934664
+      },
+      "utility": 0.9009434015540834,
+      "feasible": true
+    },
+    {
+      "id": "u-0884a911fd88",
+      "label": "POLICY_PICK",
+      "capability": {
+        "mw-reach": 0.0,
+        "mw-pick-place": 0.7225416059999452
+      },
+      "utility": 0.5057791241999616,
+      "feasible": false
+    },
+    {
+      "id": "u-e201bbbaf0d3",
+      "label": "POLICY_PROTECTED",
+      "capability": {
+        "mw-reach": 0.8116250896667698,
+        "mw-pick-place": 0.8215111216804627
+      },
+      "utility": 0.8185453120763548,
+      "feasible": true
+    },
+    {
+      "id": "u-6e261c26382c",
+      "label": "MODEL_PROTECTED",
+      "capability": {
+        "mw-reach": 0.860261281023784,
+        "mw-pick-place": 0.9045797252348158
+      },
+      "utility": 0.8912841919715062,
+      "feasible": true
+    },
+    {
+      "id": "u-9c50bcd535cf",
+      "label": null,
+      "capability": {
+        "mw-reach": 0.6921817501566778,
+        "mw-pick-place": 0.9185395980910775
+      },
+      "utility": 0.8506322437107575,
+      "feasible": true
+    },
+    {
+      "id": "u-2541629cb906",
+      "label": null,
+      "capability": {
+        "mw-reach": 0.7629930024544445,
+        "mw-pick-place": 0.9054941732706361
+      },
+      "utility": 0.8627438220257785,
+      "feasible": true
+    },
+    {
+      "id": "u-94492477460f",
+      "label": null,
+      "capability": {
+        "mw-reach": 0.8904698308053809,
+        "mw-pick-place": 0.8328285031057199
+      },
+      "utility": 0.8501209014156181,
+      "feasible": true
+    },
+    {
+      "id": "u-5861f130ec1b",
+      "label": null,
+      "capability": {
+        "mw-reach": 0.54712709291002,
+        "mw-pick-place": 0.8229555514147806
+      },
+      "utility": 0.7402070138633523,
+      "feasible": true
+    },
+    {
+      "id": "u-cc742ee09a80",
+      "label": null,
+      "capability": {
+        "mw-reach": 0.927525498792251,
+        "mw-pick-place": 0.891102245526461
+      },
+      "utility": 0.9020292215061979,
+      "feasible": true
+    },
+    {
+      "id": "u-87277c667bb1",
+      "label": null,
+      "capability": {
+        "mw-reach": 0.7090547265234755,
+        "mw-pick-place": 0.33700199230595707
+      },
+      "utility": 0.4486178125712126,
+      "feasible": true
+    },
+    {
+      "id": "u-468e82a23c95",
+      "label": null,
+      "capability": {
+        "mw-reach": 0.0,
+        "mw-pick-place": 0.023862820258899853
+      },
+      "utility": 0.016703974181229896,
+      "feasible": false
+    },
+    {
+      "id": "u-c397158fc8a7",
+      "label": null,
+      "capability": {
+        "mw-reach": 0.852478412269677,
+        "mw-pick-place": 0.8573490336990626
+      },
+      "utility": 0.8558878472702469,
+      "feasible": true
+    },
+    {
+      "id": "u-2ba69d801a67",
+      "label": null,
+      "capability": {
+        "mw-reach": 0.767944056499825,
+        "mw-pick-place": 0.8707328263291707
+      },
+      "utility": 0.8398961953803669,
+      "feasible": true
+    },
+    {
+      "id": "u-acd4b6c3f0bc",
+      "label": null,
+      "capability": {
+        "mw-reach": 0.8615537744549842,
+        "mw-pick-place": 0.8465460225382744
+      },
+      "utility": 0.8510483481132873,
+      "feasible": true
+    },
+    {
+      "id": "u-396aad2568d0",
+      "label": null,
+      "capability": {
+        "mw-reach": 0.9118264588009418,
+        "mw-pick-place": 0.9577623049462878
+      },
+      "utility": 0.9439815511026839,
+      "feasible": true
+    },
+    {
+      "id": "u-27fa5da25dae",
+      "label": null,
+      "capability": {
+        "mw-reach": 0.0,
+        "mw-pick-place": 0.004300520855587964
+      },
+      "utility": 0.0030103645989115746,
+      "feasible": false
+    }
+  ]
+}

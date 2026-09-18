@@ -1,0 +1,42 @@
+{
+  "score_version": "m14-governor-heldout-score-v1",
+  "planned_candidate_id": "u-396aad2568d0",
+  "planned_label": null,
+  "predicted": {
+    "capability": {
+      "mw-reach": 0.9508307969700205,
+      "mw-pick-place": 0.9177276126857821
+    },
+    "utility": 0.9276585679710536,
+    "feasible": true
+  },
+  "actual": {
+    "capability": {
+      "mw-reach": 0.85,
+      "mw-pick-place": 0.75
+    },
+    "utility": 0.7799999999999999,
+    "feasible": true
+  },
+  "oracle": {
+    "candidate_id": "u-351f1daec1c9",
+    "label": "HOLD",
+    "utility": 1.0,
+    "feasible": true
+  },
+  "regret": 0.22000000000000008,
+  "baselines": {
+    "HOLD": {
+      "utility": 1.0,
+      "feasible": true
+    },
+    "POLICY_PROTECTED": {
+      "utility": 0.845,
+      "feasible": true
+    },
+    "MODEL_PROTECTED": {
+      "utility": 0.9649999999999999,
+      "feasible": true
+    }
+  }
+}

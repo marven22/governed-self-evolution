@@ -51,6 +51,10 @@ data audit; see `docs/M14_DEVELOPMENT_DATA_AUDIT_V1.md`. It is approved only
 for development-side modeling and leaves two controllers untouched for a blind
 decision evaluation.
 
+The first blind evaluation is intentionally documented as a mixed/negative
+result in `docs/M14_HELDOUT_GOVERNOR_RESULTS_V1.md`: the initial governor was
+safe but did not outperform HOLD on average across the two unseen controllers.
+
 ## Reproducing the current data pipeline
 
 The scripts run against the official TD-MPC2 source tree plus a compatible
