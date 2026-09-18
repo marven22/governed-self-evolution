@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+
+# Local environments and generated experiment products
+checkpoints/
+runs/
+outputs/
+wandb/
+*.pt
+*.pth
+*.ckpt
+
+# Keep the small, versioned initial predictor. Larger trained models belong in
+# an artifact store and should be referenced by a manifest.
+models/*.pkl
+!models/m14_evolution_predictor_v1.pkl
+
+# OS/editor
+.DS_Store
+.idea/
+.vscode/

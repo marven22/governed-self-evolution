@@ -1,0 +1,370 @@
+[
+  {
+    "run": "m14_mt2_known_schedule_seed101_v1",
+    "seed": null,
+    "pre_capability": {
+      "mw-reach": 0.98,
+      "mw-pick-place": 0.72
+    },
+    "pre_capability_is_exact": false,
+    "update": {
+      "family": "HOLD",
+      "steps": 2000
+    },
+    "demand": {
+      "mw-reach": 0.3,
+      "mw-pick-place": 0.7
+    },
+    "post_capability": {
+      "mw-reach": 0.98,
+      "mw-pick-place": 0.72
+    },
+    "utility": 0.798,
+    "feasible": true
+  },
+  {
+    "run": "m14_mt2_known_schedule_seed101_v1",
+    "seed": null,
+    "pre_capability": {
+      "mw-reach": 0.98,
+      "mw-pick-place": 0.72
+    },
+    "pre_capability_is_exact": false,
+    "update": {
+      "family": "POLICY_PICK",
+      "steps": 2000
+    },
+    "demand": {
+      "mw-reach": 0.3,
+      "mw-pick-place": 0.7
+    },
+    "post_capability": {
+      "mw-reach": 0.06,
+      "mw-pick-place": 0.42
+    },
+    "utility": 0.312,
+    "feasible": false
+  },
+  {
+    "run": "m14_mt2_known_schedule_seed101_v1",
+    "seed": null,
+    "pre_capability": {
+      "mw-reach": 0.98,
+      "mw-pick-place": 0.72
+    },
+    "pre_capability_is_exact": false,
+    "update": {
+      "family": "POLICY_PROTECTED",
+      "steps": 2000
+    },
+    "demand": {
+      "mw-reach": 0.3,
+      "mw-pick-place": 0.7
+    },
+    "post_capability": {
+      "mw-reach": 0.96,
+      "mw-pick-place": 0.92
+    },
+    "utility": 0.9319999999999999,
+    "feasible": true
+  },
+  {
+    "run": "m14_mt2_known_schedule_seed101_v1",
+    "seed": null,
+    "pre_capability": {
+      "mw-reach": 0.98,
+      "mw-pick-place": 0.72
+    },
+    "pre_capability_is_exact": false,
+    "update": {
+      "family": "MODEL_PROTECTED",
+      "steps": 2000
+    },
+    "demand": {
+      "mw-reach": 0.3,
+      "mw-pick-place": 0.7
+    },
+    "post_capability": {
+      "mw-reach": 1.0,
+      "mw-pick-place": 0.86
+    },
+    "utility": 0.9019999999999999,
+    "feasible": true
+  },
+  {
+    "run": "m14_mt2_known_schedule_seed102_v1",
+    "seed": null,
+    "pre_capability": {
+      "mw-reach": 0.68,
+      "mw-pick-place": 1.0
+    },
+    "pre_capability_is_exact": false,
+    "update": {
+      "family": "HOLD",
+      "steps": 2000
+    },
+    "demand": {
+      "mw-reach": 0.3,
+      "mw-pick-place": 0.7
+    },
+    "post_capability": {
+      "mw-reach": 0.68,
+      "mw-pick-place": 1.0
+    },
+    "utility": 0.9039999999999999,
+    "feasible": true
+  },
+  {
+    "run": "m14_mt2_known_schedule_seed102_v1",
+    "seed": null,
+    "pre_capability": {
+      "mw-reach": 0.68,
+      "mw-pick-place": 1.0
+    },
+    "pre_capability_is_exact": false,
+    "update": {
+      "family": "POLICY_PICK",
+      "steps": 2000
+    },
+    "demand": {
+      "mw-reach": 0.3,
+      "mw-pick-place": 0.7
+    },
+    "post_capability": {
+      "mw-reach": 0.0,
+      "mw-pick-place": 0.78
+    },
+    "utility": 0.5459999999999999,
+    "feasible": false
+  },
+  {
+    "run": "m14_mt2_known_schedule_seed102_v1",
+    "seed": null,
+    "pre_capability": {
+      "mw-reach": 0.68,
+      "mw-pick-place": 1.0
+    },
+    "pre_capability_is_exact": false,
+    "update": {
+      "family": "POLICY_PROTECTED",
+      "steps": 2000
+    },
+    "demand": {
+      "mw-reach": 0.3,
+      "mw-pick-place": 0.7
+    },
+    "post_capability": {
+      "mw-reach": 0.92,
+      "mw-pick-place": 0.8
+    },
+    "utility": 0.836,
+    "feasible": true
+  },
+  {
+    "run": "m14_mt2_known_schedule_seed102_v1",
+    "seed": null,
+    "pre_capability": {
+      "mw-reach": 0.68,
+      "mw-pick-place": 1.0
+    },
+    "pre_capability_is_exact": false,
+    "update": {
+      "family": "MODEL_PROTECTED",
+      "steps": 2000
+    },
+    "demand": {
+      "mw-reach": 0.3,
+      "mw-pick-place": 0.7
+    },
+    "post_capability": {
+      "mw-reach": 0.74,
+      "mw-pick-place": 1.0
+    },
+    "utility": 0.9219999999999999,
+    "feasible": true
+  },
+  {
+    "run": "m14_mt2_transition_seed101_u500",
+    "seed": null,
+    "pre_capability": {
+      "mw-reach": 0.96,
+      "mw-pick-place": 0.74
+    },
+    "pre_capability_is_exact": false,
+    "update": {
+      "family": "HOLD",
+      "steps": 500
+    },
+    "demand": {
+      "mw-reach": 0.3,
+      "mw-pick-place": 0.7
+    },
+    "post_capability": {
+      "mw-reach": 0.96,
+      "mw-pick-place": 0.74
+    },
+    "utility": 0.806,
+    "feasible": true
+  },
+  {
+    "run": "m14_mt2_transition_seed101_u500",
+    "seed": null,
+    "pre_capability": {
+      "mw-reach": 0.96,
+      "mw-pick-place": 0.74
+    },
+    "pre_capability_is_exact": false,
+    "update": {
+      "family": "POLICY_PICK",
+      "steps": 500
+    },
+    "demand": {
+      "mw-reach": 0.3,
+      "mw-pick-place": 0.7
+    },
+    "post_capability": {
+      "mw-reach": 0.1,
+      "mw-pick-place": 0.86
+    },
+    "utility": 0.632,
+    "feasible": false
+  },
+  {
+    "run": "m14_mt2_transition_seed101_u500",
+    "seed": null,
+    "pre_capability": {
+      "mw-reach": 0.96,
+      "mw-pick-place": 0.74
+    },
+    "pre_capability_is_exact": false,
+    "update": {
+      "family": "POLICY_PROTECTED",
+      "steps": 500
+    },
+    "demand": {
+      "mw-reach": 0.3,
+      "mw-pick-place": 0.7
+    },
+    "post_capability": {
+      "mw-reach": 1.0,
+      "mw-pick-place": 0.88
+    },
+    "utility": 0.9159999999999999,
+    "feasible": true
+  },
+  {
+    "run": "m14_mt2_transition_seed101_u500",
+    "seed": null,
+    "pre_capability": {
+      "mw-reach": 0.96,
+      "mw-pick-place": 0.74
+    },
+    "pre_capability_is_exact": false,
+    "update": {
+      "family": "MODEL_PROTECTED",
+      "steps": 500
+    },
+    "demand": {
+      "mw-reach": 0.3,
+      "mw-pick-place": 0.7
+    },
+    "post_capability": {
+      "mw-reach": 0.9,
+      "mw-pick-place": 0.8
+    },
+    "utility": 0.83,
+    "feasible": true
+  },
+  {
+    "run": "m14_mt2_transition_seed102_u500",
+    "seed": null,
+    "pre_capability": {
+      "mw-reach": 0.82,
+      "mw-pick-place": 0.98
+    },
+    "pre_capability_is_exact": false,
+    "update": {
+      "family": "HOLD",
+      "steps": 500
+    },
+    "demand": {
+      "mw-reach": 0.3,
+      "mw-pick-place": 0.7
+    },
+    "post_capability": {
+      "mw-reach": 0.82,
+      "mw-pick-place": 0.98
+    },
+    "utility": 0.9319999999999999,
+    "feasible": true
+  },
+  {
+    "run": "m14_mt2_transition_seed102_u500",
+    "seed": null,
+    "pre_capability": {
+      "mw-reach": 0.82,
+      "mw-pick-place": 0.98
+    },
+    "pre_capability_is_exact": false,
+    "update": {
+      "family": "POLICY_PICK",
+      "steps": 500
+    },
+    "demand": {
+      "mw-reach": 0.3,
+      "mw-pick-place": 0.7
+    },
+    "post_capability": {
+      "mw-reach": 0.02,
+      "mw-pick-place": 0.22
+    },
+    "utility": 0.16,
+    "feasible": false
+  },
+  {
+    "run": "m14_mt2_transition_seed102_u500",
+    "seed": null,
+    "pre_capability": {
+      "mw-reach": 0.82,
+      "mw-pick-place": 0.98
+    },
+    "pre_capability_is_exact": false,
+    "update": {
+      "family": "POLICY_PROTECTED",
+      "steps": 500
+    },
+    "demand": {
+      "mw-reach": 0.3,
+      "mw-pick-place": 0.7
+    },
+    "post_capability": {
+      "mw-reach": 0.78,
+      "mw-pick-place": 0.96
+    },
+    "utility": 0.9059999999999999,
+    "feasible": true
+  },
+  {
+    "run": "m14_mt2_transition_seed102_u500",
+    "seed": null,
+    "pre_capability": {
+      "mw-reach": 0.82,
+      "mw-pick-place": 0.98
+    },
+    "pre_capability_is_exact": false,
+    "update": {
+      "family": "MODEL_PROTECTED",
+      "steps": 500
+    },
+    "demand": {
+      "mw-reach": 0.3,
+      "mw-pick-place": 0.7
+    },
+    "post_capability": {
+      "mw-reach": 0.62,
+      "mw-pick-place": 0.94
+    },
+    "utility": 0.8439999999999999,
+    "feasible": true
+  }
+]

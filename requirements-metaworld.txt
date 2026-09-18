@@ -1,0 +1,8 @@
+# This records the verified preserved MetaWorld runtime:
+# /home/vmargapu/metaworld-v2/bin/python under local WSL.
+# Do not create a replacement environment unless it becomes necessary.
+metaworld==3.0.0
+mujoco==3.11.0
+torch==2.7.0
+numpy==2.2.6
+pandas==2.2.3
