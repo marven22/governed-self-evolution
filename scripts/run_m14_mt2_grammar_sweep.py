@@ -146,6 +146,7 @@ def main() -> None:
         replay.add(trajectory)
 
     rows, results = [], {}
+    metadata = {"grammar_version": "m14-update-grammar-v1", "checkpoint": str(args.checkpoint), "seed": args.seed, "demo_episodes_per_task": args.demo_episodes, "eval_episodes": args.eval_episodes, "pre_capability": pre_metrics}
     try:
         for candidate in candidates:
             spec = candidate["spec"]
@@ -160,10 +161,13 @@ def main() -> None:
             results[candidate["id"]] = {"label": candidate["label"], "metrics": post_metrics, "utility": utility, "feasible": feasible}
             if args.save_agents:
                 agent.save(args.run_dir / f"{candidate['id']}.pt")
+            # Persist incrementally: an interrupted multi-hour sweep remains
+            # an auditable partial dataset rather than a lost experiment.
+            (args.run_dir / "transitions.partial.json").write_text(json.dumps(rows, indent=2) + "\n")
+            (args.run_dir / "progress.json").write_text(json.dumps({"completed": len(rows), "total": len(candidates), "completed_ids": [row["context"]["candidate_id"] for row in rows]}, indent=2) + "\n")
     finally:
         env.close()
 
-    metadata = {"grammar_version": "m14-update-grammar-v1", "checkpoint": str(args.checkpoint), "seed": args.seed, "demo_episodes_per_task": args.demo_episodes, "eval_episodes": args.eval_episodes, "pre_capability": pre_metrics}
     (args.run_dir / "transitions.json").write_text(json.dumps(rows, indent=2) + "\n")
     (args.run_dir / "results.json").write_text(json.dumps({"metadata": metadata, "demand": demand, "results": results}, indent=2) + "\n")
     (args.run_dir / "completion.json").write_text(json.dumps({"complete": True, "transitions": len(rows)}, indent=2) + "\n")

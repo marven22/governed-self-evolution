@@ -1,0 +1,173 @@
+{
+  "grammar_version": "m14-update-grammar-v1",
+  "sampling": {
+    "method": "seeded categorical coverage sample",
+    "seed": 201
+  },
+  "candidates": [
+    {
+      "id": "u-351f1daec1c9",
+      "update": {
+        "grammar_version": "m14-update-grammar-v1",
+        "target": "hold",
+        "task_data": {
+          "reach_fraction": 0.5,
+          "pick_place_fraction": 0.5
+        },
+        "optimization": {
+          "gradient_steps": 0,
+          "learning_rate": 0.0003
+        },
+        "retention": {
+          "freeze_encoder": true,
+          "prior_policy_l2": 0.0,
+          "protect_policy_during_model_update": true
+        }
+      },
+      "label": "HOLD"
+    },
+    {
+      "id": "u-0884a911fd88",
+      "update": {
+        "grammar_version": "m14-update-grammar-v1",
+        "target": "policy",
+        "task_data": {
+          "reach_fraction": 0.0,
+          "pick_place_fraction": 1.0
+        },
+        "optimization": {
+          "gradient_steps": 1000,
+          "learning_rate": 0.0003
+        },
+        "retention": {
+          "freeze_encoder": false,
+          "prior_policy_l2": 0.0,
+          "protect_policy_during_model_update": false
+        }
+      },
+      "label": "POLICY_PICK"
+    },
+    {
+      "id": "u-e201bbbaf0d3",
+      "update": {
+        "grammar_version": "m14-update-grammar-v1",
+        "target": "policy",
+        "task_data": {
+          "reach_fraction": 0.5,
+          "pick_place_fraction": 0.5
+        },
+        "optimization": {
+          "gradient_steps": 1000,
+          "learning_rate": 0.0003
+        },
+        "retention": {
+          "freeze_encoder": true,
+          "prior_policy_l2": 0.0,
+          "protect_policy_during_model_update": false
+        }
+      },
+      "label": "POLICY_PROTECTED"
+    },
+    {
+      "id": "u-6e261c26382c",
+      "update": {
+        "grammar_version": "m14-update-grammar-v1",
+        "target": "world_model",
+        "task_data": {
+          "reach_fraction": 0.5,
+          "pick_place_fraction": 0.5
+        },
+        "optimization": {
+          "gradient_steps": 1000,
+          "learning_rate": 0.0003
+        },
+        "retention": {
+          "freeze_encoder": true,
+          "prior_policy_l2": 0.0,
+          "protect_policy_during_model_update": true
+        }
+      },
+      "label": "MODEL_PROTECTED"
+    },
+    {
+      "id": "u-87277c667bb1",
+      "update": {
+        "grammar_version": "m14-update-grammar-v1",
+        "target": "policy",
+        "task_data": {
+          "reach_fraction": 0.75,
+          "pick_place_fraction": 0.25
+        },
+        "optimization": {
+          "gradient_steps": 1000,
+          "learning_rate": 0.0003
+        },
+        "retention": {
+          "freeze_encoder": false,
+          "prior_policy_l2": 0.1,
+          "protect_policy_during_model_update": true
+        }
+      }
+    },
+    {
+      "id": "u-e6f5ebe209bb",
+      "update": {
+        "grammar_version": "m14-update-grammar-v1",
+        "target": "policy_and_world_model",
+        "task_data": {
+          "reach_fraction": 0.75,
+          "pick_place_fraction": 0.25
+        },
+        "optimization": {
+          "gradient_steps": 1500,
+          "learning_rate": 0.001
+        },
+        "retention": {
+          "freeze_encoder": true,
+          "prior_policy_l2": 1.0,
+          "protect_policy_during_model_update": true
+        }
+      }
+    },
+    {
+      "id": "u-91b34f3ef929",
+      "update": {
+        "grammar_version": "m14-update-grammar-v1",
+        "target": "policy_and_world_model",
+        "task_data": {
+          "reach_fraction": 0.6,
+          "pick_place_fraction": 0.4
+        },
+        "optimization": {
+          "gradient_steps": 1500,
+          "learning_rate": 0.0001
+        },
+        "retention": {
+          "freeze_encoder": true,
+          "prior_policy_l2": 0.0,
+          "protect_policy_during_model_update": false
+        }
+      }
+    },
+    {
+      "id": "u-f90bbdd39145",
+      "update": {
+        "grammar_version": "m14-update-grammar-v1",
+        "target": "policy",
+        "task_data": {
+          "reach_fraction": 0.75,
+          "pick_place_fraction": 0.25
+        },
+        "optimization": {
+          "gradient_steps": 500,
+          "learning_rate": 0.0001
+        },
+        "retention": {
+          "freeze_encoder": true,
+          "prior_policy_l2": 0.0,
+          "protect_policy_during_model_update": false
+        }
+      }
+    }
+  ]
+}
