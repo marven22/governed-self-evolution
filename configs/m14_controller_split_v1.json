@@ -1,0 +1,15 @@
+{
+  "protocol": "M14 development/held-out controller split v1",
+  "development": [
+    {"id": "seed101", "seed": 101, "checkpoint": "/home/vmargapu/experiments/m14_mt2_dagger_v1/policy_dagger.pt"},
+    {"id": "seed102", "seed": 102, "checkpoint": "/home/vmargapu/experiments/m14_mt2_dagger_v2/policy_dagger.pt"},
+    {"id": "seed103", "seed": 103, "checkpoint": "/home/vmargapu/experiments/m14_controller_bank_v1/seed103/dagger/policy_dagger.pt"},
+    {"id": "seed105", "seed": 105, "checkpoint": "/home/vmargapu/experiments/m14_controller_bank_v1/seed105/dagger/policy_dagger.pt"},
+    {"id": "seed106", "seed": 106, "checkpoint": "/home/vmargapu/experiments/m14_controller_bank_v1/seed106/dagger/policy_dagger.pt"},
+    {"id": "seed112", "seed": 112, "checkpoint": "/home/vmargapu/experiments/m14_controller_bank_v1/seed112/dagger/policy_dagger.pt"}
+  ],
+  "held_out": [
+    {"id": "seed111", "seed": 111, "checkpoint": "/home/vmargapu/experiments/m14_controller_bank_v1/seed111/dagger/policy_dagger.pt"},
+    {"id": "seed114", "seed": 114, "checkpoint": "/home/vmargapu/experiments/m14_controller_bank_v1/seed114/dagger/policy_dagger.pt"}
+  ]
+}

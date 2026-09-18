@@ -1,0 +1,333 @@
+{
+  "grammar_version": "m14-update-grammar-v1",
+  "sampling": {
+    "method": "preregistered stratified coverage design",
+    "version": 1
+  },
+  "candidates": [
+    {
+      "id": "u-351f1daec1c9",
+      "update": {
+        "grammar_version": "m14-update-grammar-v1",
+        "target": "hold",
+        "task_data": {
+          "reach_fraction": 0.5,
+          "pick_place_fraction": 0.5
+        },
+        "optimization": {
+          "gradient_steps": 0,
+          "learning_rate": 0.0003
+        },
+        "retention": {
+          "freeze_encoder": true,
+          "prior_policy_l2": 0.0,
+          "protect_policy_during_model_update": true
+        }
+      },
+      "label": "HOLD"
+    },
+    {
+      "id": "u-0884a911fd88",
+      "update": {
+        "grammar_version": "m14-update-grammar-v1",
+        "target": "policy",
+        "task_data": {
+          "reach_fraction": 0.0,
+          "pick_place_fraction": 1.0
+        },
+        "optimization": {
+          "gradient_steps": 1000,
+          "learning_rate": 0.0003
+        },
+        "retention": {
+          "freeze_encoder": false,
+          "prior_policy_l2": 0.0,
+          "protect_policy_during_model_update": false
+        }
+      },
+      "label": "POLICY_PICK"
+    },
+    {
+      "id": "u-e201bbbaf0d3",
+      "update": {
+        "grammar_version": "m14-update-grammar-v1",
+        "target": "policy",
+        "task_data": {
+          "reach_fraction": 0.5,
+          "pick_place_fraction": 0.5
+        },
+        "optimization": {
+          "gradient_steps": 1000,
+          "learning_rate": 0.0003
+        },
+        "retention": {
+          "freeze_encoder": true,
+          "prior_policy_l2": 0.0,
+          "protect_policy_during_model_update": false
+        }
+      },
+      "label": "POLICY_PROTECTED"
+    },
+    {
+      "id": "u-6e261c26382c",
+      "update": {
+        "grammar_version": "m14-update-grammar-v1",
+        "target": "world_model",
+        "task_data": {
+          "reach_fraction": 0.5,
+          "pick_place_fraction": 0.5
+        },
+        "optimization": {
+          "gradient_steps": 1000,
+          "learning_rate": 0.0003
+        },
+        "retention": {
+          "freeze_encoder": true,
+          "prior_policy_l2": 0.0,
+          "protect_policy_during_model_update": true
+        }
+      },
+      "label": "MODEL_PROTECTED"
+    },
+    {
+      "id": "u-9c50bcd535cf",
+      "update": {
+        "grammar_version": "m14-update-grammar-v1",
+        "target": "policy",
+        "task_data": {
+          "reach_fraction": 0.25,
+          "pick_place_fraction": 0.75
+        },
+        "optimization": {
+          "gradient_steps": 500,
+          "learning_rate": 0.0001
+        },
+        "retention": {
+          "freeze_encoder": true,
+          "prior_policy_l2": 0.0,
+          "protect_policy_during_model_update": false
+        }
+      }
+    },
+    {
+      "id": "u-2541629cb906",
+      "update": {
+        "grammar_version": "m14-update-grammar-v1",
+        "target": "policy",
+        "task_data": {
+          "reach_fraction": 0.25,
+          "pick_place_fraction": 0.75
+        },
+        "optimization": {
+          "gradient_steps": 1000,
+          "learning_rate": 0.0003
+        },
+        "retention": {
+          "freeze_encoder": true,
+          "prior_policy_l2": 0.1,
+          "protect_policy_during_model_update": false
+        }
+      }
+    },
+    {
+      "id": "u-94492477460f",
+      "update": {
+        "grammar_version": "m14-update-grammar-v1",
+        "target": "policy",
+        "task_data": {
+          "reach_fraction": 0.5,
+          "pick_place_fraction": 0.5
+        },
+        "optimization": {
+          "gradient_steps": 500,
+          "learning_rate": 0.0003
+        },
+        "retention": {
+          "freeze_encoder": true,
+          "prior_policy_l2": 0.01,
+          "protect_policy_during_model_update": false
+        }
+      }
+    },
+    {
+      "id": "u-5861f130ec1b",
+      "update": {
+        "grammar_version": "m14-update-grammar-v1",
+        "target": "policy",
+        "task_data": {
+          "reach_fraction": 0.5,
+          "pick_place_fraction": 0.5
+        },
+        "optimization": {
+          "gradient_steps": 1500,
+          "learning_rate": 0.0001
+        },
+        "retention": {
+          "freeze_encoder": false,
+          "prior_policy_l2": 1.0,
+          "protect_policy_during_model_update": false
+        }
+      }
+    },
+    {
+      "id": "u-cc742ee09a80",
+      "update": {
+        "grammar_version": "m14-update-grammar-v1",
+        "target": "policy",
+        "task_data": {
+          "reach_fraction": 0.75,
+          "pick_place_fraction": 0.25
+        },
+        "optimization": {
+          "gradient_steps": 500,
+          "learning_rate": 0.0001
+        },
+        "retention": {
+          "freeze_encoder": true,
+          "prior_policy_l2": 0.1,
+          "protect_policy_during_model_update": false
+        }
+      }
+    },
+    {
+      "id": "u-87277c667bb1",
+      "update": {
+        "grammar_version": "m14-update-grammar-v1",
+        "target": "policy",
+        "task_data": {
+          "reach_fraction": 0.75,
+          "pick_place_fraction": 0.25
+        },
+        "optimization": {
+          "gradient_steps": 1000,
+          "learning_rate": 0.0003
+        },
+        "retention": {
+          "freeze_encoder": false,
+          "prior_policy_l2": 0.1,
+          "protect_policy_during_model_update": true
+        }
+      }
+    },
+    {
+      "id": "u-468e82a23c95",
+      "update": {
+        "grammar_version": "m14-update-grammar-v1",
+        "target": "world_model",
+        "task_data": {
+          "reach_fraction": 0.25,
+          "pick_place_fraction": 0.75
+        },
+        "optimization": {
+          "gradient_steps": 500,
+          "learning_rate": 0.0003
+        },
+        "retention": {
+          "freeze_encoder": false,
+          "prior_policy_l2": 0.0,
+          "protect_policy_during_model_update": false
+        }
+      }
+    },
+    {
+      "id": "u-c397158fc8a7",
+      "update": {
+        "grammar_version": "m14-update-grammar-v1",
+        "target": "world_model",
+        "task_data": {
+          "reach_fraction": 0.75,
+          "pick_place_fraction": 0.25
+        },
+        "optimization": {
+          "gradient_steps": 1000,
+          "learning_rate": 0.0003
+        },
+        "retention": {
+          "freeze_encoder": true,
+          "prior_policy_l2": 0.0,
+          "protect_policy_during_model_update": true
+        }
+      }
+    },
+    {
+      "id": "u-2ba69d801a67",
+      "update": {
+        "grammar_version": "m14-update-grammar-v1",
+        "target": "policy_and_world_model",
+        "task_data": {
+          "reach_fraction": 0.25,
+          "pick_place_fraction": 0.75
+        },
+        "optimization": {
+          "gradient_steps": 500,
+          "learning_rate": 0.0001
+        },
+        "retention": {
+          "freeze_encoder": true,
+          "prior_policy_l2": 0.01,
+          "protect_policy_during_model_update": true
+        }
+      }
+    },
+    {
+      "id": "u-acd4b6c3f0bc",
+      "update": {
+        "grammar_version": "m14-update-grammar-v1",
+        "target": "policy_and_world_model",
+        "task_data": {
+          "reach_fraction": 0.5,
+          "pick_place_fraction": 0.5
+        },
+        "optimization": {
+          "gradient_steps": 500,
+          "learning_rate": 0.0001
+        },
+        "retention": {
+          "freeze_encoder": true,
+          "prior_policy_l2": 0.1,
+          "protect_policy_during_model_update": true
+        }
+      }
+    },
+    {
+      "id": "u-396aad2568d0",
+      "update": {
+        "grammar_version": "m14-update-grammar-v1",
+        "target": "policy_and_world_model",
+        "task_data": {
+          "reach_fraction": 0.75,
+          "pick_place_fraction": 0.25
+        },
+        "optimization": {
+          "gradient_steps": 1000,
+          "learning_rate": 0.0001
+        },
+        "retention": {
+          "freeze_encoder": true,
+          "prior_policy_l2": 1.0,
+          "protect_policy_during_model_update": true
+        }
+      }
+    },
+    {
+      "id": "u-27fa5da25dae",
+      "update": {
+        "grammar_version": "m14-update-grammar-v1",
+        "target": "policy_and_world_model",
+        "task_data": {
+          "reach_fraction": 0.5,
+          "pick_place_fraction": 0.5
+        },
+        "optimization": {
+          "gradient_steps": 1000,
+          "learning_rate": 0.0003
+        },
+        "retention": {
+          "freeze_encoder": false,
+          "prior_policy_l2": 0.0,
+          "protect_policy_during_model_update": false
+        }
+      }
+    }
+  ]
+}
