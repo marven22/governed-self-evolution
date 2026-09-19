@@ -48,6 +48,10 @@ def main():
         s, a_star, task = aggregate_policy_states(agent, env, a.rollout_episodes); obs, actions, tasks = torch.cat((obs, s)), torch.cat((actions, a_star)), torch.cat((tasks, task))
         train(agent, obs, actions, tasks, a.updates_per_round)
         history.append({"round": round_idx, "dataset_steps": int(len(obs)), "eval": evaluate(agent, env, a.eval_episodes)})
+        # These are persistent controller states, not later training restarts.
+        # They permit a deliberately stratified evolution dataset while the
+        # parent training run remains the unit of split/validation.
+        agent.save(a.run_dir / f"policy_dagger_round{round_idx}.pt")
         (a.run_dir / "progress.json").write_text(json.dumps(history, indent=2))
     torch.save({"obs": obs, "action": actions, "task": tasks}, a.run_dir / "dagger_data.pt"); agent.save(a.run_dir / "policy_dagger.pt")
     (a.run_dir / "results.json").write_text(json.dumps({"history": history}, indent=2)); (a.run_dir / "completion.json").write_text(json.dumps({"complete": True})); env.close()

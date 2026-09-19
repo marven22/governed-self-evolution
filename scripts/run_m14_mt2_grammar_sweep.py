@@ -109,6 +109,8 @@ def main() -> None:
     parser.add_argument("--run-dir", type=Path, required=True)
     parser.add_argument("--seed", type=int, required=True)
     parser.add_argument("--controller-seed", type=int, help="Identity of the trained controller; defaults to --seed.")
+    parser.add_argument("--controller-id", help="Stable checkpoint identity; defaults to controller seed.")
+    parser.add_argument("--parent-controller-id", help="Optional parent training-run identity for staged checkpoints.")
     parser.add_argument("--replicate-id", type=int, default=0)
     parser.add_argument("--demo-episodes", type=int, default=100)
     parser.add_argument("--eval-episodes", type=int, default=50)
@@ -124,6 +126,7 @@ def main() -> None:
         raise ValueError("--reach-demand must lie in [0, 1]")
 
     controller_seed = args.seed if args.controller_seed is None else args.controller_seed
+    controller_id = str(controller_seed) if args.controller_id is None else args.controller_id
     args.run_dir.mkdir(parents=True, exist_ok=True)
     random.seed(args.seed); np.random.seed(args.seed); torch.manual_seed(args.seed)
     candidates = load_candidates(args.candidates)
@@ -146,7 +149,7 @@ def main() -> None:
         replay.add(trajectory)
 
     rows, results, hold_capability = [], {}, None
-    metadata = {"grammar_version": "m14-update-grammar-v1", "checkpoint": str(args.checkpoint), "seed": controller_seed, "execution_seed": args.seed, "replicate_id": args.replicate_id, "demo_episodes_per_task": args.demo_episodes, "eval_episodes": args.eval_episodes, "pre_capability": pre_metrics}
+    metadata = {"grammar_version": "m14-update-grammar-v1", "checkpoint": str(args.checkpoint), "seed": controller_seed, "controller_id": controller_id, "parent_controller_id": args.parent_controller_id, "execution_seed": args.seed, "replicate_id": args.replicate_id, "demo_episodes_per_task": args.demo_episodes, "eval_episodes": args.eval_episodes, "pre_capability": pre_metrics}
     try:
         for candidate in candidates:
             spec = candidate["spec"]
@@ -163,7 +166,7 @@ def main() -> None:
                     feasible = feasible and post_capability[TASKS[0]] >= hold_capability[TASKS[0]] - args.max_reach_drop_from_hold
                 if args.max_pick_place_drop_from_hold is not None:
                     feasible = feasible and post_capability[TASKS[1]] >= hold_capability[TASKS[1]] - args.max_pick_place_drop_from_hold
-            context = {"seed": controller_seed, "execution_seed": args.seed, "replicate_id": args.replicate_id, "checkpoint": str(args.checkpoint), "demo_episodes_per_task": args.demo_episodes, "eval_episodes": args.eval_episodes, "candidate_id": candidate["id"], "candidate_label": candidate["label"]}
+            context = {"seed": controller_seed, "controller_id": controller_id, "parent_controller_id": args.parent_controller_id, "execution_seed": args.seed, "replicate_id": args.replicate_id, "checkpoint": str(args.checkpoint), "demo_episodes_per_task": args.demo_episodes, "eval_episodes": args.eval_episodes, "candidate_id": candidate["id"], "candidate_label": candidate["label"]}
             constraints = {"min_reach_retention": args.min_reach_retention, "max_reach_drop_from_hold": args.max_reach_drop_from_hold, "max_pick_place_drop_from_hold": args.max_pick_place_drop_from_hold}
             row = {"domain": "metaworld-mt2", "pre_capability": compact(pre_metrics), "pre_capability_is_exact": True, "update": spec.to_dict(), "context": context, "demand": demand, "post_capability": post_capability, "utility": utility, "feasible": feasible, "constraints": constraints}
             if pre_update_state is not None:

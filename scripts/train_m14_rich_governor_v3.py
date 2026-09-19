@@ -16,7 +16,7 @@ from train_m14_grammar_governor import TASKS, TARGETS, fit_kernel_ridge, predict
 STATE_KEYS = ("bc_loss_reach", "bc_loss_pick_place", "policy_gradient_norm_reach", "policy_gradient_norm_pick_place", "policy_gradient_cosine")
 
 
-def cid(row: dict[str, Any]) -> str: return f"seed{row['context']['seed']}"
+def cid(row: dict[str, Any]) -> str: return str(row["context"].get("controller_id", f"seed{row['context']['seed']}"))
 
 def read(pattern: str) -> list[dict[str, Any]]:
     rows=[]
