@@ -16,11 +16,13 @@ checkpoints:
 |---|---|---|
 | weak | `bc/policy_bc.pt` | detect recoverable under-capability |
 | intermediate | `dagger/policy_dagger_round1.pt` | decide whether a bounded repair remains useful |
-| mature | `dagger/policy_dagger_round3.pt` | learn calibrated abstention when little room remains |
+| late | `dagger/policy_dagger_round3.pt` | provide a later-training capability state |
 
 The three stages are correlated views of one parent run. They may enrich
 transition learning, but all stages from a parent must remain in the same
 development or held-out partition. No leave-one-stage-out estimate is valid.
+They are not assumed to be monotonic in competence: strata are assigned from
+the measured two-skill capability state, not the stage label.
 
 ## Frozen first bank
 
