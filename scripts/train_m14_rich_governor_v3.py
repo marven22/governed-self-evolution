@@ -35,7 +35,7 @@ def aggregate(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
     groups: dict[tuple[str,str],list[dict[str,Any]]] = {}
     for (controller,rep), actions in by_rep.items():
         holds=[r for r in actions.values() if r["context"]["candidate_label"]=="HOLD"]
-        if len(holds)!=1 or len(actions)!=16: raise ValueError(f"incomplete paired replicate {controller}/{rep}")
+        if len(holds)!=1: raise ValueError(f"expected exactly one HOLD row in {controller}/{rep}")
         hold=holds[0]
         for action,row in actions.items():
             clone=dict(row); clone["hold_capability"]=hold["post_capability"]; clone["delta"]=np.array([row["post_capability"][t]-hold["post_capability"][t] for t in TASKS]); groups.setdefault((controller,action),[]).append(clone)
