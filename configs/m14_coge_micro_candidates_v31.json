@@ -1,0 +1,279 @@
+{
+  "grammar_version": "m14-update-grammar-v1",
+  "protocol": "m14-coge-v3.1",
+  "candidates": [
+    {
+      "id": "u-351f1daec1c9",
+      "update": {
+        "grammar_version": "m14-update-grammar-v1",
+        "target": "hold",
+        "task_data": {
+          "reach_fraction": 0.5,
+          "pick_place_fraction": 0.5
+        },
+        "optimization": {
+          "gradient_steps": 0,
+          "learning_rate": 0.0003
+        },
+        "retention": {
+          "freeze_encoder": true,
+          "prior_policy_l2": 0.0,
+          "protect_policy_during_model_update": true
+        }
+      },
+      "label": "HOLD"
+    },
+    {
+      "id": "u-eb78f51d580d",
+      "update": {
+        "grammar_version": "m14-update-grammar-v1",
+        "target": "policy",
+        "task_data": {
+          "reach_fraction": 0.25,
+          "pick_place_fraction": 0.75
+        },
+        "optimization": {
+          "gradient_steps": 25,
+          "learning_rate": 0.0001
+        },
+        "retention": {
+          "freeze_encoder": true,
+          "prior_policy_l2": 1.0,
+          "protect_policy_during_model_update": true
+        }
+      },
+      "label": "MICRO_25_25R"
+    },
+    {
+      "id": "u-cfadd5ea5d3c",
+      "update": {
+        "grammar_version": "m14-update-grammar-v1",
+        "target": "policy",
+        "task_data": {
+          "reach_fraction": 0.5,
+          "pick_place_fraction": 0.5
+        },
+        "optimization": {
+          "gradient_steps": 25,
+          "learning_rate": 0.0001
+        },
+        "retention": {
+          "freeze_encoder": true,
+          "prior_policy_l2": 1.0,
+          "protect_policy_during_model_update": true
+        }
+      },
+      "label": "MICRO_25_50R"
+    },
+    {
+      "id": "u-bc2ec2d870f3",
+      "update": {
+        "grammar_version": "m14-update-grammar-v1",
+        "target": "policy",
+        "task_data": {
+          "reach_fraction": 0.75,
+          "pick_place_fraction": 0.25
+        },
+        "optimization": {
+          "gradient_steps": 25,
+          "learning_rate": 0.0001
+        },
+        "retention": {
+          "freeze_encoder": true,
+          "prior_policy_l2": 1.0,
+          "protect_policy_during_model_update": true
+        }
+      },
+      "label": "MICRO_25_75R"
+    },
+    {
+      "id": "u-c00ad2072b35",
+      "update": {
+        "grammar_version": "m14-update-grammar-v1",
+        "target": "policy",
+        "task_data": {
+          "reach_fraction": 0.25,
+          "pick_place_fraction": 0.75
+        },
+        "optimization": {
+          "gradient_steps": 50,
+          "learning_rate": 0.0001
+        },
+        "retention": {
+          "freeze_encoder": true,
+          "prior_policy_l2": 1.0,
+          "protect_policy_during_model_update": true
+        }
+      },
+      "label": "MICRO_50_25R"
+    },
+    {
+      "id": "u-0f66fd08417a",
+      "update": {
+        "grammar_version": "m14-update-grammar-v1",
+        "target": "policy",
+        "task_data": {
+          "reach_fraction": 0.5,
+          "pick_place_fraction": 0.5
+        },
+        "optimization": {
+          "gradient_steps": 50,
+          "learning_rate": 0.0001
+        },
+        "retention": {
+          "freeze_encoder": true,
+          "prior_policy_l2": 1.0,
+          "protect_policy_during_model_update": true
+        }
+      },
+      "label": "MICRO_50_50R"
+    },
+    {
+      "id": "u-8753f5fd4677",
+      "update": {
+        "grammar_version": "m14-update-grammar-v1",
+        "target": "policy",
+        "task_data": {
+          "reach_fraction": 0.75,
+          "pick_place_fraction": 0.25
+        },
+        "optimization": {
+          "gradient_steps": 50,
+          "learning_rate": 0.0001
+        },
+        "retention": {
+          "freeze_encoder": true,
+          "prior_policy_l2": 1.0,
+          "protect_policy_during_model_update": true
+        }
+      },
+      "label": "MICRO_50_75R"
+    },
+    {
+      "id": "u-f5d80880d418",
+      "update": {
+        "grammar_version": "m14-update-grammar-v1",
+        "target": "policy",
+        "task_data": {
+          "reach_fraction": 0.25,
+          "pick_place_fraction": 0.75
+        },
+        "optimization": {
+          "gradient_steps": 100,
+          "learning_rate": 0.0001
+        },
+        "retention": {
+          "freeze_encoder": true,
+          "prior_policy_l2": 1.0,
+          "protect_policy_during_model_update": true
+        }
+      },
+      "label": "MICRO_100_25R"
+    },
+    {
+      "id": "u-dc479d5a97b4",
+      "update": {
+        "grammar_version": "m14-update-grammar-v1",
+        "target": "policy",
+        "task_data": {
+          "reach_fraction": 0.5,
+          "pick_place_fraction": 0.5
+        },
+        "optimization": {
+          "gradient_steps": 100,
+          "learning_rate": 0.0001
+        },
+        "retention": {
+          "freeze_encoder": true,
+          "prior_policy_l2": 1.0,
+          "protect_policy_during_model_update": true
+        }
+      },
+      "label": "MICRO_100_50R"
+    },
+    {
+      "id": "u-1ae7dddc9885",
+      "update": {
+        "grammar_version": "m14-update-grammar-v1",
+        "target": "policy",
+        "task_data": {
+          "reach_fraction": 0.75,
+          "pick_place_fraction": 0.25
+        },
+        "optimization": {
+          "gradient_steps": 100,
+          "learning_rate": 0.0001
+        },
+        "retention": {
+          "freeze_encoder": true,
+          "prior_policy_l2": 1.0,
+          "protect_policy_during_model_update": true
+        }
+      },
+      "label": "MICRO_100_75R"
+    },
+    {
+      "id": "u-ed17e939c3e2",
+      "update": {
+        "grammar_version": "m14-update-grammar-v1",
+        "target": "policy",
+        "task_data": {
+          "reach_fraction": 0.25,
+          "pick_place_fraction": 0.75
+        },
+        "optimization": {
+          "gradient_steps": 250,
+          "learning_rate": 0.0001
+        },
+        "retention": {
+          "freeze_encoder": true,
+          "prior_policy_l2": 1.0,
+          "protect_policy_during_model_update": true
+        }
+      },
+      "label": "MICRO_250_25R"
+    },
+    {
+      "id": "u-93448dda93bc",
+      "update": {
+        "grammar_version": "m14-update-grammar-v1",
+        "target": "policy",
+        "task_data": {
+          "reach_fraction": 0.5,
+          "pick_place_fraction": 0.5
+        },
+        "optimization": {
+          "gradient_steps": 250,
+          "learning_rate": 0.0001
+        },
+        "retention": {
+          "freeze_encoder": true,
+          "prior_policy_l2": 1.0,
+          "protect_policy_during_model_update": true
+        }
+      },
+      "label": "MICRO_250_50R"
+    },
+    {
+      "id": "u-74a7153bb856",
+      "update": {
+        "grammar_version": "m14-update-grammar-v1",
+        "target": "policy",
+        "task_data": {
+          "reach_fraction": 0.75,
+          "pick_place_fraction": 0.25
+        },
+        "optimization": {
+          "gradient_steps": 250,
+          "learning_rate": 0.0001
+        },
+        "retention": {
+          "freeze_encoder": true,
+          "prior_policy_l2": 1.0,
+          "protect_policy_during_model_update": true
+        }
+      },
+      "label": "MICRO_250_75R"
+    }
+  ]
+}
