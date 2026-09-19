@@ -21,6 +21,7 @@ from m14_update_grammar import UpdateSpec
 from m14_update_sampling import sample_task_balanced_ids
 from run_m14_mt2_behavior_cloning import TASKS, cfg_for, evaluate
 from run_m14_mt2_warmstart import collect
+from m14_v3_state import plasticity_state
 
 
 def load_candidates(path: Path) -> list[dict]:
@@ -107,16 +108,22 @@ def main() -> None:
     parser.add_argument("--candidates", type=Path, required=True)
     parser.add_argument("--run-dir", type=Path, required=True)
     parser.add_argument("--seed", type=int, required=True)
+    parser.add_argument("--controller-seed", type=int, help="Identity of the trained controller; defaults to --seed.")
+    parser.add_argument("--replicate-id", type=int, default=0)
     parser.add_argument("--demo-episodes", type=int, default=100)
     parser.add_argument("--eval-episodes", type=int, default=50)
     parser.add_argument("--reach-demand", type=float, default=0.30)
     parser.add_argument("--min-reach-retention", type=float, default=0.15)
+    parser.add_argument("--max-reach-drop-from-hold", type=float)
+    parser.add_argument("--max-pick-place-drop-from-hold", type=float)
+    parser.add_argument("--record-plasticity-state", action="store_true")
     parser.add_argument("--candidate-label", help="Run one named baseline/candidate label only (smoke testing).")
     parser.add_argument("--save-agents", action="store_true")
     args = parser.parse_args()
     if not 0.0 <= args.reach_demand <= 1.0:
         raise ValueError("--reach-demand must lie in [0, 1]")
 
+    controller_seed = args.seed if args.controller_seed is None else args.controller_seed
     args.run_dir.mkdir(parents=True, exist_ok=True)
     random.seed(args.seed); np.random.seed(args.seed); torch.manual_seed(args.seed)
     candidates = load_candidates(args.candidates)
@@ -124,19 +131,22 @@ def main() -> None:
         candidates = [candidate for candidate in candidates if candidate["label"] == args.candidate_label]
         if len(candidates) != 1:
             raise ValueError("--candidate-label must select exactly one named candidate")
+    if (args.max_reach_drop_from_hold is not None or args.max_pick_place_drop_from_hold is not None) and candidates[0]["label"] != "HOLD":
+        raise ValueError("relative-retention runs require HOLD as the first candidate")
     demand = {TASKS[0]: args.reach_demand, TASKS[1]: 1.0 - args.reach_demand}
-    cfg = cfg_for(args.seed)
+    cfg = cfg_for(controller_seed)
     cfg.steps, cfg.buffer_size, cfg.batch_size = 10_000, 20_000, 64
     env = make_env(cfg)
     base_agent = TDMPC2(cfg); base_agent.load(args.checkpoint)
     pre_metrics = evaluate(base_agent, env, args.eval_episodes)
     trajectories, obs, actions, tasks = collect(env, args.demo_episodes)
+    pre_update_state = plasticity_state(base_agent, obs, actions, tasks) if args.record_plasticity_state else None
     replay = Buffer(cfg)
     for trajectory in trajectories:
         replay.add(trajectory)
 
-    rows, results = [], {}
-    metadata = {"grammar_version": "m14-update-grammar-v1", "checkpoint": str(args.checkpoint), "seed": args.seed, "demo_episodes_per_task": args.demo_episodes, "eval_episodes": args.eval_episodes, "pre_capability": pre_metrics}
+    rows, results, hold_capability = [], {}, None
+    metadata = {"grammar_version": "m14-update-grammar-v1", "checkpoint": str(args.checkpoint), "seed": controller_seed, "execution_seed": args.seed, "replicate_id": args.replicate_id, "demo_episodes_per_task": args.demo_episodes, "eval_episodes": args.eval_episodes, "pre_capability": pre_metrics}
     try:
         for candidate in candidates:
             spec = candidate["spec"]
@@ -146,8 +156,19 @@ def main() -> None:
             post_capability = compact(post_metrics)
             utility = sum(demand[task] * post_capability[task] for task in TASKS)
             feasible = post_capability[TASKS[0]] >= args.min_reach_retention
-            context = {"seed": args.seed, "checkpoint": str(args.checkpoint), "demo_episodes_per_task": args.demo_episodes, "eval_episodes": args.eval_episodes, "candidate_id": candidate["id"], "candidate_label": candidate["label"]}
-            rows.append({"domain": "metaworld-mt2", "pre_capability": compact(pre_metrics), "pre_capability_is_exact": True, "update": spec.to_dict(), "context": context, "demand": demand, "post_capability": post_capability, "utility": utility, "feasible": feasible, "constraints": {"min_reach_retention": args.min_reach_retention}})
+            if candidate["label"] == "HOLD":
+                hold_capability = post_capability
+            if hold_capability is not None:
+                if args.max_reach_drop_from_hold is not None:
+                    feasible = feasible and post_capability[TASKS[0]] >= hold_capability[TASKS[0]] - args.max_reach_drop_from_hold
+                if args.max_pick_place_drop_from_hold is not None:
+                    feasible = feasible and post_capability[TASKS[1]] >= hold_capability[TASKS[1]] - args.max_pick_place_drop_from_hold
+            context = {"seed": controller_seed, "execution_seed": args.seed, "replicate_id": args.replicate_id, "checkpoint": str(args.checkpoint), "demo_episodes_per_task": args.demo_episodes, "eval_episodes": args.eval_episodes, "candidate_id": candidate["id"], "candidate_label": candidate["label"]}
+            constraints = {"min_reach_retention": args.min_reach_retention, "max_reach_drop_from_hold": args.max_reach_drop_from_hold, "max_pick_place_drop_from_hold": args.max_pick_place_drop_from_hold}
+            row = {"domain": "metaworld-mt2", "pre_capability": compact(pre_metrics), "pre_capability_is_exact": True, "update": spec.to_dict(), "context": context, "demand": demand, "post_capability": post_capability, "utility": utility, "feasible": feasible, "constraints": constraints}
+            if pre_update_state is not None:
+                row["pre_update_state"] = pre_update_state
+            rows.append(row)
             results[candidate["id"]] = {"label": candidate["label"], "metrics": post_metrics, "utility": utility, "feasible": feasible}
             if args.save_agents:
                 agent.save(args.run_dir / f"{candidate['id']}.pt")
