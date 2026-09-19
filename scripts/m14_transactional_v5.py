@@ -26,7 +26,7 @@ class Certificate:
 
 def snapshot(agent) -> dict[str, torch.Tensor]:
     """Exact reversible policy state; no failed edit can persist."""
-    return {k: v.detach().clone() for k, v in agent.model.state_dict().items()}
+    return {k: v.detach().clone() if isinstance(v, torch.Tensor) else v for k, v in agent.model.state_dict().items()}
 
 
 def rollback(agent, state: Mapping[str, torch.Tensor]) -> None:
