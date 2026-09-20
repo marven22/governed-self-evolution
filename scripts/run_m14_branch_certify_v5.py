@@ -25,7 +25,12 @@ def main():
    promising=screen.utility_delta>0 and all(v>=-a.epsilon for v in screen.capability_delta.values())
    final=screen
    if promising:
-    rollback(agent,state);before2=ev(agent,env,a.seed+500000+100000*step+1000*j,a.confirm_episodes);after2=ev(agent,env,a.seed+500000+100000*step+1000*j,a.confirm_episodes);final=certify(before2,after2,{TASKS[0]:.3,TASKS[1]:.7},{TASKS[0]:a.epsilon,TASKS[1]:a.epsilon},a.alpha);rollback(agent,base)
+    # Confirmation must compare the original branch point to its edited
+    # successor on exactly the same task instances.
+    confirm_seed=a.seed+500000+100000*step+1000*j
+    rollback(agent,base); before2=ev(agent,env,confirm_seed,a.confirm_episodes)
+    rollback(agent,state); after2=ev(agent,env,confirm_seed,a.confirm_episodes)
+    final=certify(before2,after2,{TASKS[0]:.3,TASKS[1]:.7},{TASKS[0]:a.epsilon,TASKS[1]:a.epsilon},a.alpha);rollback(agent,base)
    candidates.append((label,state,screen,final,promising))
   accepted=[x for x in candidates if x[3].committed]
   if not accepted:
