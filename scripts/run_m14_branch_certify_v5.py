@@ -1,6 +1,7 @@
 """Horizon-one branch--certify--commit evolution control."""
 from __future__ import annotations
 import argparse,json
+from dataclasses import asdict
 from pathlib import Path
 from common.buffer import Buffer
 from envs import make_env
@@ -37,7 +38,7 @@ def main():
     'controller_id':a.controller_id or a.run_dir.name,
     'parent_id':f'p{a.controller_seed}', 'step':step, 'label':label,
     'pre_capability':{t:float(before[t].mean()) for t in TASKS},
-    'update_spec':specs[label], 'screen_certificate':cert_record(screen),
+    'update_spec':asdict(specs[label]), 'screen_certificate':cert_record(screen),
     'confirmation_certificate':cert_record(final) if promising else None,
    }))
   accepted=[x for x in candidates if x[3].committed]
