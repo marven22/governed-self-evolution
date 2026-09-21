@@ -59,6 +59,7 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--archive", type=Path, required=True)
     parser.add_argument("--report", type=Path, required=True)
+    parser.add_argument("--model", type=Path, required=True)
     parser.add_argument("--ridge", type=float, default=0.1)
     args = parser.parse_args()
     rows = json.loads(args.archive.read_text())
@@ -75,6 +76,8 @@ def main() -> None:
     report = {"protocol": "m14-branch-governor-v1-development", "records": len(rows), "parents": parents, "features": ["bias", "reach", "pick_place", "step", "reach_fraction", "gradient_steps"], "targets": ["screen_or_confirmation_utility", "reach_delta", "pick_place_delta"], "leave_one_parent_out": folds, "lopo_mae": float(np.mean([x["mae"] for x in folds])), "development_decisions": all_decisions, "warning": "Unconfirmed branches have screen-only targets; do not make blind-test claims from this report."}
     args.report.parent.mkdir(parents=True, exist_ok=True)
     args.report.write_text(json.dumps(report, indent=2) + "\n")
+    args.model.parent.mkdir(parents=True, exist_ok=True)
+    args.model.write_text(json.dumps({"protocol": report["protocol"], "weights": model.tolist(), "ridge": args.ridge, "features": report["features"], "development_parents": parents}, indent=2) + "\n")
     print(json.dumps({"records": len(rows), "parents": parents, "lopo_mae": report["lopo_mae"], "proposed_non_hold": sum(d["chosen"] != "HOLD" for d in all_decisions)}))
 
 
