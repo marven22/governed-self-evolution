@@ -40,6 +40,18 @@ Programs are assigned once, before any learning:
 No held-out program may occur in a controller update, archive row, challenger
 query, or governor feature fitting step.
 
+The original v1 split is invalid for evolution because four of its programs
+had no static CompilerGym certificate callback. It remains preserved as an
+audit artifact. The valid v2 split is generated only from the static cBench
+validator registry, before any held-out program execution, by
+`bash scripts/generate_compilergym_program_split_wsl.sh` and committed before
+controller-bank construction.
+
+Before bank construction, run
+`bash scripts/audit_compilergym_split_readiness_wsl.sh`. It exercises only the
+development and selection cohorts with the unchanged policy and refuses to
+touch held-out programs.
+
 ## Evolution transaction
 
 For a parent compiler policy \(C_t\), a state \(s_t\), and an update \(e_t\):
