@@ -11,9 +11,9 @@ from collections import Counter
 from pathlib import Path
 
 def main():
-    p=argparse.ArgumentParser(); p.add_argument('--rollout',type=Path,required=True); p.add_argument('--gate',type=Path,required=True); p.add_argument('--report',type=Path,required=True); a=p.parse_args()
-    rollout=json.loads(a.rollout.read_text()); gate=json.loads(a.gate.read_text())
-    lineages=rollout.get('lineages',[]); decisions=[(lineage,step) for lineage in lineages for step in lineage.get('steps',[])]
+    p=argparse.ArgumentParser(); p.add_argument('--rollout',type=Path,required=True,action='append'); p.add_argument('--gate',type=Path,required=True); p.add_argument('--report',type=Path,required=True); a=p.parse_args()
+    rollouts=[json.loads(path.read_text()) for path in a.rollout]; gate=json.loads(a.gate.read_text())
+    lineages=[lineage for rollout in rollouts for lineage in rollout.get('lineages',[])]; decisions=[(lineage,step) for lineage in lineages for step in lineage.get('steps',[])]
     actions=Counter(step.get('action') for _,step in decisions); programs=sorted({lineage['benchmark'] for lineage,_ in decisions})
     certificates=[step.get('child_certified') for _,step in decisions if step.get('action') in ('promote','rollback')]
     requirements={
@@ -24,6 +24,6 @@ def main():
       'semantic_certificate_integrity':{'observed':sum(x is False for x in certificates),'required':0,'passes':not any(x is False for x in certificates)},
     }
     ready=all(item['passes'] for item in requirements.values())
-    report={'protocol':'rlcompopt-governor-update-readiness-v1','scope':'post-deployment rollout archive; no governor fitting or promotion performed','source_rollout':str(a.rollout),'gate':gate,'archive_summary':{'lineages':len(lineages),'decision_contexts':len(decisions),'distinct_programs':programs,'action_counts':dict(sorted(actions.items()))},'requirements':requirements,'shadow_challenger_training_ready':ready,'incumbent_action':'retain_v2','reason':'All readiness gates passed; shadow training may begin.' if ready else 'Insufficient diverse post-deployment evidence. Retain V2 and continue archiving.'}
+    report={'protocol':'rlcompopt-governor-update-readiness-v1','scope':'post-deployment rollout archive; no governor fitting or promotion performed','source_rollouts':[str(path) for path in a.rollout],'gate':gate,'archive_summary':{'lineages':len(lineages),'decision_contexts':len(decisions),'distinct_programs':programs,'action_counts':dict(sorted(actions.items()))},'requirements':requirements,'shadow_challenger_training_ready':ready,'incumbent_action':'retain_v2','reason':'All readiness gates passed; shadow training may begin.' if ready else 'Insufficient diverse post-deployment evidence. Retain V2 and continue archiving.'}
     a.report.parent.mkdir(parents=True,exist_ok=True); a.report.write_text(json.dumps(report,indent=2,sort_keys=True)+'\n'); print(json.dumps({'ready':ready,'archive_summary':report['archive_summary'],'unmet':[k for k,v in requirements.items() if not v['passes']]},sort_keys=True))
 if __name__=='__main__': main()

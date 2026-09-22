@@ -38,11 +38,11 @@ def choose(payload: dict[str,Any], benchmark: str, origin_rank: int, origin_inde
     return rows[i], {'positive_probability':float(pos[i]),'blame_probability':float(risk[i]),'pairwise_rank_score':float(rank[i]),'utility':float(utility[i]),'candidate_count':len(rows),'eligible':bool(utility[i]>0 and pos[i]>=.5)}
 
 def main():
-    p=argparse.ArgumentParser(); p.add_argument('--model-db',type=Path,required=True); p.add_argument('--trajectory-data',type=Path,required=True); p.add_argument('--vocab-db',type=Path,required=True); p.add_argument('--split',type=Path,required=True); p.add_argument('--model',type=Path,required=True); p.add_argument('--output',type=Path,required=True); p.add_argument('--parent-ranks',default='1,2,3'); p.add_argument('--max-steps',type=int,default=3); p.add_argument('--candidate-budget',type=int,default=24); p.add_argument('--donor-limit',type=int,default=10); p.add_argument('--max-programs',type=int,default=None); a=p.parse_args()
+    p=argparse.ArgumentParser(); p.add_argument('--model-db',type=Path,required=True); p.add_argument('--trajectory-data',type=Path,required=True); p.add_argument('--vocab-db',type=Path,required=True); p.add_argument('--split',type=Path,required=True); p.add_argument('--model',type=Path,required=True); p.add_argument('--output',type=Path,required=True); p.add_argument('--parent-ranks',default='1,2,3'); p.add_argument('--max-steps',type=int,default=3); p.add_argument('--candidate-budget',type=int,default=24); p.add_argument('--donor-limit',type=int,default=10); p.add_argument('--max-programs',type=int,default=None); p.add_argument('--cohort',choices=('selection','development'),default='selection'); a=p.parse_args()
     payload=pickle.loads(a.model.read_bytes())
     if payload.get('protocol')!='rlcompopt-pairwise-governor-v2': raise SystemExit('Frozen v2 model required')
     from rlcompopt.model_testing import Environment
-    split=json.loads(a.split.read_text()); benchmarks=split['selection'];
+    split=json.loads(a.split.read_text()); benchmarks=split[a.cohort];
     if a.max_programs: benchmarks=benchmarks[:a.max_programs]
     ranks=[int(x) for x in a.parent_ranks.split(',')]
     runner=Environment(str(a.model_db),None,0,str(a.vocab_db),max_step=100,benchmarks=[],train_dataset_path=str(a.trajectory_data),sampling=False)
@@ -63,7 +63,7 @@ def main():
             if not accepted: lineage['termination']='rejected_or_not_improved'; break
             parent=proposal['child_actions']
           else: lineage['termination']='step_budget_reached'
-          lineages.append(lineage); write(a.output,{'protocol':'rlcompopt-governed-evolution-pilot-v1','scope':'engineering pilot on diagnostic selection programs; not final evaluation','frozen_model':str(a.model),'parameters':{'parent_ranks':ranks,'max_steps':a.max_steps,'candidate_budget':a.candidate_budget},'lineages':lineages})
+          lineages.append(lineage); write(a.output,{'protocol':'rlcompopt-governed-evolution-pilot-v1','scope':f'engineering pilot on {a.cohort} programs; not final evaluation','cohort':a.cohort,'frozen_model':str(a.model),'parameters':{'parent_ranks':ranks,'max_steps':a.max_steps,'candidate_budget':a.candidate_budget},'lineages':lineages})
     finally:
       runner.env.close(); runner.model.connection.close()
     promoted=sum(s['action']=='promote' for l in lineages for s in l['steps']); print(json.dumps({'lineages':len(lineages),'promotions':promoted,'terminations':{x:sum(l['termination']==x for l in lineages) for x in sorted({l['termination'] for l in lineages})},'output':str(a.output)},sort_keys=True))
