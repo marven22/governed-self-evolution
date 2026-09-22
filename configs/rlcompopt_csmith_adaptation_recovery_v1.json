@@ -1,0 +1,13 @@
+{
+  "protocol": "rlcompopt-csmith-adaptation-recovery-v1",
+  "development": [
+    "generator://csmith-v0/6",
+    "generator://csmith-v0/7",
+    "generator://csmith-v0/8"
+  ],
+  "excluded_seed": "generator://csmith-v0/112",
+  "exclusion_reason": "Unedited reference execution exceeded the predeclared three-second certificate bound; no transition from this seed is retained.",
+  "provenance": "Seeds 6-8 were previously checked only for deterministic, bounded reference execution. They were never used for controller evaluation, governor fitting, or strategy selection.",
+  "certificate": "Two independent unedited executions must emit the same nonempty checksum. Every child must terminate within three seconds and exactly match it.",
+  "lock_date": "2026-09-22"
+}
