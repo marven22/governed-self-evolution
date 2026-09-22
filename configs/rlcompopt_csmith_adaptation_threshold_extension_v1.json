@@ -1,0 +1,10 @@
+{
+  "protocol": "rlcompopt-csmith-adaptation-threshold-extension-v1",
+  "development": [
+    "generator://csmith-v0/9",
+    "generator://csmith-v0/10"
+  ],
+  "provenance": "Predeclared recovery seeds to reach the original 20-positive-example minimum without relaxing that requirement. Seeds were previously checked only for bounded deterministic reference execution.",
+  "certificate": "Two independent unedited executions must emit the same nonempty checksum. Every child must terminate within three seconds and exactly match it.",
+  "lock_date": "2026-09-22"
+}
