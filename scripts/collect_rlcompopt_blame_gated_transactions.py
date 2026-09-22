@@ -169,11 +169,11 @@ def main() -> None:
                 )
                 if template_scores:
                     # Fixed thirds: likely useful, close-to-boundary (informative), and likely harmful controls.
-                    ranked = sorted(candidates, key=lambda edit: template_scores.get(edit["edit_program_id"], 0.0), reverse=True)
+                    ranked_candidates = sorted(candidates, key=lambda edit: template_scores.get(edit["edit_program_id"], 0.0), reverse=True)
                     thirds = max(1, args.candidate_budget // 3)
                     uncertain = sorted(candidates, key=lambda edit: abs(template_scores.get(edit["edit_program_id"], 0.0)))
                     selected, seen = [], set()
-                    for source_pool, count in ((ranked, thirds), (uncertain, thirds), (list(reversed(ranked)), args.candidate_budget - 2 * thirds)):
+                    for source_pool, count in ((ranked_candidates, thirds), (uncertain, thirds), (list(reversed(ranked_candidates)), args.candidate_budget - 2 * thirds)):
                         added = 0
                         for edit in source_pool:
                             key = tuple(edit["child_actions"])
