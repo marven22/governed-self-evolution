@@ -1,0 +1,9 @@
+{
+  "protocol": "rlcompopt-governor-update-gate-v1",
+  "purpose": "Trigger shadow-governor training only after diverse, certificate-backed post-deployment evidence.",
+  "minimum_new_decision_contexts": 16,
+  "minimum_distinct_programs": 8,
+  "minimum_certified_promotions": 4,
+  "minimum_rejections_or_rollbacks": 4,
+  "promotion_requirement": "A challenger must later show positive lower-confidence-bound paired gain over the incumbent on program-blocked evaluation contexts, with no worse semantic-certificate failure rate."
+}
