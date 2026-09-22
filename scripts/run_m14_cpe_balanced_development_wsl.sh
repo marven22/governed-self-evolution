@@ -6,4 +6,5 @@ cd /home/vmargapu/src/tdmpc2/tdmpc2
 for P in 143 144 145 146 147 148 149 150; do for S in bc r1 r3; do
  case "$S" in bc) C="$BANK/parent$P/bc/policy_bc.pt";;r1) C="$BANK/parent$P/dagger/policy_dagger_round1.pt";;r3) C="$BANK/parent$P/dagger/policy_dagger_round3.pt";;esac
  D="$ROOT/p$P-$S"; [ -f "$D/completion.json" ] || "$PY" "$REPO_ROOT/scripts/run_m14_cpe_balanced.py" --checkpoint "$C" --candidates "$REPO_ROOT/configs/m14_coge_micro_candidates_v31.json" --run-dir "$D" --controller-id "p$P-$S" --parent-id "p$P" --controller-seed "$P" --seed $((P*1000+${#S})) --demo-episodes 50 --episodes 50 --replicates 2 --alpha .05 --epsilon .05
+ [ ! -f "$D/completion.json" ] || "$PY" "$REPO_ROOT/scripts/audit_m14_cpe_exact.py" --transitions "$D/transitions.json" --report "$D/audit.json"
 done; done
