@@ -1,0 +1,25 @@
+{
+  "protocol": "rlcompopt-blame-gated-evolution-v1",
+  "cohorts": {
+    "foundation_collection": "development",
+    "governor_calibration": "selection",
+    "final_evaluation": "fresh cohort required; existing held_out was already used for fixed-controller evaluation"
+  },
+  "edit_grammar": {
+    "version": "rlcompopt-symbolic-edit-grammar-v1",
+    "operators": ["insert", "delete", "replace", "splice"],
+    "max_actions": 64,
+    "splice_lengths": [1, 2],
+    "donors": "top five ranked frozen-controller coreset sequences"
+  },
+  "attribution": {
+    "parent_trusted_when": "two identical-reward certificate-backed parent evaluations and non-negative parent reward",
+    "improvement_epsilon": 0.01,
+    "blame_margin": 0.01,
+    "hard_reject": "child fails semantic output-equivalence certificate"
+  },
+  "archives": {
+    "edit_program": "blame-gated utility over reusable symbolic edit templates",
+    "descendant": "certified child configurations; promotion policy deferred until selection calibration"
+  }
+}
