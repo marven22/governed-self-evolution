@@ -1,0 +1,35 @@
+{
+  "edits": [
+    {
+      "label": "HOLD",
+      "op": "hold"
+    },
+    {
+      "count": 2,
+      "label": "TRUNCATE_2",
+      "op": "truncate"
+    },
+    {
+      "action": 115,
+      "label": "APPEND_115",
+      "op": "append"
+    },
+    {
+      "action": 92,
+      "label": "APPEND_92",
+      "op": "append"
+    },
+    {
+      "action": 115,
+      "label": "REPLACE_LAST_115",
+      "op": "replace_last"
+    },
+    {
+      "action": 92,
+      "label": "REPLACE_LAST_92",
+      "op": "replace_last"
+    }
+  ],
+  "protocol": "compilergym-edit-grammar-v1",
+  "seed": 20260922
+}
