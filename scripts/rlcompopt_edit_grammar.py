@@ -63,6 +63,7 @@ def generate_candidates(
     donors: Sequence[Sequence[int]],
     candidate_budget: int,
     max_actions: int,
+    donor_limit: int = 5,
 ) -> list[dict[str, Any]]:
     """Create a deterministic, stratified pool of novel grammar instances.
 
@@ -78,7 +79,7 @@ def generate_candidates(
         raise ValueError("At least one donor sequence is required")
 
     offset = _stable_offset(benchmark, parent)
-    donor_count = min(5, len(donors))
+    donor_count = min(donor_limit, len(donors))
     positions = sorted({0, len(parent) // 2, len(parent)})
     interior_positions = sorted({0, len(parent) // 2, len(parent) - 1})
     raw: list[dict[str, Any]] = []
