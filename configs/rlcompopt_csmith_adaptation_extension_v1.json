@@ -1,0 +1,18 @@
+{
+  "protocol": "rlcompopt-csmith-adaptation-extension-v1",
+  "development": [
+    "generator://csmith-v0/111",
+    "generator://csmith-v0/112",
+    "generator://csmith-v0/113",
+    "generator://csmith-v0/114",
+    "generator://csmith-v0/115",
+    "generator://csmith-v0/116",
+    "generator://csmith-v0/117",
+    "generator://csmith-v0/118",
+    "generator://csmith-v0/119",
+    "generator://csmith-v0/120"
+  ],
+  "provenance": "Disjoint continuation of rlcompopt_csmith_adaptation_split_v1 development collection. No selection or final seed appears here.",
+  "certificate": "Two independent unedited executions must emit the same nonempty checksum. Every child must terminate within three seconds and exactly match it.",
+  "lock_date": "2026-09-22"
+}
