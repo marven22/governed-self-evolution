@@ -25,8 +25,8 @@ def main() -> None:
     a = p.parse_args()
     incumbent, challenger, protocol = load(a.incumbent), load(a.challenger), load(a.protocol)
     rule = protocol["promotion_rule"]
-    if incumbent.get("cohort") != "final_evaluation" or challenger.get("cohort") != "final_evaluation":
-        raise ValueError("Both reports must be from the locked final_evaluation cohort")
+    if incumbent.get("cohort") != challenger.get("cohort") or incumbent.get("cohort") not in {"final_evaluation", "selection"}:
+        raise ValueError("Both reports must use the same locked selection or final_evaluation cohort")
     if incumbent.get("strategy", {}).get("name") != protocol["incumbent"]:
         raise ValueError("Incumbent report does not identify the predeclared incumbent")
     expected_templates = protocol.get("damage_templates")
