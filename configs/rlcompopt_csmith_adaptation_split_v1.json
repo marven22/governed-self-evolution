@@ -1,0 +1,32 @@
+{
+  "protocol": "rlcompopt-csmith-adaptation-split-v1",
+  "development": [
+    "generator://csmith-v0/101",
+    "generator://csmith-v0/102",
+    "generator://csmith-v0/103",
+    "generator://csmith-v0/104",
+    "generator://csmith-v0/105",
+    "generator://csmith-v0/106",
+    "generator://csmith-v0/107",
+    "generator://csmith-v0/108",
+    "generator://csmith-v0/109",
+    "generator://csmith-v0/110"
+  ],
+  "selection": [
+    "generator://csmith-v0/201",
+    "generator://csmith-v0/202",
+    "generator://csmith-v0/203",
+    "generator://csmith-v0/204",
+    "generator://csmith-v0/205"
+  ],
+  "future_final": [
+    "generator://csmith-v0/301",
+    "generator://csmith-v0/302",
+    "generator://csmith-v0/303",
+    "generator://csmith-v0/304",
+    "generator://csmith-v0/305"
+  ],
+  "certificate": "Two independent unedited executions must emit the same nonempty checksum. Every child must terminate within three seconds and exactly match it.",
+  "rule": "Only development is eligible for fitting. Selection is for one challenger choice. future_final remains untouched until that choice is frozen.",
+  "lock_date": "2026-09-22"
+}

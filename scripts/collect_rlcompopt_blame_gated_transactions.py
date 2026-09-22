@@ -16,6 +16,7 @@ from typing import Any
 
 from rlcompopt_edit_grammar import apply_edit, generate_candidates
 from run_compilergym_feasibility import evaluate_fixed_policy
+from run_rlcompopt_csmith_repair_benchmark import evaluate as evaluate_csmith
 
 
 def certified(record: dict[str, Any]) -> bool:
@@ -70,10 +71,10 @@ def main() -> None:
     parser.add_argument("--candidate-budget", type=int, default=12)
     parser.add_argument(
         "--cohort",
-        choices=("development", "selection"),
         default="development",
         help="Cohort to collect. Selection is evaluation-only and must never seed training.",
     )
+    parser.add_argument("--certificate-profile", choices=("cbench", "csmith"), default="cbench")
     parser.add_argument(
         "--parent-ranks",
         default="0",
@@ -100,7 +101,11 @@ def main() -> None:
     from rlcompopt.model_testing import Environment
 
     split = json.loads(args.split.read_text(encoding="utf-8"))
+    if args.cohort not in split or not isinstance(split[args.cohort], list):
+        raise ValueError(f"Unknown cohort: {args.cohort}")
     benchmarks: list[str] = split[args.cohort]
+    if not benchmarks:
+        raise ValueError(f"Cohort is empty: {args.cohort}")
     if args.max_programs is not None:
         benchmarks = benchmarks[: args.max_programs]
     runner = Environment(
@@ -109,6 +114,9 @@ def main() -> None:
     )
     coreset = [[int(action) for action in sequence] for sequence in runner.actionseqs]
     transactions: list[dict[str, Any]] = []
+    csmith_references: dict[str, str] = {}
+    def evaluate(benchmark: str, actions: list[int]) -> dict[str, Any]:
+        return evaluate_fixed_policy(benchmark, actions) if args.certificate_profile == "cbench" else evaluate_csmith(benchmark, actions, csmith_references)
     if args.seed_ledger is not None:
         seed = json.loads(args.seed_ledger.read_text(encoding="utf-8"))
         expected_cohort = f"{args.cohort} only"
@@ -133,8 +141,8 @@ def main() -> None:
                 if tuple(parent_actions) in seen_parent_actions:
                     continue
                 seen_parent_actions.add(tuple(parent_actions))
-                parent_first = evaluate_fixed_policy(benchmark, parent_actions)
-                parent_second = evaluate_fixed_policy(benchmark, parent_actions)
+                parent_first = evaluate(benchmark, parent_actions)
+                parent_second = evaluate(benchmark, parent_actions)
                 parent_certified = certified(parent_first) and certified(parent_second)
                 parent_stable = stable_reward(parent_first, parent_second, args.repeat_tolerance)
                 # A parent with a repeatable, certified non-negative reward is
@@ -151,7 +159,7 @@ def main() -> None:
                 )
                 for edit in candidates:
                     child_actions = apply_edit(parent_actions, donors, edit)
-                    child = evaluate_fixed_policy(benchmark, child_actions)
+                    child = evaluate(benchmark, child_actions)
                     child_certified = certified(child)
                     delta = float(child["total_reward"] - parent_first["total_reward"])
                     blame = bool(parent_trusted and child_certified and delta < -args.blame_margin)
@@ -200,6 +208,7 @@ def main() -> None:
                     "held_out_touched": False,
                     "selection_touched": args.cohort == "selection",
                     "parameters": {
+                        "certificate_profile": args.certificate_profile,
                         "candidate_budget": args.candidate_budget,
                         "parent_ranks": parent_ranks,
                         "donor_limit": args.donor_limit,
