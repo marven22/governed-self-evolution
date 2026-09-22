@@ -1,0 +1,26 @@
+{
+  "protocol": "rlcompopt-governor-final-challenge-v1",
+  "purpose": "One-time, program-blocked promotion evaluation. These programs must never be used for strategy search, model fitting, or calibration.",
+  "final_evaluation": [
+    "benchmark://cbench-v1/adpcm",
+    "benchmark://cbench-v1/ghostscript",
+    "benchmark://cbench-v1/ispell",
+    "benchmark://cbench-v1/lame",
+    "benchmark://cbench-v1/rijndael"
+  ],
+  "incumbent": "frozen_v2",
+  "damage_templates": ["early", "middle", "quarter3", "late"],
+  "promotion_rule": {
+    "minimum_paired_eligible_contexts": 8,
+    "bootstrap_replicates": 10000,
+    "confidence_level": 0.95,
+    "require_positive_lower_bound": true,
+    "require_no_selected_certificate_failures": true,
+    "require_strict_majority_paired_wins": true
+  },
+  "provenance": {
+    "source": "CompilerGym cBench registry",
+    "excluded_previously_used_programs": "development, selection, and the previously touched fixed-controller held_out cohorts from compilergym_program_split_v2.json",
+    "lock_date": "2026-09-22"
+  }
+}

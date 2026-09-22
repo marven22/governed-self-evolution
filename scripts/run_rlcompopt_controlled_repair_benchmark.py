@@ -15,14 +15,23 @@ def write(p,d):
 def main():
  p=argparse.ArgumentParser();
  for n in ('model_db','trajectory_data','vocab_db','split','model','output'): p.add_argument('--'+n.replace('_','-'),dest=n,type=Path,required=True)
- p.add_argument('--cohort',choices=('selection','development'),default='selection'); p.add_argument('--max-programs',type=int,default=None); p.add_argument('--candidate-budget',type=int,default=24); p.add_argument('--donor-limit',type=int,default=10); p.add_argument('--risk-weight',type=float,default=1.0); p.add_argument('--threshold',type=float,default=.5); p.add_argument('--strategy-name',default='v2_incumbent'); a=p.parse_args()
+ p.add_argument('--cohort',default='selection'); p.add_argument('--max-programs',type=int,default=None); p.add_argument('--candidate-budget',type=int,default=24); p.add_argument('--donor-limit',type=int,default=10); p.add_argument('--damage-templates',default='middle,late'); p.add_argument('--risk-weight',type=float,default=1.0); p.add_argument('--threshold',type=float,default=.5); p.add_argument('--strategy-name',default='v2_incumbent'); a=p.parse_args()
  model=pickle.loads(a.model.read_bytes());
  from rlcompopt.model_testing import Environment
- benchmarks=json.loads(a.split.read_text())[a.cohort]; benchmarks=benchmarks[:a.max_programs] if a.max_programs else benchmarks; runner=Environment(str(a.model_db),None,0,str(a.vocab_db),max_step=100,benchmarks=[],train_dataset_path=str(a.trajectory_data),sampling=False); coreset=[[int(x) for x in s] for s in runner.actionseqs]; contexts=[]; a.output.parent.mkdir(parents=True,exist_ok=True)
+ split=json.loads(a.split.read_text())
+ if a.cohort not in split or not isinstance(split[a.cohort],list): raise ValueError(f"Unknown cohort: {a.cohort}")
+ benchmarks=split[a.cohort]; benchmarks=benchmarks[:a.max_programs] if a.max_programs else benchmarks; runner=Environment(str(a.model_db),None,0,str(a.vocab_db),max_step=100,benchmarks=[],train_dataset_path=str(a.trajectory_data),sampling=False); coreset=[[int(x) for x in s] for s in runner.actionseqs]; contexts=[]; a.output.parent.mkdir(parents=True,exist_ok=True)
  try:
   for b in benchmarks:
    obs=runner.reset(b); ordered=[int(x) for x in runner.get_model_action(obs)]; donors=[coreset[i] for i in ordered[:a.donor_limit]]; original=coreset[ordered[0]]; original_eval=evaluate_fixed_policy(b,original)
-   for damage_name,position in (('delete_middle',len(original)//2),('delete_late',len(original)-1)):
+   damage_positions={'early':len(original)//4,'middle':len(original)//2,'quarter3':(3*len(original))//4,'late':len(original)-1}
+   requested=[x.strip() for x in a.damage_templates.split(',') if x.strip()]
+   if not requested or any(x not in damage_positions for x in requested): raise ValueError('damage-templates must use early,middle,quarter3,late')
+   seen_positions=set()
+   for template in requested:
+    position=damage_positions[template]
+    if position in seen_positions: continue
+    seen_positions.add(position); damage_name=f'delete_{template}'
     damaged=original[:position]+original[position+1:]; damage_eval=evaluate_fixed_policy(b,damaged); damage_delta=float(damage_eval['total_reward']-original_eval['total_reward']); record={'benchmark':b,'damage':{'name':damage_name,'position':position},'original_reward':original_eval['total_reward'],'damaged_reward':damage_eval['total_reward'],'damage_delta':damage_delta,'eligible':bool(cert(original_eval) and cert(damage_eval) and damage_delta < -EPS)}
     if record['eligible']:
      edits=generate_candidates(benchmark=b,parent=damaged,donors=donors,candidate_budget=a.candidate_budget,max_actions=64,donor_limit=a.donor_limit); rows=[]
@@ -35,7 +44,7 @@ def main():
      for row in rows:
       ev=evaluate_fixed_policy(b,row['child_actions']); outcomes.append({'certified':cert(ev),'reward':ev['total_reward'],'repair_gain':float(ev['total_reward']-damage_eval['total_reward'])})
      valid=[o['repair_gain'] for o in outcomes if o['certified']]; chosen_gain=0. if hold else max(0.,outcomes[selected]['repair_gain']); headroom=original_eval['total_reward']-damage_eval['total_reward']; record.update({'candidate_count':len(rows),'v2_action':'hold' if hold else 'edit','v2_repair_gain':chosen_gain,'random_expected_repair_gain':float(np.mean([max(0.,x) for x in valid])),'oracle_repair_gain':max(0.,max(valid)),'recovery_fraction':float(chosen_gain/headroom) if headroom>0 else None,'selected_outcome':None if hold else outcomes[selected],'selected_edit':None if hold else rows[selected]['edit']})
-    contexts.append(record); write(a.output,{'protocol':'rlcompopt-controlled-repair-v1','scope':'engineering repair benchmark; no MPC, no model fitting','cohort':a.cohort,'strategy':{'name':a.strategy_name,'risk_weight':a.risk_weight,'threshold':a.threshold},'contexts':contexts})
+    contexts.append(record); write(a.output,{'protocol':'rlcompopt-controlled-repair-v1','scope':'engineering repair benchmark; no MPC, no model fitting','cohort':a.cohort,'damage_templates':requested,'strategy':{'name':a.strategy_name,'risk_weight':a.risk_weight,'threshold':a.threshold},'contexts':contexts})
  finally: runner.env.close(); runner.model.connection.close()
  eligible=[c for c in contexts if c['eligible']]; summary={'contexts':len(contexts),'eligible_damages':len(eligible),'mean_v2_repair_gain':float(np.mean([c['v2_repair_gain'] for c in eligible])) if eligible else 0.,'mean_random_expected_repair_gain':float(np.mean([c['random_expected_repair_gain'] for c in eligible])) if eligible else 0.,'mean_oracle_repair_gain':float(np.mean([c['oracle_repair_gain'] for c in eligible])) if eligible else 0.,'output':str(a.output)}; print(json.dumps(summary,sort_keys=True))
 if __name__=='__main__': main()
