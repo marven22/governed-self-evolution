@@ -1,0 +1,120 @@
+{
+  "action_space_size": 124,
+  "note": "Bootstrap policies establish certified headroom; learned feature-conditioned policies follow after transactional feasibility.",
+  "policies": [
+    {
+      "actions": [],
+      "controller_id": "cg-hold",
+      "kind": "hold",
+      "seed": null
+    },
+    {
+      "actions": [
+        9,
+        28
+      ],
+      "controller_id": "cg-bootstrap-01",
+      "kind": "fixed-pass-sequence",
+      "seed": 41001
+    },
+    {
+      "actions": [
+        110,
+        118,
+        62,
+        43
+      ],
+      "controller_id": "cg-bootstrap-02",
+      "kind": "fixed-pass-sequence",
+      "seed": 41002
+    },
+    {
+      "actions": [
+        91,
+        97,
+        91,
+        49,
+        24,
+        115
+      ],
+      "controller_id": "cg-bootstrap-03",
+      "kind": "fixed-pass-sequence",
+      "seed": 41003
+    },
+    {
+      "actions": [
+        35,
+        105,
+        19,
+        85,
+        26,
+        7,
+        23,
+        38
+      ],
+      "controller_id": "cg-bootstrap-04",
+      "kind": "fixed-pass-sequence",
+      "seed": 41004
+    },
+    {
+      "actions": [
+        46,
+        49,
+        116,
+        68,
+        16,
+        70,
+        25,
+        54,
+        75,
+        93
+      ],
+      "controller_id": "cg-bootstrap-05",
+      "kind": "fixed-pass-sequence",
+      "seed": 41005
+    },
+    {
+      "actions": [
+        19,
+        97,
+        66,
+        33,
+        27,
+        110,
+        113,
+        82,
+        61,
+        118,
+        79,
+        84
+      ],
+      "controller_id": "cg-bootstrap-06",
+      "kind": "fixed-pass-sequence",
+      "seed": 41006
+    },
+    {
+      "actions": [
+        50,
+        103,
+        122,
+        64,
+        21,
+        111,
+        5,
+        27,
+        110,
+        51,
+        95,
+        36,
+        28,
+        100,
+        23,
+        82
+      ],
+      "controller_id": "cg-bootstrap-07",
+      "kind": "fixed-pass-sequence",
+      "seed": 41007
+    }
+  ],
+  "protocol": "compilergym-bootstrap-controller-bank-v1"
+}
