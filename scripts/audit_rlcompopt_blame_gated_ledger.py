@@ -30,6 +30,7 @@ def main() -> None:
     parser.add_argument("--report", type=Path, required=True)
     parser.add_argument("--expected-programs", type=int, default=8)
     parser.add_argument("--expected-transactions", type=int, default=672)
+    parser.add_argument("--expected-cohort", choices=("development", "selection"), default="development")
     args = parser.parse_args()
 
     raw = args.ledger.read_bytes()
@@ -38,10 +39,12 @@ def main() -> None:
     failures: list[str] = []
     warnings: list[str] = []
 
-    if ledger.get("cohort") != "development only":
-        failures.append("Ledger cohort is not development only")
-    if ledger.get("held_out_touched") or ledger.get("selection_touched"):
-        failures.append("Ledger claims a protected cohort was touched")
+    if ledger.get("cohort") != f"{args.expected_cohort} only":
+        failures.append(f"Ledger cohort is not {args.expected_cohort} only")
+    if ledger.get("held_out_touched"):
+        failures.append("Ledger claims the protected held-out cohort was touched")
+    if args.expected_cohort == "development" and ledger.get("selection_touched"):
+        failures.append("Development ledger claims the selection cohort was touched")
     if len(rows) != args.expected_transactions:
         failures.append(f"Expected {args.expected_transactions} rows; found {len(rows)}")
 
@@ -52,8 +55,9 @@ def main() -> None:
     programs = Counter(row["benchmark"] for row in rows)
     if len(programs) != args.expected_programs:
         failures.append(f"Expected {args.expected_programs} programs; found {len(programs)}")
-    if any(count != 84 for count in programs.values()):
-        failures.append("Each development program must contribute exactly 84 rows")
+    expected_per_program = args.expected_transactions // max(1, args.expected_programs)
+    if any(count != expected_per_program for count in programs.values()):
+        failures.append(f"Each {args.expected_cohort} program must contribute exactly {expected_per_program} rows")
 
     ranks = Counter((row["benchmark"], row["controller"].get("parent_rank", 0)) for row in rows)
     expected_rank_counts = {0: 12, 1: 24, 2: 24, 3: 24}

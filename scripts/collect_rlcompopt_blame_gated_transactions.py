@@ -69,6 +69,12 @@ def main() -> None:
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--candidate-budget", type=int, default=12)
     parser.add_argument(
+        "--cohort",
+        choices=("development", "selection"),
+        default="development",
+        help="Cohort to collect. Selection is evaluation-only and must never seed training.",
+    )
+    parser.add_argument(
         "--parent-ranks",
         default="0",
         help="Comma-separated ranks from the frozen controller's ordered coreset."
@@ -78,14 +84,14 @@ def main() -> None:
         "--seed-ledger",
         type=Path,
         default=None,
-        help="Existing development-only ledger to retain when writing an expanded ledger.",
+        help="Existing ledger from the same cohort to retain when writing an expanded ledger.",
     )
     parser.add_argument("--max-actions", type=int, default=64)
     parser.add_argument("--improvement-epsilon", type=float, default=0.01)
     parser.add_argument("--blame-margin", type=float, default=0.01)
     parser.add_argument("--repeat-tolerance", type=float, default=1e-9)
     parser.add_argument("--blame-penalty", type=float, default=1.0)
-    parser.add_argument("--max-programs", type=int, default=None, help="Development smoke-test limit only.")
+    parser.add_argument("--max-programs", type=int, default=None, help="Optional smoke-test limit.")
     args = parser.parse_args()
     parent_ranks = [int(value) for value in args.parent_ranks.split(",") if value.strip()]
     if not parent_ranks or min(parent_ranks) < 0:
@@ -94,7 +100,7 @@ def main() -> None:
     from rlcompopt.model_testing import Environment
 
     split = json.loads(args.split.read_text(encoding="utf-8"))
-    benchmarks: list[str] = split["development"]
+    benchmarks: list[str] = split[args.cohort]
     if args.max_programs is not None:
         benchmarks = benchmarks[: args.max_programs]
     runner = Environment(
@@ -105,8 +111,9 @@ def main() -> None:
     transactions: list[dict[str, Any]] = []
     if args.seed_ledger is not None:
         seed = json.loads(args.seed_ledger.read_text(encoding="utf-8"))
-        if seed.get("cohort") != "development only" or seed.get("held_out_touched"):
-            raise ValueError("seed-ledger must be an untouched development-only ledger")
+        expected_cohort = f"{args.cohort} only"
+        if seed.get("cohort") != expected_cohort or seed.get("held_out_touched"):
+            raise ValueError("seed-ledger must be from the same non-held-out cohort")
         transactions = list(seed["transactions"])
     seeded_transaction_count = len(transactions)
     args.output.parent.mkdir(parents=True, exist_ok=True)
@@ -160,7 +167,7 @@ def main() -> None:
                         label = "certified_neutral"
                     transactions.append({
                     "protocol": "rlcompopt-blame-gated-transition-v1",
-                    "cohort": "development",
+                    "cohort": args.cohort,
                     "benchmark": benchmark,
                     "controller": {
                         "parent_coreset_index": parent_index,
@@ -189,9 +196,9 @@ def main() -> None:
                 })
                 report = {
                     "protocol": "rlcompopt-blame-gated-transition-ledger-v1",
-                    "cohort": "development only",
+                    "cohort": f"{args.cohort} only",
                     "held_out_touched": False,
-                    "selection_touched": False,
+                    "selection_touched": args.cohort == "selection",
                     "parameters": {
                         "candidate_budget": args.candidate_budget,
                         "parent_ranks": parent_ranks,
