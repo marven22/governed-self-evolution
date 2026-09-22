@@ -1,13 +1,8 @@
 {
   "protocol": "rlcompopt-governor-final-challenge-v1",
-  "purpose": "One-time, program-blocked promotion evaluation. These programs must never be used for strategy search, model fitting, or calibration.",
-  "final_evaluation": [
-    "benchmark://cbench-v1/adpcm",
-    "benchmark://cbench-v1/ghostscript",
-    "benchmark://cbench-v1/ispell",
-    "benchmark://cbench-v1/lame",
-    "benchmark://cbench-v1/rijndael"
-  ],
+  "status": "blocked_pending_new_certified_benchmark_family",
+  "purpose": "Placeholder for a one-time, program-blocked promotion evaluation. It must not be used until a new certifiable benchmark family is registered.",
+  "final_evaluation": [],
   "incumbent": "frozen_v2",
   "damage_templates": ["early", "middle", "quarter3", "late"],
   "promotion_rule": {
@@ -19,8 +14,9 @@
     "require_strict_majority_paired_wins": true
   },
   "provenance": {
-    "source": "CompilerGym cBench registry",
-    "excluded_previously_used_programs": "development, selection, and the previously touched fixed-controller held_out cohorts from compilergym_program_split_v2.json",
-    "lock_date": "2026-09-22"
+    "source": "CompilerGym cBench registry audit",
+    "blocked_reason": "The registry exposes exactly 18 reference-output-certificate-eligible cBench programs. All 18 were already assigned to development, selection, or the previously touched fixed-controller held_out cohorts in compilergym_program_split_v2.json. The five remaining cBench programs are not certificate eligible.",
+    "required_next_step": "Register a separate benchmark family with an equally strong semantic certificate before creating this cohort.",
+    "audit_date": "2026-09-22"
   }
 }

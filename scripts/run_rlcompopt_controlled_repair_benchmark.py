@@ -20,7 +20,9 @@ def main():
  from rlcompopt.model_testing import Environment
  split=json.loads(a.split.read_text())
  if a.cohort not in split or not isinstance(split[a.cohort],list): raise ValueError(f"Unknown cohort: {a.cohort}")
- benchmarks=split[a.cohort]; benchmarks=benchmarks[:a.max_programs] if a.max_programs else benchmarks; runner=Environment(str(a.model_db),None,0,str(a.vocab_db),max_step=100,benchmarks=[],train_dataset_path=str(a.trajectory_data),sampling=False); coreset=[[int(x) for x in s] for s in runner.actionseqs]; contexts=[]; a.output.parent.mkdir(parents=True,exist_ok=True)
+ benchmarks=split[a.cohort]; benchmarks=benchmarks[:a.max_programs] if a.max_programs else benchmarks
+ if not benchmarks: raise ValueError(f"Cohort {a.cohort} is empty; a final challenge must be registered and certified before it can run")
+ runner=Environment(str(a.model_db),None,0,str(a.vocab_db),max_step=100,benchmarks=[],train_dataset_path=str(a.trajectory_data),sampling=False); coreset=[[int(x) for x in s] for s in runner.actionseqs]; contexts=[]; a.output.parent.mkdir(parents=True,exist_ok=True)
  try:
   for b in benchmarks:
    obs=runner.reset(b); ordered=[int(x) for x in runner.get_model_action(obs)]; donors=[coreset[i] for i in ordered[:a.donor_limit]]; original=coreset[ordered[0]]; original_eval=evaluate_fixed_policy(b,original)
