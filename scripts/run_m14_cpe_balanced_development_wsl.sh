@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
-REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"; BANK="/home/vmargapu/experiments/m14_coge_stratified_bank_v1"; ROOT="/home/vmargapu/experiments/m14_cpe_balanced_development_v1"; PY="/home/vmargapu/tdmpc2-metaworld-official/bin/python"
+REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"; BANK="/home/vmargapu/experiments/m14_coge_stratified_bank_v1"; ROOT="/home/vmargapu/experiments/m14_cpe_balanced_development_v2_exact"; PY="/home/vmargapu/tdmpc2-metaworld-official/bin/python"
 export PYTHONPATH="${REPO_ROOT}/scripts:/home/vmargapu/src/tdmpc2/tdmpc2"; export LD_LIBRARY_PATH="/home/vmargapu/.local/tdmpc2-legacy-mesa/rootfs/usr/lib/x86_64-linux-gnu:/home/vmargapu/.mujoco/mujoco210/bin${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
 cd /home/vmargapu/src/tdmpc2/tdmpc2
 for P in 143 144 145 146 147 148 149 150; do for S in bc r1 r3; do

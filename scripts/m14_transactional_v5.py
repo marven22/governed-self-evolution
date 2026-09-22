@@ -6,6 +6,7 @@ may be wrong; only a paired empirical certificate can make an update durable.
 from __future__ import annotations
 
 from dataclasses import dataclass
+from copy import deepcopy
 from math import log, sqrt
 from typing import Mapping
 
@@ -45,6 +46,51 @@ def paired_success(agent, env, episode_seeds: Mapping[str, list[int]]) -> dict[s
             raw = env.envs[task_idx].unwrapped
             raw.seed(int(seed))
             obs, done, t = env.reset(task_idx), False, 0
+            while not done:
+                action = agent.act(obs, t0=t == 0, eval_mode=True, task=task_idx)
+                obs, _, done, info = env.step(action); t += 1
+            values.append(float(info['success']))
+        result[task] = np.asarray(values, dtype=np.float64)
+    return result
+
+
+def make_exact_episode_bank(agent, env, episode_seeds: Mapping[str, list[int]]):
+    """Capture post-reset MuJoCo states once for exact paired comparisons."""
+    bank = {}
+    agent.cfg.mpc = False
+    for task_idx, task in enumerate(TASKS):
+        entries = []
+        raw = env.envs[task_idx].unwrapped
+        for seed in episode_seeds[task]:
+            raw.seed(int(seed))
+            obs = env.reset(task_idx)
+            # MetaWorld's physics snapshot omits reward/task variables such as
+            # _target_pos. Preserve the reset-time values that affect reward
+            # and termination as well as MuJoCo's physical state.
+            names = ('_target_pos', '_last_rand_vec', 'obj_init_pos',
+                     'obj_init_angle', 'init_tcp', 'init_left_pad',
+                     'init_right_pad', 'goal', 'num_resets')
+            task_state = {name: deepcopy(getattr(raw, name)) for name in names if hasattr(raw, name)}
+            entries.append((raw.get_env_state(), task_state, obs.detach().clone() if isinstance(obs, torch.Tensor) else np.array(obs, copy=True)))
+        bank[task] = entries
+    return bank
+
+
+def success_from_exact_episode_bank(agent, env, bank) -> dict[str, np.ndarray]:
+    """Roll out an agent from saved simulator starts, never from a new reset."""
+    result = {}
+    agent.cfg.mpc = False
+    for task_idx, task in enumerate(TASKS):
+        values = []
+        raw = env.envs[task_idx].unwrapped
+        for state, task_state, initial_obs in bank[task]:
+            # reset only restores wrapper bookkeeping; the saved MuJoCo state is
+            # immediately reinstated and the saved observation is authoritative.
+            env.reset(task_idx)
+            raw.set_env_state(state)
+            for name, value in task_state.items():
+                setattr(raw, name, deepcopy(value))
+            obs, done, t = initial_obs.detach().clone() if isinstance(initial_obs, torch.Tensor) else np.array(initial_obs, copy=True), False, 0
             while not done:
                 action = agent.act(obs, t0=t == 0, eval_mode=True, task=task_idx)
                 obs, _, done, info = env.step(action); t += 1

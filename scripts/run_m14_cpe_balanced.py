@@ -12,7 +12,7 @@ import torch
 from common.buffer import Buffer
 from envs import make_env
 from tdmpc2 import TDMPC2
-from m14_transactional_v5 import certify, paired_success, rollback, snapshot
+from m14_transactional_v5 import certify, make_exact_episode_bank, rollback, snapshot, success_from_exact_episode_bank
 from m14_v3_state import plasticity_state
 from run_m14_mt2_behavior_cloning import TASKS, cfg_for
 from run_m14_mt2_grammar_sweep import apply_update, load_candidates
@@ -31,8 +31,8 @@ def main() -> None:
   for rep in range(a.replicates):
    for j,candidate in enumerate(specs):
     seed=a.seed+100000*rep+1000*j; seeds={t:[seed+10000*i+k for k in range(a.episodes)] for i,t in enumerate(TASKS)}
-    rollback(agent,base); before=paired_success(agent,env,seeds)
-    random.seed(seed); np.random.seed(seed); torch.manual_seed(seed); apply_update(agent,obs,acts,tasks,replay,candidate['spec']); after=paired_success(agent,env,seeds)
+    rollback(agent,base); bank=make_exact_episode_bank(agent,env,seeds); before=success_from_exact_episode_bank(agent,env,bank)
+    random.seed(seed); np.random.seed(seed); torch.manual_seed(seed); apply_update(agent,obs,acts,tasks,replay,candidate['spec']); after=success_from_exact_episode_bank(agent,env,bank)
     cert=certify(before,after,{TASKS[0]:.5,TASKS[1]:.5},{TASKS[0]:a.epsilon,TASKS[1]:a.epsilon},a.alpha)
     rows.append({'schema':'m14-cpe-balanced-v1','controller_id':a.controller_id,'parent_id':a.parent_id,'replicate':rep,'label':candidate['label'],'update_spec':asdict(candidate['spec']),'pre_capability':{t:float(before[t].mean()) for t in TASKS},'pre_update_state':state,'certificate':record(cert),'paired_episode_count':a.episodes})
     rollback(agent,base); a.run_dir.mkdir(parents=True,exist_ok=True); (a.run_dir/'transitions.partial.json').write_text(json.dumps(rows,indent=2)+'\n')

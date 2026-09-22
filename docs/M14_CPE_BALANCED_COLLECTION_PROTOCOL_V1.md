@@ -7,3 +7,8 @@ independent matched seed sets. The permanent controller is never changed.
 
 The resulting rows are state--edit--outcome observations, not an evolution
 trajectory. Parent-disjoint splits are mandatory for model selection.
+
+`m14_cpe_balanced_development_v1` is preserved for reset debugging only. It
+used seed-based resets that failed the HOLD-versus-HOLD invariant. Valid data
+collection begins at `m14_cpe_balanced_development_v2_exact`, whose evaluator
+restores both exact MuJoCo and task-level reset state for every paired rollout.
