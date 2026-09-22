@@ -75,6 +75,8 @@ def main() -> None:
         help="Cohort to collect. Selection is evaluation-only and must never seed training.",
     )
     parser.add_argument("--certificate-profile", choices=("cbench", "csmith"), default="cbench")
+    parser.add_argument("--proposal-ledger", type=Path, default=None, help="Certified development ledger used only to stratify a new candidate pool.")
+    parser.add_argument("--pool-budget", type=int, default=None, help="Grammar-valid pool size before curriculum selection.")
     parser.add_argument(
         "--parent-ranks",
         default="0",
@@ -114,6 +116,14 @@ def main() -> None:
     )
     coreset = [[int(action) for action in sequence] for sequence in runner.actionseqs]
     transactions: list[dict[str, Any]] = []
+    template_scores: dict[str, float] = {}
+    if args.proposal_ledger:
+        source = json.loads(args.proposal_ledger.read_text(encoding="utf-8"))["transactions"]
+        by_template: dict[str, list[dict[str, Any]]] = defaultdict(list)
+        for row in source:
+            if row["outcome"]["certified_child"]:
+                by_template[row["edit"]["edit_program_id"]].append(row)
+        template_scores = {key: statistics.fmean(float(row["outcome"]["delta_reward"]) - float(row["outcome"]["blame"]) for row in rows) for key, rows in by_template.items()}
     csmith_references: dict[str, str] = {}
     def evaluate(benchmark: str, actions: list[int]) -> dict[str, Any]:
         return evaluate_fixed_policy(benchmark, actions) if args.certificate_profile == "cbench" else evaluate_csmith(benchmark, actions, csmith_references)
@@ -153,10 +163,24 @@ def main() -> None:
                     benchmark=benchmark,
                     parent=parent_actions,
                     donors=donors,
-                    candidate_budget=args.candidate_budget,
+                    candidate_budget=args.pool_budget or args.candidate_budget,
                     max_actions=args.max_actions,
                     donor_limit=args.donor_limit,
                 )
+                if template_scores:
+                    # Fixed thirds: likely useful, close-to-boundary (informative), and likely harmful controls.
+                    ranked = sorted(candidates, key=lambda edit: template_scores.get(edit["edit_program_id"], 0.0), reverse=True)
+                    thirds = max(1, args.candidate_budget // 3)
+                    uncertain = sorted(candidates, key=lambda edit: abs(template_scores.get(edit["edit_program_id"], 0.0)))
+                    selected, seen = [], set()
+                    for source_pool, count in ((ranked, thirds), (uncertain, thirds), (list(reversed(ranked)), args.candidate_budget - 2 * thirds)):
+                        added = 0
+                        for edit in source_pool:
+                            key = tuple(edit["child_actions"])
+                            if key not in seen:
+                                selected.append(edit); seen.add(key); added += 1
+                            if added >= count: break
+                    candidates = selected[:args.candidate_budget]
                 for edit in candidates:
                     child_actions = apply_edit(parent_actions, donors, edit)
                     child = evaluate(benchmark, child_actions)
@@ -209,6 +233,7 @@ def main() -> None:
                     "selection_touched": args.cohort == "selection",
                     "parameters": {
                         "certificate_profile": args.certificate_profile,
+                        "proposal_policy": "blame-aware-promising-uncertain-risk-v1" if template_scores else "stratified-grammar-foundation-v1",
                         "candidate_budget": args.candidate_budget,
                         "parent_ranks": parent_ranks,
                         "donor_limit": args.donor_limit,

@@ -1,0 +1,7 @@
+{
+  "protocol": "rlcompopt-csmith-blame-aware-curriculum-v1",
+  "development": ["generator://csmith-v0/11", "generator://csmith-v0/12"],
+  "proposal_policy": "From a grammar-valid pool, evaluate four templates with highest prior certified utility, four nearest the utility boundary, and four lowest-utility control templates.",
+  "provenance": "Seeds were previously checked only for bounded deterministic reference execution, never for controller or governor outcomes.",
+  "lock_date": "2026-09-22"
+}
