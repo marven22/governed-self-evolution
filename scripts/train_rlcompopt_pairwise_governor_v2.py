@@ -84,10 +84,11 @@ def main() -> None:
     px, py = pair_rows(x, delta, groups)
     if min(positive.sum(), blame.sum(), py.sum(), len(py) - py.sum()) == 0: raise SystemExit("Insufficient outcome variation")
     models = fit(x, positive, px, py, blame)
-    payload = {"protocol":"rlcompopt-pairwise-governor-v2", "feature_dim":int(x.shape[1]), "positive_model":models[0], "pair_model":models[1], "blame_model":models[2], "contract":"pre-edit controller/edit context plus deterministically materialized candidate recipe", "safety":"hard certificate gate"}
+    program_count = len({r["benchmark"] for r in rows})
+    payload = {"protocol":"rlcompopt-pairwise-governor-v2", "feature_dim":int(x.shape[1]), "positive_model":models[0], "pair_model":models[1], "blame_model":models[2], "contract":"pre-edit controller/edit context plus deterministically materialized candidate recipe", "safety":"hard certificate gate", "training_ledger_sha256":hashlib.sha256(raw).hexdigest(), "training_program_count":program_count}
     a.model.parent.mkdir(parents=True, exist_ok=True); a.report.parent.mkdir(parents=True, exist_ok=True)
     with a.model.open("wb") as f: pickle.dump(payload, f)
-    report = {"protocol":payload["protocol"], "training":{"certified_rows":len(rows), "contexts":len(set(groups)), "positive_edits":int(positive.sum()), "blamed_edits":int(blame.sum()), "pairwise_examples":len(py), "feature_dim":int(x.shape[1])}, "prospective_feature_justification":"candidate recipe is deterministically known from parent plus edit AST before child execution; outcome/certificate fields are excluded", "limitations":["Development data spans only eight programs.", "Selection ledger is not used for fitting."]}
+    report = {"protocol":payload["protocol"], "training":{"certified_rows":len(rows), "programs":program_count, "contexts":len(set(groups)), "positive_edits":int(positive.sum()), "blamed_edits":int(blame.sum()), "pairwise_examples":len(py), "feature_dim":int(x.shape[1])}, "prospective_feature_justification":"candidate recipe is deterministically known from parent plus edit AST before child execution; outcome/certificate fields are excluded", "limitations":[f"Development data spans {program_count} programs.", "Selection ledger is not used for fitting."]}
     a.report.write_text(json.dumps(report, indent=2, sort_keys=True)+"\n")
     print(json.dumps(report, sort_keys=True))
 
