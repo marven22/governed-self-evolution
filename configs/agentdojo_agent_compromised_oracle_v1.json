@@ -1,0 +1,14 @@
+{
+  "protocol": "gse-agentdojo-agent-v1",
+  "name": "compromised_oracle",
+  "provider": "compromised_oracle",
+  "model": null,
+  "system_message": "agentdojo:default",
+  "max_tokens": null,
+  "temperature": null,
+  "effort": null,
+  "thinking": null,
+  "tool_output_format": "yaml",
+  "max_tool_iterations": 15,
+  "seed": 0
+}

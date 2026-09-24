@@ -24,6 +24,9 @@ prompt injection or violating tool-use policy.
   qualification of independent starting controllers.
 - `docs/STUDENT_AGENTDOJO_WORK_PACKAGE.md` — parallel work package for the
   AgentDojo extension.
+- `gse_agentdojo/` — pinned AgentDojo runner (Workspace suite), family-blocked
+  task split, offline evaluator oracles; see
+  `docs/AGENTDOJO_ADAPTER_PROTOCOL_V1.md`.
 - `docs/M14_*.md` — original MetaWorld protocols and pilot records.
 
 ## Current status and evidence boundary
