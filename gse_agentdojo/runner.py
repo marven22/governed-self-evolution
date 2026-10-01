@@ -24,6 +24,7 @@ from . import ADAPTER_VERSION, PINNED_AGENTDOJO_VERSION
 from .agents import (
     OFFLINE_PROVIDERS,
     RecordingPipeline,
+    UsageMeter,
     agent_fingerprint,
     anthropic_client,
     build_pipeline,
@@ -40,6 +41,7 @@ from .split import cohort_of, validate_split
 PROFILE_PROTOCOL = "gse-agentdojo-run-profile-v1"
 RESULT_PROTOCOL = "gse-agentdojo-run-result-v2"
 GRAMMAR_FILE = Path("configs/agentdojo_update_grammar_v1.json")
+PRICING_FILE = Path("configs/anthropic_pricing_v1.json")
 PROFILE_FIELDS = {
     "protocol",
     "name",
@@ -58,6 +60,41 @@ PROFILE_FIELDS = {
 
 def load_json(path: Path) -> dict[str, Any]:
     return json.loads(path.read_text())
+
+
+def case_cost_usd(usage: dict[str, Any], model_price: dict[str, float], pricing: dict[str, Any]) -> float:
+    """Estimated list-price cost of one case from its recorded token usage."""
+    per_token_in, per_token_out = model_price["input"] / 1e6, model_price["output"] / 1e6
+    return (
+        usage["input_tokens"] * per_token_in
+        + usage["output_tokens"] * per_token_out
+        + usage["cache_creation_input_tokens"] * per_token_in * pricing["cache_write_multiplier"]
+        + usage["cache_read_input_tokens"] * per_token_in * pricing["cache_read_multiplier"]
+    )
+
+
+def _skipped_row(user_task_id: str, injection_task_id: str | None) -> dict[str, Any]:
+    case_id = f"{user_task_id}__{injection_task_id or 'none'}"
+    return {
+        "case_id": case_id,
+        "kind": "benign" if injection_task_id is None else "security",
+        "user_task_id": user_task_id,
+        "injection_task_id": injection_task_id,
+        "status": "skipped_budget",
+        "utility": None,
+        "injection_task_success": None,
+        "injection_exposed": None,
+        "utility_lenient": None,
+        "attacker_contacted": None,
+        "error": None,
+        "elapsed_seconds": 0.0,
+        "usage": UsageMeter().to_dict(),
+        "pipeline_attempts": 0,
+        "aborted": False,
+        "policy_blocked_calls": 0,
+        "cost_usd": 0.0,
+        "trace_ref": None,
+    }
 
 
 def load_update(grammar_path: Path, name: str) -> dict[str, Any]:
@@ -123,6 +160,7 @@ def _rate(rows: list[dict[str, Any]], key: str) -> dict[str, Any]:
 
 def summarize(rows: list[dict[str, Any]]) -> dict[str, Any]:
     done = [row for row in rows if row["status"] == "completed"]
+    skipped = sum(row["status"] == "skipped_budget" for row in rows)
     benign = [row for row in done if row["kind"] == "benign"]
     security = [row for row in done if row["kind"] == "security"]
     injection = _rate(security, "injection_task_success")
@@ -130,7 +168,12 @@ def summarize(rows: list[dict[str, Any]]) -> dict[str, Any]:
     usage_keys = ("calls", "input_tokens", "output_tokens", "cache_creation_input_tokens", "cache_read_input_tokens")
     return {
         "complete": len(done) == len(rows),
-        "cases": {"planned": len(rows), "completed": len(done), "errored": len(rows) - len(done)},
+        "cases": {
+            "planned": len(rows),
+            "completed": len(done),
+            "errored": len(rows) - len(done) - skipped,
+            "skipped_budget": skipped,
+        },
         "benign_utility": _rate(benign, "utility"),
         "utility_under_attack": _rate(security, "utility"),
         "injection_success": injection,
@@ -147,6 +190,9 @@ def summarize(rows: list[dict[str, Any]]) -> dict[str, Any]:
         "policy_blocked_calls": sum(row["policy_blocked_calls"] for row in done),
         "usage": {key: sum(row["usage"][key] for row in rows) for key in usage_keys},
         "elapsed_seconds": round(sum(row["elapsed_seconds"] for row in rows), 3),
+        "estimated_cost_usd": None
+        if any(row["cost_usd"] is None for row in rows)
+        else round(sum(row["cost_usd"] for row in rows), 4),
     }
 
 
@@ -250,10 +296,17 @@ def run_benchmark(
     repetition: int = 0,
     update_name: str = "HOLD",
     grammar_path: Path | None = None,
+    max_usd: float | None = None,
+    pricing_path: Path | None = None,
     client: Any | None = None,
     on_case: Callable[[int, int, dict[str, Any]], None] | None = None,
 ) -> dict[str, Any]:
-    """``on_case(index, total, row)`` is called after each case, e.g. for progress output."""
+    """``on_case(index, total, row)`` is called after each case, e.g. for progress output.
+
+    ``max_usd`` caps estimated list-price spend. It is checked before each case
+    against the most expensive case so far, so one case can still run past the
+    cap by at most its own cost; cases not started are recorded as skipped.
+    """
     if (output_dir / "result.json").exists():
         raise FileExistsError(f"{output_dir} already holds a result; choose a new output directory")
     profile, agent = load_json(profile_path), load_json(agent_path)
@@ -268,6 +321,12 @@ def run_benchmark(
         # One client for the whole run; fail before any case if it cannot authenticate.
         client = client if client is not None else anthropic_client()
         preflight_anthropic(client, agent["model"])
+    model_price, pricing = None, None
+    if agent["provider"] == "anthropic":
+        pricing = load_json(pricing_path or repo_root / PRICING_FILE)
+        model_price = pricing["models"].get(agent["model"])
+        if model_price is None and max_usd is not None:
+            raise ValueError(f"no price for {agent['model']!r} in the pricing file; cannot enforce --max-usd")
     attack = load_attack(profile["attack"], suite)
     tools_schema = [
         {"name": f.name, "description": f.description, "parameters": f.parameters.model_json_schema()}
@@ -276,12 +335,23 @@ def run_benchmark(
     started_at = datetime.now(timezone.utc).isoformat()
     cases = [(t, None) for t in profile["benign_user_tasks"]] + [tuple(p) for p in profile["security_pairs"]]
     rows = []
+    spent, costliest, budget_stop = 0.0, 0.0, None
     for index, (user_task_id, injection_task_id) in enumerate(cases, start=1):
+        if max_usd is not None and budget_stop is None and spent + costliest > max_usd:
+            budget_stop = {"max_usd": max_usd, "spent_usd": round(spent, 4), "stopped_before_case": index}
+        if budget_stop is not None:
+            rows.append(_skipped_row(user_task_id, injection_task_id))
+            continue
         row, trace = run_case(suite, agent, attack, user_task_id, injection_task_id, update=update, client=client)
-        _write_json(output_dir / "traces" / f"{row['case_id']}.json", trace)
+        row["cost_usd"] = 0.0 if pricing is None else (
+            None if model_price is None else round(case_cost_usd(row["usage"], model_price, pricing), 5)
+        )
+        spent += row["cost_usd"] or 0.0
+        costliest = max(costliest, row["cost_usd"] or 0.0)
+        _write_json(output_dir / "traces" / f"{row['case_id']}.json", {**trace, "cost_usd": row["cost_usd"]})
         rows.append({**row, "trace_ref": f"traces/{row['case_id']}.json"})
         if on_case is not None:
-            on_case(index, len(cases), row)
+            on_case(index, len(cases), {**row, "spent_usd": round(spent, 4)})
     result = {
         "protocol": RESULT_PROTOCOL,
         "adapter_version": ADAPTER_VERSION,
@@ -295,6 +365,8 @@ def run_benchmark(
         "attack": attack_fingerprint(attack),
         "split": {"path": profile["split"]["path"], "sha256": split_sha256},
         "provenance": {**runtime_provenance(), "git": git_state(repo_root)},
+        "pricing": None if pricing is None else {"as_of": pricing["as_of"], "model": model_price},
+        "budget": {"max_usd": max_usd, "stop": budget_stop},
         "metrics": summarize(rows),
         "cases": rows,
     }
@@ -308,6 +380,10 @@ def _fmt_rate(metric: dict[str, Any]) -> str:
         return "n/a"
     low, high = metric["wilson95"]
     return f"{metric['rate']:.3f} ({metric['successes']}/{metric['n']}; 95% CI {low:.2f}–{high:.2f})"
+
+
+def _fmt_usd(value: float | None) -> str:
+    return "unknown (model not in pricing file)" if value is None else f"${value:.4f}"
 
 
 def render_summary(result: dict[str, Any]) -> str:
@@ -337,6 +413,7 @@ def render_summary(result: dict[str, Any]) -> str:
         f"| *Diagnostic:* attacker address contacted | {_fmt_rate(metrics['attacker_contacted'])} |",
         f"| Tool calls blocked by policy | {metrics['policy_blocked_calls']} |",
         f"| Model calls / input / output tokens | {usage['calls']} / {usage['input_tokens']} / {usage['output_tokens']} |",
+        f"| Estimated cost (list price) | {_fmt_usd(metrics['estimated_cost_usd'])} |",
         f"| Elapsed seconds | {metrics['elapsed_seconds']} |",
         "",
         "| Case | Kind | Status | Utility | Lenient | Exposed | Injection succeeded | Attacker contacted | Blocked | Calls | Seconds |",
@@ -348,6 +425,13 @@ def render_summary(result: dict[str, Any]) -> str:
             f"{row['injection_exposed']} | {row['injection_task_success']} | {row['attacker_contacted']} | "
             f"{row['policy_blocked_calls']} | {row['usage']['calls']} | {row['elapsed_seconds']} |"
         )
+    stop = result["budget"]["stop"]
+    if stop is not None:
+        lines += [
+            "",
+            f"**Stopped by the ${stop['max_usd']:.2f} spend cap** before case {stop['stopped_before_case']} "
+            f"(spent ${stop['spent_usd']:.4f}); remaining cases are marked `skipped_budget`.",
+        ]
     errors = [row for row in result["cases"] if row["error"]]
     if errors:
         lines += ["", "## Errors", ""] + [f"- `{row['case_id']}`: {row['error']}" for row in errors]

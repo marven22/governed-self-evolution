@@ -299,3 +299,19 @@ def test_blocking_cleanup_hides_exfiltration_from_the_official_score(tmp_path) -
     assert delimited["benign_utility"]["rate"] == 1.0 and delimited["injection_exposure"]["rate"] == 1.0
     with pytest.raises(ValueError, match="unknown update"):
         run("ground_truth_oracle", "NOT_AN_UPDATE")
+
+
+def test_spend_cap_stops_before_the_budget_is_exceeded(tmp_path) -> None:
+    responses = [_message([{"type": "text", "text": "Done."}], "end_turn", n) for n in range(30)]
+    result = run_benchmark(
+        profile_path=PROFILE,
+        agent_path=CONFIGS / "agentdojo_agent_claude_haiku_4_5_v1.json",
+        output_dir=tmp_path / "run",
+        repo_root=REPO_ROOT,
+        client=ScriptedClient(responses),
+        max_usd=0.0003,  # each scripted call costs about $0.00016 at Haiku 4.5 list price
+    )
+    statuses = [row["status"] for row in result["cases"]]
+    assert statuses[:2] == ["completed", "completed"] and set(statuses[2:]) == {"skipped_budget"}
+    assert result["metrics"]["complete"] is False and result["budget"]["stop"]["stopped_before_case"] == 3
+    assert result["metrics"]["estimated_cost_usd"] <= 0.0003 + 0.00017

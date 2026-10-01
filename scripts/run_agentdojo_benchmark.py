@@ -32,7 +32,9 @@ def print_progress(index: int, total: int, row: dict) -> None:
     print(
         f"[{index}/{total}] {row['case_id']}: {row['status']} {outcome}"
         + (f" blocked={row['policy_blocked_calls']}" if row["policy_blocked_calls"] else "")
-        + f" ({row['usage']['calls']} calls, {row['elapsed_seconds']}s)",
+        + f" ({row['usage']['calls']} calls, {row['elapsed_seconds']}s"
+        + (f", spent ${row['spent_usd']:.3f}" if row.get("cost_usd") else "")
+        + ")",
         file=sys.stderr,
         flush=True,
     )
@@ -44,6 +46,7 @@ def main() -> None:
     parser.add_argument("--agent", type=Path, required=True)
     parser.add_argument("--update", default="HOLD", help="named update from configs/agentdojo_update_grammar_v1.json")
     parser.add_argument("--repetition", type=int, default=0)
+    parser.add_argument("--max-usd", type=float, help="stop starting new cases once estimated spend would pass this")
     parser.add_argument("--output-dir", type=Path, help="default: runs/agentdojo/<profile>__<agent>__<update>__rep<k>")
     args = parser.parse_args()
 
@@ -62,11 +65,14 @@ def main() -> None:
             repo_root=REPO_ROOT,
             repetition=args.repetition,
             update_name=args.update,
+            max_usd=args.max_usd,
             on_case=print_progress,
         )
     except (RuntimeError, FileExistsError, ValueError) as error:
         print(f"error: {error}", file=sys.stderr)
         sys.exit(2)
+    if result["budget"]["stop"] is not None:
+        print(f"Spend cap reached: {result['budget']['stop']}", file=sys.stderr)
     print(json.dumps({"output_dir": str(output_dir), "metrics": result["metrics"]}, indent=2))
     if not result["metrics"]["complete"]:
         sys.exit(1)
