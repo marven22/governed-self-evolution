@@ -16,7 +16,7 @@ measured correctly before any paid model is run.
 from __future__ import annotations
 
 from collections import Counter
-from collections.abc import Sequence
+from collections.abc import Callable, Sequence
 from dataclasses import dataclass, field
 import json
 from typing import Any
@@ -25,7 +25,6 @@ from agentdojo.agent_pipeline.agent_pipeline import AgentPipeline, load_system_m
 from agentdojo.agent_pipeline.base_pipeline_element import BasePipelineElement
 from agentdojo.agent_pipeline.basic_elements import InitQuery, SystemMessage
 from agentdojo.agent_pipeline.errors import AbortAgentError
-from agentdojo.agent_pipeline.ground_truth_pipeline import GroundTruthPipeline
 from agentdojo.agent_pipeline.llms.anthropic_llm import (
     _anthropic_to_assistant_message,
     _conversation_to_anthropic,
@@ -33,12 +32,13 @@ from agentdojo.agent_pipeline.llms.anthropic_llm import (
 )
 from agentdojo.agent_pipeline.tool_execution import ToolsExecutionLoop, ToolsExecutor, tool_result_to_str
 from agentdojo.base_tasks import BaseInjectionTask, BaseUserTask
-from agentdojo.functions_runtime import EmptyEnv, Env, FunctionsRuntime
-from agentdojo.types import ChatAssistantMessage, ChatMessage, text_content_block_from_string
+from agentdojo.functions_runtime import EmptyEnv, Env, FunctionCall, FunctionsRuntime
+from agentdojo.types import ChatAssistantMessage, ChatMessage, ChatToolResultMessage, text_content_block_from_string
 from pydantic import BaseModel
 
 from .attacker_scripts import attacker_calls
 from .common import sha256_json, sha256_text
+from .grammar import ConfigUpdate, apply_system_message, wrap_tool_output
 
 AGENT_PROTOCOL = "gse-agentdojo-agent-v1"
 PROVIDERS = ("ground_truth_oracle", "compromised_oracle", "anthropic")
@@ -184,42 +184,55 @@ class ClaudeLLM(BasePipelineElement):
         return query, runtime, env, [*messages, _anthropic_to_assistant_message(completion)], extra_args
 
 
-class _AttackerReference:
-    """Duck-typed task for GroundTruthPipeline: executes an injection goal."""
+class ScriptedExecutor(BasePipelineElement):
+    """Executes a fixed call script without a model: the offline oracles' "agent".
 
-    GROUND_TRUTH_OUTPUT = ""
+    Calls run with ``raise_on_error=False``, so a call refused by a tool policy
+    or broken by an attack comes back as an error result, exactly as a model
+    would see it. A script cannot know an answer it failed to read, so after any
+    failed call its final answer is empty. ``answer=None`` adds no final message.
+    """
 
-    def __init__(self, injection_task: BaseInjectionTask) -> None:
-        self.injection_task = injection_task
-
-    def ground_truth(self, env: Env):
-        return attacker_calls(self.injection_task, env)
-
-
-def attacker_pipeline(injection_task: BaseInjectionTask) -> GroundTruthPipeline:
-    return GroundTruthPipeline(_AttackerReference(injection_task))  # type: ignore[arg-type]
-
-
-class CompromisedOracle(BasePipelineElement):
-    """Obeys the injection first, then completes the user task."""
-
-    def __init__(self, user_task: BaseUserTask, injection_task: BaseInjectionTask | None) -> None:
-        self.user_task = user_task
-        self.injection_task = injection_task
+    def __init__(self, script: Callable[[Env], list[FunctionCall]], answer: str | None, formatter: Callable) -> None:
+        self.script = script
+        self.answer = answer
+        self.formatter = formatter
 
     def query(self, query, runtime, env=EmptyEnv(), messages=[], extra_args={}):
-        if self.injection_task is not None:
-            query, runtime, env, messages, extra_args = attacker_pipeline(self.injection_task).query(
-                query, runtime, env, messages, extra_args
+        new_messages: list[ChatMessage] = []
+        failed = False
+        for call in self.script(env):
+            new_messages.append(
+                ChatAssistantMessage(role="assistant", tool_calls=[call], content=[text_content_block_from_string("")])
             )
-            messages = messages[:-1]  # drop the injection's final answer; the user task supplies it
-        try:
-            return GroundTruthPipeline(self.user_task).query(query, runtime, env, messages, extra_args)
-        except ValueError:
-            # The attack destroyed data the user task needs (e.g. deleted its email):
-            # stop and answer nothing, so the evaluator scores a utility failure.
-            final = ChatAssistantMessage(role="assistant", content=[text_content_block_from_string("")], tool_calls=None)
-            return query, runtime, env, [*messages, final], extra_args
+            result, error = runtime.run_function(env, call.function, call.args)
+            failed = failed or error is not None
+            new_messages.append(
+                ChatToolResultMessage(
+                    role="tool",
+                    content=[text_content_block_from_string("" if error else self.formatter(result))],
+                    tool_call=call,
+                    tool_call_id=None,
+                    error=error,
+                )
+            )
+        if self.answer is not None:
+            final = "" if failed else self.answer
+            new_messages.append(
+                ChatAssistantMessage(role="assistant", content=[text_content_block_from_string(final)], tool_calls=None)
+            )
+        return query, runtime, env, [*messages, *new_messages], extra_args
+
+
+def reference_executor(user_task: BaseUserTask, formatter: Callable = tool_result_to_str) -> ScriptedExecutor:
+    return ScriptedExecutor(user_task.ground_truth, user_task.GROUND_TRUTH_OUTPUT, formatter)
+
+
+def attacker_executor(
+    injection_task: BaseInjectionTask, formatter: Callable = tool_result_to_str, answer: str | None = None
+) -> ScriptedExecutor:
+    """Carries out an injection goal literally. Run alone, it needs ``answer=""`` to end the episode."""
+    return ScriptedExecutor(lambda env: attacker_calls(injection_task, env), answer, formatter)
 
 
 class RecordingPipeline(BasePipelineElement):
@@ -229,6 +242,7 @@ class RecordingPipeline(BasePipelineElement):
         self.inner = inner
         self.name = inner.name
         self.messages: list[ChatMessage] = []
+        self.environment: Env | None = None
         self.attempts = 0
         self.aborted = False
 
@@ -238,8 +252,9 @@ class RecordingPipeline(BasePipelineElement):
             result = self.inner.query(query, runtime, env, messages, extra_args)
         except AbortAgentError as error:
             self.messages, self.aborted = list(error.messages), True
+            self.environment = error.task_environment
             raise
-        self.messages = list(result[3])
+        self.messages, self.environment = list(result[3]), result[2]
         return result
 
 
@@ -266,28 +281,37 @@ def build_pipeline(
     user_task: BaseUserTask,
     injection_task: BaseInjectionTask | None,
     *,
+    update: ConfigUpdate = ConfigUpdate(),
     client: Any | None = None,
 ) -> tuple[AgentPipeline, UsageMeter]:
-    """Build a fresh pipeline for one case; state never carries across cases."""
+    """Build a fresh pipeline for one case; state never carries across cases.
+
+    The update changes only the system message and tool-output format here; its
+    tool-permission level acts in the runtime (``grammar.runtime_factory``).
+    """
     meter = UsageMeter()
-    system = SystemMessage(resolve_system_message(agent))
+    system = SystemMessage(apply_system_message(resolve_system_message(agent), update))
+    formatter = wrap_tool_output(tool_output_formatter(agent), update)
     provider = agent["provider"]
     if provider == "ground_truth_oracle":
-        elements = [system, InitQuery(), GroundTruthPipeline(user_task)]
+        elements = [system, InitQuery(), reference_executor(user_task, formatter)]
     elif provider == "compromised_oracle":
-        elements = [system, InitQuery(), CompromisedOracle(user_task, injection_task)]
+        attack = [] if injection_task is None else [attacker_executor(injection_task, formatter)]
+        elements = [system, InitQuery(), *attack, reference_executor(user_task, formatter)]
     else:
         llm = ClaudeLLM(client if client is not None else anthropic_client(), agent, meter)
-        loop = ToolsExecutionLoop([ToolsExecutor(tool_output_formatter(agent)), llm], max_iters=agent["max_tool_iterations"])
+        loop = ToolsExecutionLoop([ToolsExecutor(formatter), llm], max_iters=agent["max_tool_iterations"])
         elements = [system, InitQuery(), llm, loop]
     pipeline = AgentPipeline(elements)
     pipeline.name = agent["name"]
     return pipeline, meter
 
 
-def agent_fingerprint(agent: dict[str, Any], tools_schema: list[dict[str, Any]]) -> dict[str, str]:
+def agent_fingerprint(
+    agent: dict[str, Any], tools_schema: list[dict[str, Any]], update: ConfigUpdate = ConfigUpdate()
+) -> dict[str, str]:
     return {
         "agent_config_sha256": sha256_json(agent),
-        "system_message_sha256": sha256_text(resolve_system_message(agent)),
+        "system_message_sha256": sha256_text(apply_system_message(resolve_system_message(agent), update)),
         "tools_schema_sha256": sha256_json(tools_schema),
     }

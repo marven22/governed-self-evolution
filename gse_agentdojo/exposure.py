@@ -14,6 +14,8 @@ from typing import Any
 
 import yaml
 
+from .grammar import unwrap_tool_output
+
 _WHITESPACE = re.compile(r"\s+")
 
 
@@ -46,7 +48,7 @@ def _visible_text(content: str) -> str:
 def exposed_injection_vectors(messages: Sequence[Mapping[str, Any]], injections: Mapping[str, str]) -> list[str]:
     """Injection vector IDs whose text appears in a tool result shown to the model."""
     visible = " ".join(
-        _visible_text(block["content"])
+        _visible_text(unwrap_tool_output(block["content"]))
         for message in messages
         if message["role"] == "tool"
         for block in (message["content"] or [])

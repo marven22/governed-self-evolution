@@ -26,7 +26,8 @@ prompt injection or violating tool-use policy.
   AgentDojo extension.
 - `gse_agentdojo/` — pinned AgentDojo runner (Workspace suite), family-blocked
   task split, offline evaluator oracles; see
-  `docs/AGENTDOJO_ADAPTER_PROTOCOL_V1.md`.
+  `docs/AGENTDOJO_ADAPTER_PROTOCOL_V1.md`; persistent update grammar in
+  `docs/AGENTDOJO_UPDATE_GRAMMAR_PROTOCOL_V1.md`.
 - `docs/M14_*.md` — original MetaWorld protocols and pilot records.
 
 ## Current status and evidence boundary

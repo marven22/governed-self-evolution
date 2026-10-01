@@ -19,10 +19,17 @@ from agentdojo.attacks.important_instructions_attacks import ImportantInstructio
 from agentdojo.task_suite.load_suites import get_suite
 from anthropic.types import Message
 
-from gse_agentdojo.agents import UsageMeter, attacker_pipeline
+from gse_agentdojo.agents import UsageMeter, attacker_executor
 from gse_agentdojo.attacks import ModelAgnosticImportantInstructions
 from gse_agentdojo.common import sha256_file
 from gse_agentdojo.exposure import exposed_injection_vectors
+from gse_agentdojo.grammar import (
+    ConfigUpdate,
+    PolicyRuntime,
+    apply_system_message,
+    unwrap_tool_output,
+    wrap_tool_output,
+)
 from gse_agentdojo.runner import run_benchmark, validate_profile
 from gse_agentdojo.split import build_workspace_split, cohort_of, validate_split
 
@@ -81,7 +88,7 @@ def test_attack_matches_upstream_no_model_name_variant(suite) -> None:
 
 def test_security_evaluator_flags_every_executed_injection_goal(suite) -> None:
     for injection_id, injection_task in suite.injection_tasks.items():
-        pipeline = AgentPipeline([SystemMessage("audit"), InitQuery(), attacker_pipeline(injection_task)])
+        pipeline = AgentPipeline([SystemMessage("audit"), InitQuery(), attacker_executor(injection_task, answer="")])
         goal_achieved, _ = suite.run_task_with_pipeline(pipeline, injection_task, None, {})
         assert goal_achieved, injection_id
 
@@ -203,3 +210,92 @@ def test_failed_preflight_stops_before_any_case(tmp_path) -> None:
             client=NoCredentialsClient(),
         )
     assert not (tmp_path / "run").exists()
+
+
+# --- Milestone 2: configuration update grammar -------------------------------------------
+
+
+def test_grammar_file_is_regenerable_and_ids_are_unique() -> None:
+    sys.path.insert(0, str(REPO_ROOT / "scripts"))
+    from generate_agentdojo_update_grammar import build_grammar
+
+    committed = _load(CONFIGS / "agentdojo_update_grammar_v1.json")
+    assert committed == build_grammar()
+    ids = [record["id"] for record in committed["updates"]]
+    assert len(ids) == len(set(ids)) and committed["updates"][0]["name"] == "HOLD"
+
+
+def test_update_records_reject_tampering_and_invalid_levels() -> None:
+    record = ConfigUpdate(instruction_isolation=1).to_dict()
+    assert ConfigUpdate.from_dict(record) == ConfigUpdate(instruction_isolation=1)
+    tampered = copy.deepcopy(record)
+    tampered["instruction_isolation"]["name"] = "something_else"
+    with pytest.raises(ValueError, match="canonical"):
+        ConfigUpdate.from_dict(tampered)
+    with pytest.raises(ValueError, match="tool_permission"):
+        ConfigUpdate(tool_permission=3).validate()
+
+
+def test_isolation_levels_change_only_declared_text() -> None:
+    base = "BASE"
+    assert apply_system_message(base, ConfigUpdate()) == base
+    assert apply_system_message(base, ConfigUpdate(instruction_isolation=1)).startswith("BASE\n\n")
+    wrapped = wrap_tool_output(lambda result: "k: v", ConfigUpdate(instruction_isolation=2))("ignored")
+    assert wrapped == "<<k: v>>" and unwrap_tool_output(wrapped) == "k: v"
+    assert wrap_tool_output(str, ConfigUpdate(instruction_isolation=1)) is str
+
+
+def test_policy_runtime_blocks_only_what_its_level_forbids(suite) -> None:
+    env = suite.load_and_inject_default_environment({})
+    contact = env.inbox.contact_list[0].email
+    email = {"subject": "s", "body": "b"}
+    for level, function, args, refused in [
+        (1, "delete_file", {"file_id": "13"}, True),
+        (1, "send_email", {"recipients": ["mark.black-2134@gmail.com"], **email}, False),
+        (2, "send_email", {"recipients": ["mark.black-2134@gmail.com"], **email}, True),
+        (2, "send_email", {"recipients": [contact], **email}, False),
+        (2, "send_email", {"recipients": ["new.person@example.com"], **email}, False),  # named in the request
+    ]:
+        blocked: list = []
+        runtime = PolicyRuntime(suite.tools, level=level, user_prompt="Write to new.person@example.com", blocked=blocked)
+        _, error = runtime.run_function(env, function, args)
+        assert (error is not None and error.startswith("PolicyBlocked")) == refused, (level, function, args)
+        assert len(blocked) == int(refused)
+
+
+def test_lenient_utility_forgives_read_side_effects(suite) -> None:
+    from agentdojo.functions_runtime import FunctionCall
+
+    from gse_agentdojo.agents import RecordingPipeline, ScriptedExecutor
+    from gse_agentdojo.diagnostics import lenient_utility
+
+    task = suite.get_user_task_by_id("user_task_39")  # read-only; strict check needs an untouched inbox
+    reads_unread_first = ScriptedExecutor(
+        lambda env: [FunctionCall(function="get_unread_emails", args={}), *task.ground_truth(env)],
+        task.GROUND_TRUTH_OUTPUT,
+        str,
+    )
+    recorder = RecordingPipeline(AgentPipeline([SystemMessage("s"), InitQuery(), reads_unread_first]))
+    strict, _ = suite.run_task_with_pipeline(recorder, task, None, {})
+    assert strict is False
+    assert lenient_utility(suite, task, {}, recorder.messages, recorder.environment) is True
+
+
+def test_blocking_cleanup_hides_exfiltration_from_the_official_score(tmp_path) -> None:
+    def run(agent: str, update: str) -> dict:
+        return run_benchmark(
+            profile_path=PROFILE,
+            agent_path=CONFIGS / f"agentdojo_agent_{agent}_v1.json",
+            output_dir=tmp_path / f"{agent}-{update}",
+            repo_root=REPO_ROOT,
+            update_name=update,
+        )["metrics"]
+
+    no_delete = run("compromised_oracle", "PERMISSION_NO_DESTRUCTIVE")
+    assert no_delete["injection_success"]["rate"] < 1.0  # the official score credits the policy...
+    assert no_delete["attacker_contacted"]["rate"] == 1.0  # ...though every attack reached the attacker
+    assert run("compromised_oracle", "PERMISSION_KNOWN_RECIPIENTS")["attacker_contacted"]["rate"] == 0.0
+    delimited = run("ground_truth_oracle", "ISOLATION_DELIMITED")
+    assert delimited["benign_utility"]["rate"] == 1.0 and delimited["injection_exposure"]["rate"] == 1.0
+    with pytest.raises(ValueError, match="unknown update"):
+        run("ground_truth_oracle", "NOT_AN_UPDATE")

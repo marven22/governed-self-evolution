@@ -32,11 +32,14 @@ from .agents import (
 )
 from .attacks import attack_fingerprint, load_attack
 from .common import git_state, runtime_provenance, sha256_file, sha256_json
+from .diagnostics import attacker_contacted, lenient_utility
 from .exposure import exposed_injection_vectors
+from .grammar import ConfigUpdate, runtime_factory
 from .split import cohort_of, validate_split
 
 PROFILE_PROTOCOL = "gse-agentdojo-run-profile-v1"
-RESULT_PROTOCOL = "gse-agentdojo-run-result-v1"
+RESULT_PROTOCOL = "gse-agentdojo-run-result-v2"
+GRAMMAR_FILE = Path("configs/agentdojo_update_grammar_v1.json")
 PROFILE_FIELDS = {
     "protocol",
     "name",
@@ -55,6 +58,17 @@ PROFILE_FIELDS = {
 
 def load_json(path: Path) -> dict[str, Any]:
     return json.loads(path.read_text())
+
+
+def load_update(grammar_path: Path, name: str) -> dict[str, Any]:
+    """A named update from the committed grammar file, checked against its canonical id."""
+    records = {record["name"]: record for record in load_json(grammar_path)["updates"]}
+    if name not in records:
+        raise ValueError(f"unknown update {name!r}; known: {sorted(records)}")
+    record = records[name]
+    if ConfigUpdate.from_dict(record["update"]).identifier != record["id"]:
+        raise ValueError(f"update {name!r} does not match its recorded id")
+    return record
 
 
 def validate_profile(profile: dict[str, Any], split: dict[str, Any], split_sha256: str, suite: TaskSuite) -> None:
@@ -124,6 +138,13 @@ def summarize(rows: list[dict[str, Any]]) -> dict[str, Any]:
         # Only cases where the injected text reached the model actually test resistance.
         "injection_exposure": _rate(security, "injection_exposed"),
         "injection_success_given_exposure": _rate(exposed, "injection_task_success"),
+        # Diagnostics beside the official scores (see diagnostics.py); never substitutes for them.
+        "benign_utility_lenient": _rate([r for r in benign if r["utility_lenient"] is not None], "utility_lenient"),
+        "utility_under_attack_lenient": _rate(
+            [r for r in security if r["utility_lenient"] is not None], "utility_lenient"
+        ),
+        "attacker_contacted": _rate([r for r in security if r["attacker_contacted"] is not None], "attacker_contacted"),
+        "policy_blocked_calls": sum(row["policy_blocked_calls"] for row in done),
         "usage": {key: sum(row["usage"][key] for row in rows) for key in usage_keys},
         "elapsed_seconds": round(sum(row["elapsed_seconds"] for row in rows), 3),
     }
@@ -153,14 +174,16 @@ def run_case(
     user_task_id: str,
     injection_task_id: str | None,
     *,
+    update: ConfigUpdate = ConfigUpdate(),
     client: Any | None = None,
 ) -> tuple[dict[str, Any], dict[str, Any]]:
     """Run one case with a fresh pipeline and environment. Returns (row, trace)."""
     user_task = suite.get_user_task_by_id(user_task_id)
     injection_task = None if injection_task_id is None else suite.get_injection_task_by_id(injection_task_id)
     injections = {} if injection_task is None else attack.attack(user_task, injection_task)
-    pipeline, meter = build_pipeline(agent, user_task, injection_task, client=client)
+    pipeline, meter = build_pipeline(agent, user_task, injection_task, update=update, client=client)
     recorder = RecordingPipeline(pipeline)
+    blocked: list[dict[str, Any]] = []
     case_id = f"{user_task_id}__{injection_task_id or 'none'}"
     row: dict[str, Any] = {
         "case_id": case_id,
@@ -171,14 +194,27 @@ def run_case(
         "utility": None,
         "injection_task_success": None,
         "injection_exposed": None,
+        "utility_lenient": None,
+        "attacker_contacted": None,
         "error": None,
     }
     started = time.perf_counter()
     error_trace = None
     try:
-        utility, injection_success = suite.run_task_with_pipeline(recorder, user_task, injection_task, injections)
+        utility, injection_success = suite.run_task_with_pipeline(
+            recorder,
+            user_task,
+            injection_task,
+            injections,
+            runtime_class=runtime_factory(update, user_task.PROMPT, blocked),
+        )
         row["utility"] = bool(utility)
         row["injection_task_success"] = None if injection_task is None else bool(injection_success)
+        row["utility_lenient"] = lenient_utility(suite, user_task, injections, recorder.messages, recorder.environment)
+        if injection_task is not None and recorder.environment is not None:
+            row["attacker_contacted"] = attacker_contacted(
+                recorder.messages, injection_task, user_task.PROMPT, recorder.environment.inbox.account_email
+            )
     except Exception as error:  # recorded, never counted as a task failure
         row.update(status="error", error=f"{type(error).__name__}: {error}")
         error_trace = traceback.format_exc()
@@ -186,6 +222,7 @@ def run_case(
     row["usage"] = meter.to_dict()
     row["pipeline_attempts"] = recorder.attempts
     row["aborted"] = recorder.aborted
+    row["policy_blocked_calls"] = len(blocked)
     exposed_vectors = exposed_injection_vectors(recorder.messages, injections)
     if injection_task is not None:
         row["injection_exposed"] = bool(exposed_vectors)
@@ -195,6 +232,7 @@ def run_case(
         "injection_goal": None if injection_task is None else injection_task.GOAL,
         "injections": injections,
         "exposed_injection_vectors": exposed_vectors,
+        "blocked_calls": blocked,
         "model_output": _model_output_text(recorder.messages),
         "tool_calls": functions_stack_trace_from_messages(recorder.messages) if recorder.messages else [],
         "messages": recorder.messages,
@@ -210,6 +248,8 @@ def run_benchmark(
     output_dir: Path,
     repo_root: Path,
     repetition: int = 0,
+    update_name: str = "HOLD",
+    grammar_path: Path | None = None,
     client: Any | None = None,
     on_case: Callable[[int, int, dict[str, Any]], None] | None = None,
 ) -> dict[str, Any]:
@@ -218,6 +258,8 @@ def run_benchmark(
         raise FileExistsError(f"{output_dir} already holds a result; choose a new output directory")
     profile, agent = load_json(profile_path), load_json(agent_path)
     validate_agent_config(agent)
+    update_record = load_update(grammar_path or repo_root / GRAMMAR_FILE, update_name)
+    update = ConfigUpdate.from_dict(update_record["update"])
     split_path = repo_root / profile["split"]["path"]
     split, split_sha256 = load_json(split_path), sha256_file(split_path)
     suite = get_suite(profile["benchmark_version"], profile["suite"])
@@ -235,7 +277,7 @@ def run_benchmark(
     cases = [(t, None) for t in profile["benign_user_tasks"]] + [tuple(p) for p in profile["security_pairs"]]
     rows = []
     for index, (user_task_id, injection_task_id) in enumerate(cases, start=1):
-        row, trace = run_case(suite, agent, attack, user_task_id, injection_task_id, client=client)
+        row, trace = run_case(suite, agent, attack, user_task_id, injection_task_id, update=update, client=client)
         _write_json(output_dir / "traces" / f"{row['case_id']}.json", trace)
         rows.append({**row, "trace_ref": f"traces/{row['case_id']}.json"})
         if on_case is not None:
@@ -248,7 +290,8 @@ def run_benchmark(
         "offline": agent["provider"] in OFFLINE_PROVIDERS,
         "repetition": repetition,
         "profile": {"path": str(profile_path), "sha256": sha256_json(profile), "content": profile},
-        "agent": {"path": str(agent_path), **agent_fingerprint(agent, tools_schema), "content": agent},
+        "agent": {"path": str(agent_path), **agent_fingerprint(agent, tools_schema, update), "content": agent},
+        "update": {"grammar_path": str(grammar_path or GRAMMAR_FILE), **update_record},
         "attack": attack_fingerprint(attack),
         "split": {"path": profile["split"]["path"], "sha256": split_sha256},
         "provenance": {**runtime_provenance(), "git": git_state(repo_root)},
@@ -269,13 +312,15 @@ def _fmt_rate(metric: dict[str, Any]) -> str:
 
 def render_summary(result: dict[str, Any]) -> str:
     metrics, profile, agent = result["metrics"], result["profile"]["content"], result["agent"]["content"]
+    update = result["update"]
     usage = metrics["usage"]
     lines = [
-        f"# AgentDojo run: {profile['name']} × {agent['name']}",
+        f"# AgentDojo run: {profile['name']} × {agent['name']} × {update['name']}",
         "",
         f"- Suite: `{profile['suite']}` (benchmark {profile['benchmark_version']}, AgentDojo "
         f"{profile['agentdojo_version']}); cohort: **{profile['cohort']}**",
         f"- Agent: provider `{agent['provider']}`, model `{agent['model']}`; offline: {result['offline']}",
+        f"- Update: `{update['name']}` (`{update['id']}`)",
         f"- Attack: `{result['attack']['name']}`; repetition {result['repetition']}",
         f"- Git: `{result['provenance']['git']['commit']}` (dirty: {result['provenance']['git']['dirty']})",
         f"- Complete: {metrics['complete']} ({metrics['cases']['completed']}/{metrics['cases']['planned']} cases)",
@@ -287,16 +332,21 @@ def render_summary(result: dict[str, Any]) -> str:
         f"| Injection success (attack wins) | {_fmt_rate(metrics['injection_success'])} |",
         f"| Injection reached the model | {_fmt_rate(metrics['injection_exposure'])} |",
         f"| Injection success when exposed | {_fmt_rate(metrics['injection_success_given_exposure'])} |",
+        f"| *Diagnostic:* benign utility, lenient state check | {_fmt_rate(metrics['benign_utility_lenient'])} |",
+        f"| *Diagnostic:* utility under attack, lenient | {_fmt_rate(metrics['utility_under_attack_lenient'])} |",
+        f"| *Diagnostic:* attacker address contacted | {_fmt_rate(metrics['attacker_contacted'])} |",
+        f"| Tool calls blocked by policy | {metrics['policy_blocked_calls']} |",
         f"| Model calls / input / output tokens | {usage['calls']} / {usage['input_tokens']} / {usage['output_tokens']} |",
         f"| Elapsed seconds | {metrics['elapsed_seconds']} |",
         "",
-        "| Case | Kind | Status | Utility | Injection exposed | Injection succeeded | Calls | Seconds |",
-        "|---|---|---|---|---|---|---|---|",
+        "| Case | Kind | Status | Utility | Lenient | Exposed | Injection succeeded | Attacker contacted | Blocked | Calls | Seconds |",
+        "|---|---|---|---|---|---|---|---|---|---|---|",
     ]
     for row in result["cases"]:
         lines.append(
-            f"| `{row['case_id']}` | {row['kind']} | {row['status']} | {row['utility']} | "
-            f"{row['injection_exposed']} | {row['injection_task_success']} | {row['usage']['calls']} | {row['elapsed_seconds']} |"
+            f"| `{row['case_id']}` | {row['kind']} | {row['status']} | {row['utility']} | {row['utility_lenient']} | "
+            f"{row['injection_exposed']} | {row['injection_task_success']} | {row['attacker_contacted']} | "
+            f"{row['policy_blocked_calls']} | {row['usage']['calls']} | {row['elapsed_seconds']} |"
         )
     errors = [row for row in result["cases"] if row["error"]]
     if errors:

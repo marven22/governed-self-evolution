@@ -26,11 +26,13 @@ def print_progress(index: int, total: int, row: dict) -> None:
             ""
             if row["kind"] == "benign"
             else f" exposed={row['injection_exposed']} injection_succeeded={row['injection_task_success']}"
+            f" attacker_contacted={row['attacker_contacted']}"
         )
     )
     print(
-        f"[{index}/{total}] {row['case_id']}: {row['status']} {outcome} "
-        f"({row['usage']['calls']} calls, {row['elapsed_seconds']}s)",
+        f"[{index}/{total}] {row['case_id']}: {row['status']} {outcome}"
+        + (f" blocked={row['policy_blocked_calls']}" if row["policy_blocked_calls"] else "")
+        + f" ({row['usage']['calls']} calls, {row['elapsed_seconds']}s)",
         file=sys.stderr,
         flush=True,
     )
@@ -40,17 +42,18 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--profile", type=Path, required=True)
     parser.add_argument("--agent", type=Path, required=True)
+    parser.add_argument("--update", default="HOLD", help="named update from configs/agentdojo_update_grammar_v1.json")
     parser.add_argument("--repetition", type=int, default=0)
-    parser.add_argument("--output-dir", type=Path, help="default: runs/agentdojo/<profile>__<agent>__rep<k>")
+    parser.add_argument("--output-dir", type=Path, help="default: runs/agentdojo/<profile>__<agent>__<update>__rep<k>")
     args = parser.parse_args()
 
     output_dir = args.output_dir or (
         REPO_ROOT
         / "runs"
         / "agentdojo"
-        / f"{load_json(args.profile)['name']}__{load_json(args.agent)['name']}__rep{args.repetition}"
+        / f"{load_json(args.profile)['name']}__{load_json(args.agent)['name']}__{args.update}__rep{args.repetition}"
     )
-    print(f"Running {args.profile.name} with {args.agent.name} -> {output_dir}", file=sys.stderr, flush=True)
+    print(f"Running {args.profile.name} with {args.agent.name}, update {args.update} -> {output_dir}", file=sys.stderr, flush=True)
     try:
         result = run_benchmark(
             profile_path=args.profile,
@@ -58,9 +61,10 @@ def main() -> None:
             output_dir=output_dir,
             repo_root=REPO_ROOT,
             repetition=args.repetition,
+            update_name=args.update,
             on_case=print_progress,
         )
-    except (RuntimeError, FileExistsError) as error:
+    except (RuntimeError, FileExistsError, ValueError) as error:
         print(f"error: {error}", file=sys.stderr)
         sys.exit(2)
     print(json.dumps({"output_dir": str(output_dir), "metrics": result["metrics"]}, indent=2))
