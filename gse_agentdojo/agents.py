@@ -243,10 +243,22 @@ class RecordingPipeline(BasePipelineElement):
         return result
 
 
-def _anthropic_client() -> Any:
+def anthropic_client() -> Any:
     import anthropic  # imported lazily: offline runs never need credentials
 
     return anthropic.Anthropic()
+
+
+def preflight_anthropic(client: Any, model: str) -> None:
+    """Check credentials and the model ID with a free Models API call before any case runs."""
+    try:
+        client.models.retrieve(model)
+    except Exception as error:
+        raise RuntimeError(
+            f"Anthropic preflight failed for model {model!r} ({type(error).__name__}: {error}). "
+            "Set the key in this terminal with `export ANTHROPIC_API_KEY=...` and check the model ID. "
+            "No case was run and no output was written."
+        ) from error
 
 
 def build_pipeline(
@@ -265,7 +277,7 @@ def build_pipeline(
     elif provider == "compromised_oracle":
         elements = [system, InitQuery(), CompromisedOracle(user_task, injection_task)]
     else:
-        llm = ClaudeLLM(client if client is not None else _anthropic_client(), agent, meter)
+        llm = ClaudeLLM(client if client is not None else anthropic_client(), agent, meter)
         loop = ToolsExecutionLoop([ToolsExecutor(tool_output_formatter(agent)), llm], max_iters=agent["max_tool_iterations"])
         elements = [system, InitQuery(), llm, loop]
     pipeline = AgentPipeline(elements)

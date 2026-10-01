@@ -124,6 +124,10 @@ class ScriptedClient:
     def __init__(self, responses: list[Message]) -> None:
         self.responses, self.requests = list(responses), []
         self.messages = self
+        self.models = self
+
+    def retrieve(self, model):
+        return {"id": model}
 
     def stream(self, **request):
         self.requests.append(request)
@@ -181,3 +185,21 @@ def test_exposure_sees_through_yaml_line_folding() -> None:
     assert " ".join(injection.split()) not in " ".join(folded.split())  # folding breaks a raw match
     messages = [{"role": "tool", "content": [{"type": "text", "content": folded}]}]
     assert exposed_injection_vectors(messages, {"recipe": injection, "other": "never shown"}) == ["recipe"]
+
+
+def test_failed_preflight_stops_before_any_case(tmp_path) -> None:
+    class NoCredentialsClient:
+        class models:
+            @staticmethod
+            def retrieve(model):
+                raise TypeError("Could not resolve authentication method")
+
+    with pytest.raises(RuntimeError, match="ANTHROPIC_API_KEY"):
+        run_benchmark(
+            profile_path=PROFILE,
+            agent_path=CONFIGS / "agentdojo_agent_claude_haiku_4_5_v1.json",
+            output_dir=tmp_path / "run",
+            repo_root=REPO_ROOT,
+            client=NoCredentialsClient(),
+        )
+    assert not (tmp_path / "run").exists()

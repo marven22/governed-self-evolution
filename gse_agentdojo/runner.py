@@ -21,7 +21,15 @@ from agentdojo.task_suite.task_suite import TaskSuite, functions_stack_trace_fro
 from pydantic import BaseModel
 
 from . import ADAPTER_VERSION, PINNED_AGENTDOJO_VERSION
-from .agents import OFFLINE_PROVIDERS, RecordingPipeline, agent_fingerprint, build_pipeline, validate_agent_config
+from .agents import (
+    OFFLINE_PROVIDERS,
+    RecordingPipeline,
+    agent_fingerprint,
+    anthropic_client,
+    build_pipeline,
+    preflight_anthropic,
+    validate_agent_config,
+)
 from .attacks import attack_fingerprint, load_attack
 from .common import git_state, runtime_provenance, sha256_file, sha256_json
 from .exposure import exposed_injection_vectors
@@ -214,6 +222,10 @@ def run_benchmark(
     split, split_sha256 = load_json(split_path), sha256_file(split_path)
     suite = get_suite(profile["benchmark_version"], profile["suite"])
     validate_profile(profile, split, split_sha256, suite)
+    if agent["provider"] == "anthropic":
+        # One client for the whole run; fail before any case if it cannot authenticate.
+        client = client if client is not None else anthropic_client()
+        preflight_anthropic(client, agent["model"])
     attack = load_attack(profile["attack"], suite)
     tools_schema = [
         {"name": f.name, "description": f.description, "parameters": f.parameters.model_json_schema()}

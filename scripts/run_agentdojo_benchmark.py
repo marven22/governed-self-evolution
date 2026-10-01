@@ -51,14 +51,18 @@ def main() -> None:
         / f"{load_json(args.profile)['name']}__{load_json(args.agent)['name']}__rep{args.repetition}"
     )
     print(f"Running {args.profile.name} with {args.agent.name} -> {output_dir}", file=sys.stderr, flush=True)
-    result = run_benchmark(
-        profile_path=args.profile,
-        agent_path=args.agent,
-        output_dir=output_dir,
-        repo_root=REPO_ROOT,
-        repetition=args.repetition,
-        on_case=print_progress,
-    )
+    try:
+        result = run_benchmark(
+            profile_path=args.profile,
+            agent_path=args.agent,
+            output_dir=output_dir,
+            repo_root=REPO_ROOT,
+            repetition=args.repetition,
+            on_case=print_progress,
+        )
+    except (RuntimeError, FileExistsError) as error:
+        print(f"error: {error}", file=sys.stderr)
+        sys.exit(2)
     print(json.dumps({"output_dir": str(output_dir), "metrics": result["metrics"]}, indent=2))
     if not result["metrics"]["complete"]:
         sys.exit(1)
