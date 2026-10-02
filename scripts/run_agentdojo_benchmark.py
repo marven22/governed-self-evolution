@@ -29,6 +29,9 @@ def print_progress(index: int, total: int, row: dict) -> None:
             f" attacker_contacted={row['attacker_contacted']}"
         )
     )
+    if row.get("resumed"):
+        print(f"[{index}/{total}] {row['case_id']}: reused from interrupted run", file=sys.stderr, flush=True)
+        return
     print(
         f"[{index}/{total}] {row['case_id']}: {row['status']} {outcome}"
         + (f" blocked={row['policy_blocked_calls']}" if row["policy_blocked_calls"] else "")
@@ -47,6 +50,7 @@ def main() -> None:
     parser.add_argument("--update", default="HOLD", help="named update from configs/agentdojo_update_grammar_v1.json")
     parser.add_argument("--repetition", type=int, default=0)
     parser.add_argument("--max-usd", type=float, help="stop starting new cases once estimated spend would pass this")
+    parser.add_argument("--resume", action="store_true", help="reuse completed cases of an interrupted run in the output directory")
     parser.add_argument("--output-dir", type=Path, help="default: runs/agentdojo/<profile>__<agent>__<update>__rep<k>")
     args = parser.parse_args()
 
@@ -66,6 +70,7 @@ def main() -> None:
             repetition=args.repetition,
             update_name=args.update,
             max_usd=args.max_usd,
+            resume=args.resume,
             on_case=print_progress,
         )
     except (RuntimeError, FileExistsError, ValueError) as error:

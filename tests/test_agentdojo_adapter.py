@@ -334,3 +334,57 @@ def test_prompt_caching_marks_system_prefix_and_conversation(tmp_path) -> None:
             assert request["system"] == [{"type": "text", "text": "SYSTEM", "cache_control": {"type": "ephemeral"}}]
         else:
             assert "cache_control" not in request and request["system"] == "SYSTEM"
+
+
+def test_resume_reuses_completed_cases_and_refuses_other_configs(tmp_path) -> None:
+    import shutil
+
+    out = tmp_path / "run"
+    agent = CONFIGS / "agentdojo_agent_ground_truth_oracle_v1.json"
+    first = run_benchmark(profile_path=PROFILE, agent_path=agent, output_dir=out, repo_root=REPO_ROOT)
+    # Simulate an interruption: drop the result and the last 10 traces.
+    (out / "result.json").unlink()
+    for row in first["cases"][-10:]:
+        (out / row["trace_ref"]).unlink()
+    with pytest.raises(FileExistsError, match="--resume"):
+        run_benchmark(profile_path=PROFILE, agent_path=agent, output_dir=out, repo_root=REPO_ROOT)
+    with pytest.raises(ValueError, match="cannot resume"):
+        run_benchmark(profile_path=PROFILE, agent_path=agent, output_dir=out, repo_root=REPO_ROOT,
+                      update_name="PERMISSION_NO_DESTRUCTIVE", resume=True)
+    resumed = run_benchmark(profile_path=PROFILE, agent_path=agent, output_dir=out, repo_root=REPO_ROOT, resume=True)
+    assert resumed["resume"] == {"enabled": True, "resumed_cases": 14, "manifest": "verified"}
+    assert resumed["metrics"] == first["metrics"] | {"elapsed_seconds": resumed["metrics"]["elapsed_seconds"]}
+    # A run from before manifests existed resumes, but is labelled unverified.
+    (out / "result.json").unlink()
+    (out / "run_manifest.json").unlink()
+    legacy = run_benchmark(profile_path=PROFILE, agent_path=agent, output_dir=out, repo_root=REPO_ROOT, resume=True)
+    assert legacy["resume"]["manifest"] == "legacy_unverified" and legacy["resume"]["resumed_cases"] == 24
+    shutil.rmtree(out)
+
+
+def test_stalled_stream_is_retried(tmp_path) -> None:
+    import anthropic
+    import httpx2
+
+    class StallsOnce(ScriptedClient):
+        def __init__(self, responses):
+            super().__init__(responses)
+            self.stalled = False
+
+        def stream(self, **request):
+            if not self.stalled:
+                self.stalled = True
+                raise anthropic.APITimeoutError(request=httpx2.Request("POST", "https://api.anthropic.com/v1/messages"))
+            return super().stream(**request)
+
+    profile = copy.deepcopy(_load(PROFILE))
+    profile["benign_user_tasks"], profile["security_pairs"] = ["user_task_10"], []
+    (tmp_path / "profile.json").write_text(json.dumps(profile))
+    result = run_benchmark(
+        profile_path=tmp_path / "profile.json",
+        agent_path=CONFIGS / "agentdojo_agent_claude_haiku_4_5_cached_v1.json",
+        output_dir=tmp_path / "run",
+        repo_root=REPO_ROOT,
+        client=StallsOnce([_message([{"type": "text", "text": "Three."}], "end_turn", 1)]),
+    )
+    assert result["cases"][0]["status"] == "completed" and result["cases"][0]["usage"]["transport_retries"] == 1

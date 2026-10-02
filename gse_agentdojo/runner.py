@@ -97,6 +97,38 @@ def _skipped_row(user_task_id: str, injection_task_id: str | None) -> dict[str, 
     }
 
 
+ROW_KEYS = tuple(_skipped_row("user_task_0", None))
+
+
+def _prepare_output(output_dir: Path, fingerprint: str, resume: bool) -> dict[str, Any]:
+    """Refuse to mix configurations in one directory; record how a resume was checked."""
+    manifest_path, traces = output_dir / "run_manifest.json", output_dir / "traces"
+    has_traces = traces.exists() and any(traces.iterdir())
+    if not resume:
+        if has_traces:
+            raise FileExistsError(f"{output_dir} holds a partial run; pass --resume or choose a new directory")
+        _write_json(manifest_path, {"run_fingerprint": fingerprint})
+        return {"enabled": False, "resumed_cases": 0, "manifest": "written"}
+    if manifest_path.exists():
+        if load_json(manifest_path)["run_fingerprint"] != fingerprint:
+            raise ValueError("cannot resume: the existing run used a different profile, agent, update or adapter")
+        check = "verified"
+    else:  # runs started before manifests existed; the configuration cannot be checked
+        _write_json(manifest_path, {"run_fingerprint": fingerprint, "created_on_resume": True})
+        check = "legacy_unverified" if has_traces else "written"
+    return {"enabled": True, "resumed_cases": 0, "manifest": check}
+
+
+def _completed_row(output_dir: Path, user_task_id: str, injection_task_id: str | None) -> dict[str, Any] | None:
+    path = output_dir / "traces" / f"{user_task_id}__{injection_task_id or 'none'}.json"
+    if not path.exists():
+        return None
+    trace = load_json(path)
+    if trace["status"] != "completed":
+        return None  # errored cases are rerun
+    return {**{key: trace.get(key) for key in ROW_KEYS}, "trace_ref": f"traces/{path.name}", "resumed": True}
+
+
 def load_update(grammar_path: Path, name: str) -> dict[str, Any]:
     """A named update from the committed grammar file, checked against its canonical id."""
     records = {record["name"]: record for record in load_json(grammar_path)["updates"]}
@@ -298,6 +330,7 @@ def run_benchmark(
     grammar_path: Path | None = None,
     max_usd: float | None = None,
     pricing_path: Path | None = None,
+    resume: bool = False,
     client: Any | None = None,
     on_case: Callable[[int, int, dict[str, Any]], None] | None = None,
 ) -> dict[str, Any]:
@@ -306,6 +339,9 @@ def run_benchmark(
     ``max_usd`` caps estimated list-price spend. It is checked before each case
     against the most expensive case so far, so one case can still run past the
     cap by at most its own cost; cases not started are recorded as skipped.
+
+    ``resume`` reuses completed cases from an interrupted run in the same
+    directory, after checking its run manifest matches this configuration.
     """
     if (output_dir / "result.json").exists():
         raise FileExistsError(f"{output_dir} already holds a result; choose a new output directory")
@@ -328,6 +364,14 @@ def run_benchmark(
         if model_price is None and max_usd is not None:
             raise ValueError(f"no price for {agent['model']!r} in the pricing file; cannot enforce --max-usd")
     attack = load_attack(profile["attack"], suite)
+    fingerprint = sha256_json({
+        "adapter": ADAPTER_VERSION,
+        "profile": sha256_json(profile),
+        "agent": sha256_json(agent),
+        "update": update_record["id"],
+        "attack": attack_fingerprint(attack),
+    })
+    resume_state = _prepare_output(output_dir, fingerprint, resume)
     tools_schema = [
         {"name": f.name, "description": f.description, "parameters": f.parameters.model_json_schema()}
         for f in suite.tools
@@ -340,7 +384,16 @@ def run_benchmark(
         if max_usd is not None and budget_stop is None and spent + costliest > max_usd:
             budget_stop = {"max_usd": max_usd, "spent_usd": round(spent, 4), "stopped_before_case": index}
         if budget_stop is not None:
-            rows.append(_skipped_row(user_task_id, injection_task_id))
+            rows.append({**_skipped_row(user_task_id, injection_task_id), "resumed": False})
+            continue
+        reused = _completed_row(output_dir, user_task_id, injection_task_id) if resume else None
+        if reused is not None:
+            spent += reused["cost_usd"] or 0.0
+            costliest = max(costliest, reused["cost_usd"] or 0.0)
+            rows.append(reused)
+            resume_state["resumed_cases"] += 1
+            if on_case is not None:
+                on_case(index, len(cases), {**reused, "spent_usd": round(spent, 4)})
             continue
         row, trace = run_case(suite, agent, attack, user_task_id, injection_task_id, update=update, client=client)
         row["cost_usd"] = 0.0 if pricing is None else (
@@ -349,7 +402,7 @@ def run_benchmark(
         spent += row["cost_usd"] or 0.0
         costliest = max(costliest, row["cost_usd"] or 0.0)
         _write_json(output_dir / "traces" / f"{row['case_id']}.json", {**trace, "cost_usd": row["cost_usd"]})
-        rows.append({**row, "trace_ref": f"traces/{row['case_id']}.json"})
+        rows.append({**row, "trace_ref": f"traces/{row['case_id']}.json", "resumed": False})
         if on_case is not None:
             on_case(index, len(cases), {**row, "spent_usd": round(spent, 4)})
     result = {
@@ -367,6 +420,8 @@ def run_benchmark(
         "provenance": {**runtime_provenance(), "git": git_state(repo_root)},
         "pricing": None if pricing is None else {"as_of": pricing["as_of"], "model": model_price},
         "budget": {"max_usd": max_usd, "stop": budget_stop},
+        "run_fingerprint": fingerprint,
+        "resume": resume_state,
         "metrics": summarize(rows),
         "cases": rows,
     }

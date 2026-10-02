@@ -34,6 +34,7 @@ from agentdojo.agent_pipeline.tool_execution import ToolsExecutionLoop, ToolsExe
 from agentdojo.base_tasks import BaseInjectionTask, BaseUserTask
 from agentdojo.functions_runtime import EmptyEnv, Env, FunctionCall, FunctionsRuntime
 from agentdojo.types import ChatAssistantMessage, ChatMessage, ChatToolResultMessage, text_content_block_from_string
+import anthropic
 from pydantic import BaseModel
 
 from .attacker_scripts import attacker_calls
@@ -41,6 +42,7 @@ from .common import sha256_json, sha256_text
 from .grammar import ConfigUpdate, apply_system_message, wrap_tool_output
 
 AGENT_PROTOCOL = "gse-agentdojo-agent-v1"
+STALLED_STREAM_RETRIES = 2
 PROVIDERS = ("ground_truth_oracle", "compromised_oracle", "anthropic")
 OFFLINE_PROVIDERS = ("ground_truth_oracle", "compromised_oracle")
 AGENT_FIELDS = {
@@ -101,6 +103,7 @@ class UsageMeter:
     cache_creation_input_tokens: int = 0
     cache_read_input_tokens: int = 0
     stop_reasons: Counter = field(default_factory=Counter)
+    transport_retries: int = 0
     response_ids: list[str] = field(default_factory=list)
     served_models: list[str] = field(default_factory=list)
 
@@ -126,6 +129,7 @@ class UsageMeter:
             "stop_reasons": dict(sorted(self.stop_reasons.items())),
             "response_ids": list(self.response_ids),
             "served_models": list(self.served_models),
+            "transport_retries": self.transport_retries,
         }
 
 
@@ -184,9 +188,18 @@ class ClaudeLLM(BasePipelineElement):
         extra_args: dict = {},
     ) -> tuple[str, FunctionsRuntime, Env, Sequence[ChatMessage], dict]:
         request = self.build_request(messages, runtime)
-        # Streaming avoids HTTP timeouts on long turns; SDK retries cover 429/5xx.
-        with self.client.messages.stream(**request) as stream:
-            completion = stream.get_final_message()
+        # Streaming avoids HTTP timeouts on long turns; SDK retries cover 429/5xx
+        # before a stream starts. A stream that stalls mid-response raises a
+        # timeout (see anthropic_client) and is retried here from scratch.
+        for attempt in range(1 + STALLED_STREAM_RETRIES):
+            try:
+                with self.client.messages.stream(**request) as stream:
+                    completion = stream.get_final_message()
+                break
+            except (anthropic.APITimeoutError, anthropic.APIConnectionError):
+                self.meter.transport_retries += 1
+                if attempt == STALLED_STREAM_RETRIES:
+                    raise
         self.meter.record(completion)
         return query, runtime, env, [*messages, _anthropic_to_assistant_message(completion)], extra_args
 
@@ -266,9 +279,9 @@ class RecordingPipeline(BasePipelineElement):
 
 
 def anthropic_client() -> Any:
-    import anthropic  # imported lazily: offline runs never need credentials
-
-    return anthropic.Anthropic()
+    # A live stream receives events or pings continuously; 90 s of silence
+    # means the connection stalled, so fail it and let ClaudeLLM retry.
+    return anthropic.Anthropic(timeout=anthropic.Timeout(600.0, read=90.0, connect=15.0))
 
 
 def preflight_anthropic(client: Any, model: str) -> None:
