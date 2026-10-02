@@ -450,3 +450,22 @@ def test_transition_rows_from_oracle_runs(tmp_path, suite) -> None:
                                 output_dir=tmp_path / "gt", repo_root=REPO_ROOT, update_name="ISOLATION_DELIMITED")
     with pytest.raises(ValueError, match="differs from HOLD"):
         build_transitions(hold, [tmp_path / "gt"], suite)
+
+
+def test_run_stops_when_the_connection_is_down_and_resumes_later(tmp_path) -> None:
+    import anthropic
+    import httpx2
+
+    class Offline(ScriptedClient):
+        def stream(self, **request):
+            raise anthropic.APIConnectionError(request=httpx2.Request("POST", "https://api.anthropic.com/v1/messages"))
+
+    common = dict(profile_path=PROFILE, output_dir=tmp_path / "run", repo_root=REPO_ROOT,
+                  agent_path=CONFIGS / "agentdojo_agent_claude_haiku_4_5_cached_v1.json")
+    down = run_benchmark(**common, client=Offline([]))
+    statuses = [row["status"] for row in down["cases"]]
+    assert statuses[:3] == ["error"] * 3 and set(statuses[3:]) == {"skipped_connection"}
+    assert down["connection_stop"] == {"after_case": 3, "consecutive_failures": 3}
+    done = _message([{"type": "text", "text": "Done."}], "end_turn", 1)
+    back = run_benchmark(**common, resume=True, client=ScriptedClient([done] * 30))
+    assert back["metrics"]["complete"] and back["connection_stop"] is None

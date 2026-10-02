@@ -76,6 +76,8 @@ def main() -> None:
     except (RuntimeError, FileExistsError, ValueError) as error:
         print(f"error: {error}", file=sys.stderr)
         sys.exit(2)
+    if result["connection_stop"] is not None:
+        print("Stopped: the API connection is down. Rerun the same command with --resume when it is back.", file=sys.stderr)
     if result["budget"]["stop"] is not None:
         print(f"Spend cap reached: {result['budget']['stop']}", file=sys.stderr)
     print(json.dumps({"output_dir": str(output_dir), "metrics": result["metrics"]}, indent=2))

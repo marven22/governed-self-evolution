@@ -42,6 +42,10 @@ PROFILE_PROTOCOL = "gse-agentdojo-run-profile-v1"
 RESULT_PROTOCOL = "gse-agentdojo-run-result-v2"
 GRAMMAR_FILE = Path("configs/agentdojo_update_grammar_v1.json")
 PRICING_FILE = Path("configs/anthropic_pricing_v1.json")
+# Consecutive cases failing on the network mean the connection is down; stop
+# instead of recording the rest of the profile as errors. --resume continues.
+CONNECTION_FAILURE_LIMIT = 3
+CONNECTION_ERRORS = ("APIConnectionError", "APITimeoutError", "ReadTimeout", "ConnectTimeout", "ConnectError")
 PROFILE_FIELDS = {
     "protocol",
     "name",
@@ -193,6 +197,7 @@ def _rate(rows: list[dict[str, Any]], key: str) -> dict[str, Any]:
 def summarize(rows: list[dict[str, Any]]) -> dict[str, Any]:
     done = [row for row in rows if row["status"] == "completed"]
     skipped = sum(row["status"] == "skipped_budget" for row in rows)
+    unreached = sum(row["status"] == "skipped_connection" for row in rows)
     benign = [row for row in done if row["kind"] == "benign"]
     security = [row for row in done if row["kind"] == "security"]
     injection = _rate(security, "injection_task_success")
@@ -203,8 +208,9 @@ def summarize(rows: list[dict[str, Any]]) -> dict[str, Any]:
         "cases": {
             "planned": len(rows),
             "completed": len(done),
-            "errored": len(rows) - len(done) - skipped,
+            "errored": len(rows) - len(done) - skipped - unreached,
             "skipped_budget": skipped,
+            "skipped_connection": unreached,
         },
         "benign_utility": _rate(benign, "utility"),
         "utility_under_attack": _rate(security, "utility"),
@@ -384,11 +390,14 @@ def run_benchmark(
     cases = [(t, None) for t in profile["benign_user_tasks"]] + [tuple(p) for p in profile["security_pairs"]]
     rows = []
     spent, costliest, budget_stop = 0.0, 0.0, None
+    connection_stop, connection_failures = None, 0
     for index, (user_task_id, injection_task_id) in enumerate(cases, start=1):
         if max_usd is not None and budget_stop is None and spent + costliest > max_usd:
             budget_stop = {"max_usd": max_usd, "spent_usd": round(spent, 4), "stopped_before_case": index}
-        if budget_stop is not None:
+        if budget_stop is not None or connection_stop is not None:
             rows.append({**_skipped_row(user_task_id, injection_task_id), "resumed": False})
+            if connection_stop is not None:
+                rows[-1]["status"] = "skipped_connection"
             continue
         reused = _completed_row(output_dir, user_task_id, injection_task_id) if resume else None
         if reused is not None:
@@ -409,6 +418,10 @@ def run_benchmark(
         rows.append({**row, "trace_ref": f"traces/{row['case_id']}.json", "resumed": False})
         if on_case is not None:
             on_case(index, len(cases), {**row, "spent_usd": round(spent, 4)})
+        failed_on_network = row["status"] == "error" and (row["error"] or "").startswith(CONNECTION_ERRORS)
+        connection_failures = connection_failures + 1 if failed_on_network else 0
+        if connection_failures >= CONNECTION_FAILURE_LIMIT:
+            connection_stop = {"after_case": index, "consecutive_failures": connection_failures}
     result = {
         "protocol": RESULT_PROTOCOL,
         "adapter_version": ADAPTER_VERSION,
@@ -424,6 +437,7 @@ def run_benchmark(
         "provenance": {**runtime_provenance(), "git": git_state(repo_root)},
         "pricing": None if pricing is None else {"as_of": pricing["as_of"], "model": model_price},
         "budget": {"max_usd": max_usd, "stop": budget_stop},
+        "connection_stop": connection_stop,
         "run_fingerprint": fingerprint,
         "resume": resume_state,
         "metrics": summarize(rows),
@@ -484,6 +498,12 @@ def render_summary(result: dict[str, Any]) -> str:
             f"{row['injection_exposed']} | {row['injection_task_success']} | {row['attacker_contacted']} | "
             f"{row['policy_blocked_calls']} | {row['usage']['calls']} | {row['elapsed_seconds']} |"
         )
+    if result["connection_stop"] is not None:
+        lines += [
+            "",
+            f"**Stopped after {result['connection_stop']['consecutive_failures']} consecutive connection failures** "
+            f"(at case {result['connection_stop']['after_case']}); rerun with `--resume` once the connection is back.",
+        ]
     stop = result["budget"]["stop"]
     if stop is not None:
         lines += [
