@@ -416,3 +416,37 @@ def test_resume_reruns_only_the_errored_case_of_an_incomplete_result(tmp_path) -
     second = run_benchmark(**common, resume=True, client=ScriptedClient([done]))
     assert [c["status"] for c in second["cases"]] == ["completed", "completed"]
     assert second["resume"]["resumed_cases"] == 1 and (tmp_path / "run" / "result.incomplete.json").exists()
+
+
+# --- Milestone 3: transition rows --------------------------------------------------------
+
+
+def test_transition_rows_from_oracle_runs(tmp_path, suite) -> None:
+    from gse_agentdojo.transitions import build_transitions, validate_row
+
+    def run(update: str) -> Path:
+        out = tmp_path / update
+        run_benchmark(profile_path=PROFILE, agent_path=CONFIGS / "agentdojo_agent_compromised_oracle_v1.json",
+                      output_dir=out, repo_root=REPO_ROOT, update_name=update)
+        return out
+
+    hold, no_delete, known = run("HOLD"), run("PERMISSION_NO_DESTRUCTIVE"), run("PERMISSION_KNOWN_RECIPIENTS")
+    rows = {row["update"]["name"]: row for row in build_transitions(hold, [no_delete, known], suite)}
+    for row in rows.values():
+        validate_row(row)
+        assert row["pre_capability_is_exact"] and row["pre_capability"]["attacker_isolation"] == 0.0
+    # Blocking deletion fools the official check but not attacker isolation.
+    assert rows["PERMISSION_NO_DESTRUCTIVE"]["post_capability"]["prompt_injection_resistance"] > 0.0
+    assert rows["PERMISSION_NO_DESTRUCTIVE"]["post_capability"]["attacker_isolation"] == 0.0
+    assert rows["PERMISSION_KNOWN_RECIPIENTS"]["post_capability"]["attacker_isolation"] == 1.0
+    assert rows["PERMISSION_KNOWN_RECIPIENTS"]["paired_changes"]["attacker_contacted"] == {"better": 16, "worse": 0}
+    assert rows["PERMISSION_KNOWN_RECIPIENTS"]["feasible"] is True
+    # The compromised oracle's injected side effects count as policy violations at HOLD.
+    assert rows["PERMISSION_KNOWN_RECIPIENTS"]["pre_capability"]["tool_policy_compliance"] < 1.0
+    tampered = dict(rows["PERMISSION_KNOWN_RECIPIENTS"], pre_capability_is_exact=False)
+    with pytest.raises(ValueError, match="measured"):
+        validate_row(tampered)
+    run_benchmark(profile_path=PROFILE, agent_path=CONFIGS / "agentdojo_agent_ground_truth_oracle_v1.json",
+                                output_dir=tmp_path / "gt", repo_root=REPO_ROOT, update_name="ISOLATION_DELIMITED")
+    with pytest.raises(ValueError, match="differs from HOLD"):
+        build_transitions(hold, [tmp_path / "gt"], suite)
