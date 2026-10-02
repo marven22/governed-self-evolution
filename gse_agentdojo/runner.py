@@ -344,7 +344,11 @@ def run_benchmark(
     directory, after checking its run manifest matches this configuration.
     """
     if (output_dir / "result.json").exists():
-        raise FileExistsError(f"{output_dir} already holds a result; choose a new output directory")
+        previous = load_json(output_dir / "result.json")
+        if not resume or previous["metrics"]["complete"]:
+            raise FileExistsError(f"{output_dir} already holds a result; choose a new output directory")
+        # An incomplete run being resumed: keep its result for the record, then redo it.
+        (output_dir / "result.json").rename(output_dir / "result.incomplete.json")
     profile, agent = load_json(profile_path), load_json(agent_path)
     validate_agent_config(agent)
     update_record = load_update(grammar_path or repo_root / GRAMMAR_FILE, update_name)

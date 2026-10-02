@@ -35,6 +35,7 @@ from agentdojo.base_tasks import BaseInjectionTask, BaseUserTask
 from agentdojo.functions_runtime import EmptyEnv, Env, FunctionCall, FunctionsRuntime
 from agentdojo.types import ChatAssistantMessage, ChatMessage, ChatToolResultMessage, text_content_block_from_string
 import anthropic
+import httpx2
 from pydantic import BaseModel
 
 from .attacker_scripts import attacker_calls
@@ -196,7 +197,8 @@ class ClaudeLLM(BasePipelineElement):
                 with self.client.messages.stream(**request) as stream:
                     completion = stream.get_final_message()
                 break
-            except (anthropic.APITimeoutError, anthropic.APIConnectionError):
+            except (anthropic.APITimeoutError, anthropic.APIConnectionError, httpx2.TransportError):
+                # Mid-stream stalls surface as raw transport errors, not SDK errors.
                 self.meter.transport_retries += 1
                 if attempt == STALLED_STREAM_RETRIES:
                     raise
@@ -279,9 +281,11 @@ class RecordingPipeline(BasePipelineElement):
 
 
 def anthropic_client() -> Any:
-    # A live stream receives events or pings continuously; 90 s of silence
-    # means the connection stalled, so fail it and let ClaudeLLM retry.
-    return anthropic.Anthropic(timeout=anthropic.Timeout(600.0, read=90.0, connect=15.0))
+    # The API buffers a tool call until it is complete, so a long tool input
+    # (e.g. an email quoting a whole inbox) is silent while it is written. 300 s
+    # covers max_tokens=16000 at Haiku speeds; longer silence is a stalled
+    # connection, which ClaudeLLM retries.
+    return anthropic.Anthropic(timeout=anthropic.Timeout(900.0, read=300.0, connect=15.0))
 
 
 def preflight_anthropic(client: Any, model: str) -> None:

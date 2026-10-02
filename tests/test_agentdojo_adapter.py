@@ -359,6 +359,9 @@ def test_resume_reuses_completed_cases_and_refuses_other_configs(tmp_path) -> No
     (out / "run_manifest.json").unlink()
     legacy = run_benchmark(profile_path=PROFILE, agent_path=agent, output_dir=out, repo_root=REPO_ROOT, resume=True)
     assert legacy["resume"]["manifest"] == "legacy_unverified" and legacy["resume"]["resumed_cases"] == 24
+    # An incomplete result can be resumed; a complete one is never overwritten.
+    with pytest.raises(FileExistsError, match="already holds a result"):
+        run_benchmark(profile_path=PROFILE, agent_path=agent, output_dir=out, repo_root=REPO_ROOT, resume=True)
     shutil.rmtree(out)
 
 
@@ -369,12 +372,14 @@ def test_stalled_stream_is_retried(tmp_path) -> None:
     class StallsOnce(ScriptedClient):
         def __init__(self, responses):
             super().__init__(responses)
-            self.stalled = False
+            self.stalled = 0
 
         def stream(self, **request):
-            if not self.stalled:
-                self.stalled = True
-                raise anthropic.APITimeoutError(request=httpx2.Request("POST", "https://api.anthropic.com/v1/messages"))
+            if self.stalled < 2:  # an SDK timeout, then a raw mid-stream read timeout
+                self.stalled += 1
+                if self.stalled == 1:
+                    raise anthropic.APITimeoutError(request=httpx2.Request("POST", "https://api.anthropic.com/v1/messages"))
+                raise httpx2.ReadTimeout("The read operation timed out")
             return super().stream(**request)
 
     profile = copy.deepcopy(_load(PROFILE))
@@ -387,4 +392,27 @@ def test_stalled_stream_is_retried(tmp_path) -> None:
         repo_root=REPO_ROOT,
         client=StallsOnce([_message([{"type": "text", "text": "Three."}], "end_turn", 1)]),
     )
-    assert result["cases"][0]["status"] == "completed" and result["cases"][0]["usage"]["transport_retries"] == 1
+    assert result["cases"][0]["status"] == "completed" and result["cases"][0]["usage"]["transport_retries"] == 2
+
+
+def test_resume_reruns_only_the_errored_case_of_an_incomplete_result(tmp_path) -> None:
+    import httpx2
+
+    profile = copy.deepcopy(_load(PROFILE))
+    profile["benign_user_tasks"], profile["security_pairs"] = ["user_task_10", "user_task_1"], []
+    (tmp_path / "profile.json").write_text(json.dumps(profile))
+    done = _message([{"type": "text", "text": "Three."}], "end_turn", 1)
+    common = dict(profile_path=tmp_path / "profile.json", output_dir=tmp_path / "run", repo_root=REPO_ROOT,
+                  agent_path=CONFIGS / "agentdojo_agent_claude_haiku_4_5_cached_v1.json")
+
+    class FirstCaseStalls(ScriptedClient):
+        def stream(self, **request):
+            if "do I have today" in json.dumps(request["messages"]):  # user_task_10 only
+                raise httpx2.ReadTimeout("The read operation timed out")
+            return super().stream(**request)
+
+    first = run_benchmark(**common, client=FirstCaseStalls([done]))
+    assert [c["status"] for c in first["cases"]] == ["error", "completed"]
+    second = run_benchmark(**common, resume=True, client=ScriptedClient([done]))
+    assert [c["status"] for c in second["cases"]] == ["completed", "completed"]
+    assert second["resume"]["resumed_cases"] == 1 and (tmp_path / "run" / "result.incomplete.json").exists()
