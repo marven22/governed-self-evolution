@@ -55,6 +55,7 @@ AGENT_FIELDS = {
     "thinking",
     "tool_output_format",
     "max_tool_iterations",
+    "prompt_caching",
     "seed",
 }
 
@@ -160,6 +161,12 @@ class ClaudeLLM(BasePipelineElement):
             request["tools"] = _plain(tools)
         if system_prompt:
             request["system"] = system_prompt
+        if self.agent["prompt_caching"]:
+            # Caching changes billing, not outputs. Tools render before the system
+            # prompt, so this marker caches tools + system once for every case;
+            # the top-level field also caches each case's growing conversation.
+            request["system"] = [{"type": "text", "text": system_prompt, "cache_control": {"type": "ephemeral"}}]
+            request["cache_control"] = {"type": "ephemeral"}
         if self.agent["temperature"] is not None:
             request["temperature"] = self.agent["temperature"]
         if self.agent["effort"] is not None:

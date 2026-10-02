@@ -315,3 +315,22 @@ def test_spend_cap_stops_before_the_budget_is_exceeded(tmp_path) -> None:
     assert statuses[:2] == ["completed", "completed"] and set(statuses[2:]) == {"skipped_budget"}
     assert result["metrics"]["complete"] is False and result["budget"]["stop"]["stopped_before_case"] == 3
     assert result["metrics"]["estimated_cost_usd"] <= 0.0003 + 0.00017
+
+
+def test_prompt_caching_marks_system_prefix_and_conversation(tmp_path) -> None:
+    from gse_agentdojo.agents import ClaudeLLM
+    from agentdojo.functions_runtime import FunctionsRuntime
+    from agentdojo.types import ChatSystemMessage, ChatUserMessage, text_content_block_from_string
+
+    messages = [
+        ChatSystemMessage(role="system", content=[text_content_block_from_string("SYSTEM")]),
+        ChatUserMessage(role="user", content=[text_content_block_from_string("hi")]),
+    ]
+    for config, cached in [("claude_haiku_4_5_cached", True), ("claude_haiku_4_5", False)]:
+        agent = _load(CONFIGS / f"agentdojo_agent_{config}_v1.json")
+        request = ClaudeLLM(None, agent, UsageMeter()).build_request(messages, FunctionsRuntime([]))
+        if cached:
+            assert request["cache_control"] == {"type": "ephemeral"}
+            assert request["system"] == [{"type": "text", "text": "SYSTEM", "cache_control": {"type": "ephemeral"}}]
+        else:
+            assert "cache_control" not in request and request["system"] == "SYSTEM"

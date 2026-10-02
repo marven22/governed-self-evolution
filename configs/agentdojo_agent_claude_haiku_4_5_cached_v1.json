@@ -1,15 +1,15 @@
 {
   "protocol": "gse-agentdojo-agent-v1",
-  "name": "ground_truth_oracle",
-  "provider": "ground_truth_oracle",
-  "model": null,
+  "name": "claude_haiku_4_5_cached",
+  "provider": "anthropic",
+  "model": "claude-haiku-4-5",
   "system_message": "agentdojo:default",
-  "max_tokens": null,
+  "max_tokens": 16000,
   "temperature": null,
   "effort": null,
   "thinking": null,
   "tool_output_format": "yaml",
   "max_tool_iterations": 15,
-  "prompt_caching": false,
+  "prompt_caching": true,
   "seed": 0
 }
