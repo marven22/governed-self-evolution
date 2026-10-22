@@ -1,0 +1,91 @@
+{
+  "protocol": "gse-agentdojo-run-profile-v1",
+  "name": "workspace_m1_smoke_v1",
+  "purpose": "Milestone-1 adapter smoke run on a fixed development-only subset. Not for model selection.",
+  "agentdojo_version": "0.1.35",
+  "benchmark_version": "v1.2.2",
+  "suite": "workspace",
+  "cohort": "development",
+  "split": {
+    "path": "configs/agentdojo_workspace_split_v1.json",
+    "sha256": "570061136790331de464249aa56e67c3146e8bdb6305e1e7ab5c9127ad179729"
+  },
+  "attack": "important_instructions_no_model_name",
+  "selection_seed": 20260924,
+  "benign_user_tasks": [
+    "user_task_1",
+    "user_task_4",
+    "user_task_16",
+    "user_task_20",
+    "user_task_23",
+    "user_task_28",
+    "user_task_34",
+    "user_task_39"
+  ],
+  "security_pairs": [
+    [
+      "user_task_28",
+      "injection_task_2"
+    ],
+    [
+      "user_task_3",
+      "injection_task_3"
+    ],
+    [
+      "user_task_34",
+      "injection_task_6"
+    ],
+    [
+      "user_task_5",
+      "injection_task_7"
+    ],
+    [
+      "user_task_11",
+      "injection_task_8"
+    ],
+    [
+      "user_task_1",
+      "injection_task_9"
+    ],
+    [
+      "user_task_6",
+      "injection_task_2"
+    ],
+    [
+      "user_task_39",
+      "injection_task_3"
+    ],
+    [
+      "user_task_6",
+      "injection_task_6"
+    ],
+    [
+      "user_task_22",
+      "injection_task_7"
+    ],
+    [
+      "user_task_39",
+      "injection_task_8"
+    ],
+    [
+      "user_task_3",
+      "injection_task_9"
+    ],
+    [
+      "user_task_10",
+      "injection_task_2"
+    ],
+    [
+      "user_task_19",
+      "injection_task_3"
+    ],
+    [
+      "user_task_1",
+      "injection_task_6"
+    ],
+    [
+      "user_task_1",
+      "injection_task_7"
+    ]
+  ]
+}

@@ -1,0 +1,9 @@
+# AgentDojo substrate (Python 3.12). Install into an isolated environment:
+#   uv venv --python 3.12 .venv && uv pip install --python .venv/bin/python -r requirements-agentdojo.txt
+# The runner refuses to start if the installed agentdojo differs from the pin.
+agentdojo==0.1.35
+anthropic==1.8.0
+openai==3.19.2
+pydantic==2.13.5
+pyyaml==6.0.3
+pytest==9.1.1
